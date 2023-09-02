@@ -22,9 +22,14 @@ p {
 }
 
 .headline{
-    border-bottom: 1px solid dimgrey;
+    border-bottom: 1px solid #ddc69b;
     padding-bottom: 5px;
     margin-bottom:30px;
+}
+
+
+h3.headline {
+  color: #ddc69b;
 }
 
 .coverImage {
