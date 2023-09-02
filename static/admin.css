@@ -1,0 +1,105 @@
+/* here to overwrite some main css to make admin sidebar look nice
+ an start from top to footer*/
+main.container {
+	height: 100%;
+    width:100%;
+}
+
+main {
+    padding: 0;
+}
+.page-header {
+    margin-bottom: 0;
+}
+
+.row {
+    height: 100%;
+}
+
+.side-bar {
+	height: 100%;
+	background: #338DDA;
+    padding: 5px;
+}
+.main-content {
+	height: 100%;
+}
+/* finish overwriting and admin side bar */
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.input-sm {
+    flex-grow: 0;
+}
+
+.input-md {
+    flex-grow: 1;
+}
+
+.input-big {
+    flex-grow: 2;
+}
+
+.empty-space {
+    flex-grow: 1;
+}
+
+
+.edit-img-container {
+    flex-direction: column;
+    display: flex;
+}
+
+.edit-tool-container {
+    width:20%;
+    align-self: right;
+    margin-right: 20px;
+    margin-bottom:15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-input-container button {
+    align-self: right;
+    max-height: 20px;
+    color: red;
+}
+
+
+.img-input-container img {
+    width: 75%;
+    height: 200px;
+    /* width: 300px; */
+    overflow: hidden;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.img-container {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.img-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    flex-basis: 30%;
+    box-shadow: 0px 0px 12px grey;
+    margin-bottom: 15px;
+}
+
+#page-info {
+    margin-bottom: 25px;
+}

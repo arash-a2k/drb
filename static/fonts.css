@@ -1,0 +1,6 @@
+@font-face {
+     font-family: 'farnaz';
+  src: url('/static/fonts/BFarnaz.ttf') format("truetype");
+  src: url('/static/fonts/BFarnaz.woff') format("woff");
+
+}
