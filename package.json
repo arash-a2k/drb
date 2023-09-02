@@ -1,0 +1,22 @@
+{
+  "name": "drb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arash-a2k/drb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arash-a2k/drb/issues"
+  },
+  "homepage": "https://github.com/arash-a2k/drb#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
