@@ -13,6 +13,11 @@ body {
   line-height: 22px;
   font-size: 18px;
 }
+
+body.ltr, body.rtl {
+  text-align: center;
+}
+
 p {
     padding: 5px;
 }
@@ -194,6 +199,10 @@ footer span.glyphicon, footer a {
 
 .navbar-collapse.in {
     overflow-y: hidden;
+}
+
+#navbar {
+  text-align: center;
 }
 
 .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
@@ -520,12 +529,12 @@ a.disabled {
 
 .ltr, .ltr * {
   direction: ltr;
-  text-align: left
+  /*text-align: left*/
 }
 
 .rtl, .rtl * {
   direction: rtl;
-  text-align: right
+  /*text-align: right*/
 }
 
 @media (max-width: 760px){
