@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",
-    "deploy": "gh-pages -t -d dist"
+    "deploy": "gh-pages -t -d dist --cname dr-khatayee.com"
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

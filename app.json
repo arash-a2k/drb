@@ -19,7 +19,7 @@
       "assets/js/**/*"
     ],
     "experiments": {
-      "baseUrl": "/arash-a2k/drb"
+      "baseUrl": "/"
     },
     "ios": {
       "supportsTablet": true
