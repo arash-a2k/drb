@@ -1,0 +1,24 @@
+{
+    "fa": {
+        "telephone": [
+            "22728768",
+            "26851277",
+            "09039409045"
+        ],
+        "title": "مطب دکتر بابک ختایی - جراح و دندانپزشک",
+        "email": "dr_khatayee@me.com",
+        "address": "تهران, زعفرانيه، مقدس اردبيلى، بين فلاحى و پسيان، پلاك ١٤، طبقه ٤ واحد ١٦",
+        "visitTimes": "شنبه  تا  چهارشنبه ۱۰ الی ۱۹ - پنجشنبه ۱۰ الی ۱۵"
+    },
+    "en": {
+        "telephone": [
+            "+982122728768",
+            "+982126851277",
+            "+989039409045"
+        ],
+        "title": "Dentistry Clinic Dr. Babak Khatayee (DDS)",
+        "email": "dr_khatayee@me.com",
+        "address": "Nr 14, Moghadas Ardebili street, Zaeferanieh, Tehran, Iran",
+        "visitTimes": "Sat - Wed 10:00 - 19:00 and Thu 10:00 - 15:00"
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "drb",
+    "slug": "drb",
+    "version": "1.0.0",
+    "scheme": "drb-scheme",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/**/*",
+      "assets/images/**/*",
+      "assets/js/**/*"
+    ],
+    "experiments": {
+      "baseUrl": "/arash-a2k/drb"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "static"
+
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}

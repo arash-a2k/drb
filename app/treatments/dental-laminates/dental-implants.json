@@ -1,0 +1,121 @@
+{
+  "fa": {
+    "heroImage": "/assets/images/home/drb.webp",
+
+    "sections": [
+      {
+        "id": 1,
+        "title": "ایمپلنت دندان چیست؟",
+        "content": "ایمپلنت ها پیچ های تیتانیومی هستند که داخل استخوان فک قرار داده شده و دندان های از دست رفته را بازسازی میکنند. به علت جنس تیتانیوم و سطح خاص ایمپلنت ها به راحتی با استخوان جوش خورده و در واقع نقش ریشه دندان را بازی میکنند.",
+        "bold": ["ایمپلنت ها", "پیچ های تیتانیومی", "استخوان فک", "دندان های از دست رفته", "جنس تیتانیوم", "سطح خاص"]
+      },
+      {
+        "id": 2,
+        "title": "قیمت ایمپلنت ها",
+        "content": "قیمت ایمپلنت و هزینه پرداختی وابسته به انتخاب بیمار است. ایمپلنت های کره ای قیمت مناسبتر و ایمپلنت های سوئیسی و آلمانی قیمت های بالاتری دارند. با توجه به اینکه زمان حراحی ایمپلنت تا تحویل روکش بازه زمانی حدود ۲ الی ۴ ماهه دارد برای افزایش طول مدت پرداخت شما میتوانید هزینه ایمپلنت را در ۴ الی ۵ ماه پرداخت کنید.",
+        "bold": ["قیمت ایمپلنت", "هزینه پرداختی", "ایمپلنت های کره ای", "ایمپلنت های سوئیسی", "ایمپلنت های آلمانی"]
+      },
+      {
+        "id": 3,
+        "title": "مراحل ایمپلنت",
+        "content": "مرحله اول خارج کردن دندانی است که غیر قابل نگهداری میباشد. اگر ریشه دندان عفونت نداشته باشد در همان جلسه میتوان ایمپلنت را قرار داد. و اگر دندان در گذشته کشیده شده باشد مرحله اول صرفا قراردادن ایمپلنت داخل استخوان خواهد بود. قبل از شروع کار نیاز به گرافی یا عکس CBCT برای دقت و انجام درست جراحی داریم.",
+        "bold": ["مراحل ایمپلنت", "خارج کردن دندان", "ریشه دندان", "ایمپلنت", "استخوان", "گرافی", "عکس CBCT"]
+      },
+      {
+        "id": 4,
+        "title": "مرحله دوم",
+        "content": "مرحله دوم قالب گیری روکش ایمپلنت است که معمولا ۲ ماه بعد از جراحی انجام میشود. بعد از قالب گیری روکش آماده شده امتحان میشود. در صورت عدم وجود مشکل در پروتز (روکش) ساخته شده، با چسب مخصوص ایمپلنت چسبانده خواهد شد و شما صاحب دندان تازه ای خواهید بود.",
+        "bold": ["قالب گیری", "روکش ایمپلنت", "جراحی", "پروتز", "چسب مخصوص ایمپلنت"]
+      },
+      {
+        "id": 5,
+        "title": "درد جراحی، ایمپلنت بدون درد؟",
+        "content": "ایمپلنت بدون درد در واقع یک جرای و پروسه صحیح را تعریف میکند. شما به هیچ عنوان نباید دردی احساس کنید. جراحی ایمپلنت بدون درد خواهد بود و با بی حسی که انجام میشود بر خلاف تصور بسیار ساده میباشد. اگر مراحل جراحی درست انجام شود و متخصص ایمپلنت مرحله به مرحله جراحی رو بر طبق اصول پیش ببرد شما تجربه ای متفاوت از آنچه شنیدید خواهید داشت.",
+        "bold": ["درد جراحی", "ایمپلنت بدون درد", "بی حسی", "متخصص ایمپلنت"]
+      }
+    ],
+    "imageTitle": "نمونه درمان های ایمپلنت دندان",
+    "images": [
+      {
+        "src": "/assets/images/treatments/dental-implants/dental-veneer-a.webp",
+        "alt": "درمان لمینت دندان با کیفیت بالا"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/dental-veneer.webp",
+        "alt": "درمان لمینت دندان مقرون به صرفه"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/full-mouth-b.webp",
+        "alt": "بازسازی کامل دهان"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/full-mouth.webp",
+        "alt": "درمان لمینت دندان برای کل دهان"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/implant.webp",
+        "alt": "درمان ایمپلنت دندان با کیفیت بالا"
+      }
+    ]
+  },
+  "en": {
+    "heroImage": "/assets/images/home/drb.webp",
+
+    "sections": [
+      {
+        "id": 1,
+        "title": "What is a Dental Implant?",
+        "content": "Implants are titanium screws placed in the jawbone to restore lost teeth. Due to their titanium composition and unique surface, implants easily bond with the bone, effectively acting as tooth roots.",
+        "bold": ["Dental Implants", "titanium screws", "jawbone", "restore lost teeth", "titanium composition", "unique surface"]
+      },
+      {
+        "id": 2,
+        "title": "Cost of Implants",
+        "content": "The cost of implants and the payment amount depend on the patient's choice. Korean implants are more affordable, while Swiss and German implants are more expensive. Given the 2 to 4-month period from implant surgery to crown delivery, you can extend the payment period over 4 to 5 months.",
+        "bold": ["cost of implants", "payment amount", "Korean implants", "Swiss implants", "German implants"]
+      },
+      {
+        "id": 3,
+        "title": "Implant Steps",
+        "content": "The first step is extracting a non-restorable tooth. If the tooth root is not infected, the implant can be placed in the same session. If the tooth was previously extracted, the first step is simply placing the implant in the bone. Before starting, a CBCT scan is needed for precision and correct surgery.",
+        "bold": ["Implant Steps", "extracting a tooth", "tooth root", "implant", "bone", "CBCT scan"]
+      },
+      {
+        "id": 4,
+        "title": "Second Step",
+        "content": "The second step is taking an impression for the implant crown, usually done 2 months after surgery. After the impression, the prepared crown is tested. If there are no issues with the prosthesis (crown), it will be attached with special implant cement, giving you a new tooth.",
+        "bold": ["impression", "implant crown", "surgery", "prosthesis", "special implant cement"]
+      },
+      {
+        "id": 5,
+        "title": "Surgery Pain, Pain-Free Implants?",
+        "content": "Pain-free implants define a proper surgical process. You should not feel any pain. Implant surgery will be pain-free, and with local anesthesia, it is much simpler than expected. If the surgical steps are followed correctly by the implant specialist, you will have a different experience from what you may have heard.",
+        "bold": ["Surgery Pain", "Pain-Free Implants", "local anesthesia", "implant specialist"]
+      }
+    ],
+    "imageTitle": "Samples Of Dental Implants Treatments",
+    "images": [
+      {
+        "src": "/assets/images/treatments/dental-implants/dental-veneer-a.webp",
+        "alt": "High-quality dental veneer treatment"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/dental-veneer.webp",
+        "alt": "Affordable dental veneer treatment"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/full-mouth-b.webp",
+        "alt": "Complete mouth restoration"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/full-mouth.webp",
+        "alt": "Full mouth dental veneer treatment"
+      },
+      {
+        "src": "/assets/images/treatments/dental-implants/implant.webp",
+        "alt": "High-quality dental implant treatment"
+      }
+    ]
+
+  }
+}

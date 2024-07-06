@@ -1,0 +1,21 @@
+{
+    "fa": {
+        "title": "تماس با ما",
+        "address": {
+            "title": "کلینیک دندانپزشکی دکتر بابک ختایی",
+            "adr": "تهران, زعفرانيه، مقدس اردبيلى، بين فلاحى و پسيان، پلاك ١٤، طبقه ٤ واحد ١٦",
+            "tel": ["22728768","26851277","09039409045"],
+            "hours": "شنبه تا چهارشنبه ۱۰ الی ۱۹ - پنجشنبه ۱۰ الی ۱۵"
+        }
+
+    },
+    "en": {
+        "title": "Contact us",
+        "address": {
+            "title": "Dentistry Clinic DDS Babak Khatayee",
+            "adr": "Nr 14, Moghadas Ardebili street, Zaeferanieh, Tehran, Iran",
+            "tel": ["+982122728768", "+982126851277", "+989039409045"],
+            "hours": "Sat - Wed 10:00 - 19:00 and Thu 10:00 - 15:00"
+        }
+    }
+}

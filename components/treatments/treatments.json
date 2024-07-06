@@ -1,0 +1,141 @@
+{
+    "fa": {
+      "title": "نمونه درمان های زیبایی دندان",
+      "images": [
+        {
+          "alt": "Orthodontics",
+          "src": "/assets/images/treatments/0.webp"
+        },
+        {
+          "alt": "Dental Veneers",
+          "src": "/assets/images/treatments/1.webp"
+        },
+        {
+          "alt": "Cosmetic Dentistry",
+          "src": "/assets/images/treatments/2.webp"
+        },
+        {
+          "alt": "Dental Implants",
+          "src": "/assets/images/treatments/3.webp"
+        },
+        {
+          "alt": "Dental Implants",
+          "src": "/assets/images/treatments/4.webp"
+        },
+        {
+          "alt": "Dental Crowns",
+          "src": "/assets/images/treatments/5.webp"
+        },
+        {
+          "alt": "Teeth Whitening",
+          "src": "/assets/images/treatments/6.webp"
+        },
+        {
+          "alt": "Gum Contouring",
+          "src": "/assets/images/treatments/7.webp"
+        },
+        {
+          "alt": "Smile Makeover",
+          "src": "/assets/images/treatments/8.webp"
+        },
+        {
+          "alt": "Dental Bridges",
+          "src": "/assets/images/treatments/9.webp"
+        },
+        {
+          "alt": "Periodontal Treatment",
+          "src": "/assets/images/treatments/10.webp"
+        },
+        {
+          "alt": "Root Canal Treatment",
+          "src": "/assets/images/treatments/11.webp"
+        },
+        {
+          "alt": "Teeth Bleaching",
+          "src": "/assets/images/treatments/bleaching.webp"
+        },
+        {
+          "alt": "Veneer Composite Treatment",
+          "src": "/assets/images/treatments/laminet-3.webp"
+        },
+        {
+          "alt": "Pediatric Dentistry",
+          "src": "/assets/images/treatments/laminet.webp"
+        },
+        {
+          "alt": "Laminates Treatment",
+          "src": "/assets/images/treatments/veneer-composite.webp"
+        }
+      ]
+    },
+    "en": {
+      "title": "Sample Dental Beauty Treatments",
+      "images": [
+        {
+          "alt": "Teeth Whitening",
+          "src": "/assets/images/treatments/0.webp"
+        },
+        {
+          "alt": "Dental Veneers",
+          "src": "/assets/images/treatments/1.webp"
+        },
+        {
+          "alt": "Veneer Composite Treatment",
+          "src": "/assets/images/treatments/2.webp"
+        },
+        {
+          "alt": "Smile Makeover",
+          "src": "/assets/images/treatments/3.webp"
+        },
+        {
+          "alt": "Dental Crowns",
+          "src": "/assets/images/treatments/4.webp"
+        },
+        {
+          "alt": "Dental Implants",
+          "src": "/assets/images/treatments/5.webp"
+        },
+        {
+          "alt": "Smile Makeover",
+          "src": "/assets/images/treatments/6.webp"
+        },
+        {
+          "alt": "Teeth Bleaching",
+          "src": "/assets/images/treatments/7.webp"
+        },
+        {
+          "alt": "Cosmetic Dentistry",
+          "src": "/assets/images/treatments/8.webp"
+        },
+        {
+          "alt": "Gum Contouring",
+          "src": "/assets/images/treatments/9.webp"
+        },
+        {
+          "alt": "Periodontal Treatment",
+          "src": "/assets/images/treatments/10.webp"
+        },
+        {
+          "alt": "Root Canal Treatment",
+          "src": "/assets/images/treatments/11.webp"
+        },
+        {
+          "alt": "Tooth Extraction",
+          "src": "/assets/images/treatments/bleaching.webp"
+        },
+        {
+          "alt": "Laminates Treatment",
+          "src": "/assets/images/treatments/laminet-3.webp"
+        },
+        {
+          "alt": "Pediatric Dentistry",
+          "src": "/assets/images/treatments/laminet.webp"
+        },
+        {
+          "alt": "Dental Bridges",
+          "src": "/assets/images/treatments/veneer-composite.webp"
+        }
+      ]
+    }
+  }
+  

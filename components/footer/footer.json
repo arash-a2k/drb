@@ -1,0 +1,51 @@
+{
+    "fa": {
+      "title": "مطب دکتر بابک ختایی ( جراح و دندانپزشک )",
+      "quote": ":) در وجود همه ما لبخند زیبایی نهفته است که منتظر است تا نمایان شود",
+        "blocks": [
+          {
+            "title": "ساعات کار مطب",
+            "descr": "شنبه  تا  چهارشنبه ۱۰ الی ۱۹ - پنجشنبه ۱۰ الی"
+          },
+          {
+            "title": "آدرس مطب دندانپزشکی",
+            "descr": "تهران, زعفرانيه، مقدس اردبيلى، بين فلاحى و پسيان، پلاك ١٤، طبقه ٤ واحد ١٦"
+          },
+          {
+            "title": "در تماس باشید",
+            "descr": "22728768 - 26851277 - 09039409045"
+          }
+        ],
+        "social": {
+          "text": "ما را در اینستاگرام دنبال کنید تا با آخرین تغییرات و تخفیف ها همراه شوید",
+          "link": "https://www.instagram.com/dr.babak_khatayee",
+          "id": "@dr.babak_khatayee"
+      },
+        "instaText": "ما را در اینستاگرام دنبال کنید"
+      },
+      "en": {
+        "title": "Dentistry Clinic Dr. Babak Khatayee (DDS)",
+        "quote": "There is a beautiful smile hidden in all of us, yet to be discovered :)",
+        "blocks": [
+          {
+            "title": "Openning hours",
+            "descr": "Sat - Wed 10:00 - 19:00 and Thu 10:00 - 15:00"
+          },
+          {
+            "title": "Address",
+            "descr": "Nr 14, Moghadas Ardebili street, Zaeferanieh, Tehran, Iran"
+          },
+          {
+            "title": "Get in touch!",
+            "descr": "22728768 - 26851277 - 09039409045"
+          }
+        ],
+        "social": {
+          "text": "Follow our clinic's page on Instagram to stay tuned with the offers and updates!",
+          "link": "https://www.instagram.com/dr.babak_khatayee",
+          "id": "@dr.babak_khatayee"
+
+      },
+        "instaText": "Follow us on Instagram"
+      }
+}

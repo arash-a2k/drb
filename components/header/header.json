@@ -1,0 +1,52 @@
+{
+    "navbar": {
+        "fa": {
+            "home": "صفحه اصلی",
+            "contact": "تماس با ما",
+            "dropdown": {
+                "title": "درمان ها",
+                "items": [
+                    {
+                        "text": "ترمیم و زیبایی",
+                        "link": "/treatments/composite-veneer"
+                    },
+                    {
+                        "text": "ایمپلنت",
+                        "link": "/treatments/dental-implants"
+                    },
+                    {
+                        "text": "لمینت دندان",
+                        "link": "/treatments/dental-laminates"
+                    }
+                ]
+            },
+            "subtitle": "جراح و دندانپزشک -",
+            "about": "درباره مطب",
+            "title": "مطب دکتر بابک ختایی"
+        },
+        "en": {
+            "home": "Home",
+            "contact": "Contact us",
+            "dropdown": {
+                "title": "Treatments",
+                "items": [
+                    {
+                        "text": "Composite Veneer",
+                        "link": "treatments/composite-veneer"
+                    },
+                    {
+                        "text": "Dental Implants",
+                        "link": "/treatments/dental-implants"
+                    },
+                    {
+                        "text": "Dental Lamionates",
+                        "link": "/treatments/dental-laminates"
+                    }
+                ]
+            },
+            "subtitle": "DDS",
+            "about": "About Us",
+            "title": "Dentistry Clinic Dr. Babak Khatayee"
+        }
+    }
+}

@@ -1,0 +1,281 @@
+{
+  "fa": {
+    "heroImage": "/assets/images/home/drb.webp",
+    "sections": [
+      {
+        "id": 1,
+        "title": "لمینت دندان یا لمینیت دندان چیست؟",
+        "content": "پوسته نازک دکوراتیو از جنس سرامیک یا پرسلن را لمینت یا لمینیت میگویند. ونیر های دندان که امروزه طرفداران زیادی دارد میتوانند سرامیکی یا از جنس کامپوزیت باشند.",
+        "bold": [
+          "لمینت دندان",
+          "لمینیت دندان",
+          "سرامیک",
+          "پرسلن",
+          "ونیر های دندان",
+          "کامپوزیت"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "مزایای ونیر سرامیکی",
+        "content": "ونیر سرامیکی که به لمینت معروف شده با ایجاد لبخند زیبا به رنگ دندان های دلخواه، شما را از فکر سفید کردن رها میکند و بدون تغییر رنگ بعلت جنس سرامیک دندان های شما به سفیدی روز اول تحویل گرفتن لمینت خواهند ماند.",
+        "bold": [
+          "ونیر سرامیکی",
+          "لمینت",
+          "لبخند زیبا",
+          "رنگ دندان های دلخواه",
+          "سفید کردن",
+          "جنس سرامیک"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "قیمت لمینت",
+        "content": "لمینت ها از قیمت بالاتری نسبت به کامپوزیت برخوردارند اما دردسر های ترمیم و پالیش ونیر کامپوزیت را نیز ندارند. قیمت لمینت بسته به لابراتوار و جنس سرامیک انتخاب شده متفاوت خواهد بود و دامنه گسترده ای دارد.",
+        "bold": [
+          "قیمت لمینت",
+          "کامپوزیت",
+          "ترمیم",
+          "پالیش",
+          "لابراتوار",
+          "جنس سرامیک"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "خدمات ما",
+        "content": "در مجموعه ما بهترین قیمت لمینت بسته به انتخاب شما ارائه میشود و شما میتوانید از مشاوره رایگان حضوری و غیر حضوری جهت تصمیم گیری بهتر برای لبخندی زیباتر بهره مند شوید. در مجموعه ما شما میتوانید با پرداخت شرایطی از به لبخند ایده ال خود برسید.",
+        "bold": [
+          "بهترین قیمت لمینت",
+          "مشاوره رایگان حضوری و غیر حضوری",
+          "لبخندی زیباتر",
+          "پرداخت شرایطی",
+          "لبخند ایده ال"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "تفاوت لمینت و کامپوزیت",
+        "content": "لمینت ها از جنس سرامیک یا پرسلن های مخصوص دندان هستند. بدون تراش اضافی و تهاجمی و با ضخامتی بسیار کم ونیر های لمینت روی دندان های شما با چسب ویژه لمینت روی دندان های خودتان چسبانده شده و دندان ها آسیبی نخواهند دید. کامپوزیت ها رزین های مخصوص دندان هستند شبیه به خمیر که توسط دندانپزشک در مطب روی دندان های شما قرار داده شده و با نور UV سفت و سخت خواهد شد.",
+        "bold": [
+          "تفاوت لمینت و کامپوزیت",
+          "سرامیک",
+          "پرسلن",
+          "بدون تراش اضافی",
+          "ونیر های لمینت",
+          "کامپوزیت",
+          "رزین های مخصوص دندان",
+          "نور UV"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "مزایای ونیر کامپوزیت",
+        "content": "ونیر کامپوزیت بعلت قیمت پایین تر و هزینه کمتر کامپوزیت نسبت به لمینت طرفداران زیادی دارد. شما به هزینه کمتر نسبت به لمینت میتوانید لبخند مورد پسندتان را داشته باشید.",
+        "bold": [
+          "ونیر کامپوزیت",
+          "قیمت پایین تر",
+          "هزینه کمتر",
+          "طرفداران زیادی",
+          "لبخند مورد پسند"
+        ]
+      }
+    ],
+    "imageTitle": "نمونه درمان های زیبایی دندان",
+    "images": [
+      {
+        "alt": "لمینت دندان با کیفیت بالا تصویر ۱",
+        "src": "/assets/images/treatments/dental-laminates/hs-a.webp"
+      },
+      {
+        "alt": "درمان لمینت دندان قیمت مناسب تصویر ۲",
+        "src": "/assets/images/treatments/dental-laminates/hs-b.webp"
+      },
+      {
+        "alt": "ونیر دندان با کیفیت بالا تصویر ۳",
+        "src": "/assets/images/treatments/dental-laminates/hs-c.webp"
+      },
+      {
+        "alt": "لمینت دندان با قیمت مناسب تصویر ۴",
+        "src": "/assets/images/treatments/dental-laminates/hs.webp"
+      },
+      {
+        "alt": "لبخند جدید با لمینت با کیفیت تصویر ۱",
+        "src": "/assets/images/treatments/dental-laminates/new-simle-a.webp"
+      },
+      {
+        "alt": "درمان لمینت برای لبخند جدید تصویر ۲",
+        "src": "/assets/images/treatments/dental-laminates/new-smile.webp"
+      }
+    ]
+  },
+  "en": {
+    "heroImage": "/assets/images/home/drb.webp",
+    "imageTitle": "Sample Of High Quality Dental Laminates",
+    "sections": [
+      {
+        "id": 1,
+        "title": "What are Dental Laminates or Veneers?",
+        "content": "A thin decorative shell made of ceramic or porcelain is called a laminate or veneer. Dental veneers, which are very popular today, can be ceramic or composite.",
+        "bold": [
+          "Dental Laminates",
+          "Veneers",
+          "ceramic",
+          "porcelain",
+          "Dental veneers",
+          "composite"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Advantages of Ceramic Veneers",
+        "content": "Ceramic veneers, known as laminates, create a beautiful smile with the desired tooth color, freeing you from the need to whiten. Due to the ceramic material, your teeth will remain as white as the first day you received the laminate.",
+        "bold": [
+          "Ceramic veneers",
+          "laminates",
+          "beautiful smile",
+          "desired tooth color",
+          "whiten",
+          "ceramic material"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Cost of Laminates",
+        "content": "Laminates are more expensive than composites but do not have the same maintenance issues. The cost of laminates varies depending on the laboratory and the selected ceramic material.",
+        "bold": [
+          "Cost of Laminates",
+          "composites",
+          "maintenance issues",
+          "laboratory",
+          "ceramic material"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Our Services",
+        "content": "At our clinic, we offer the best laminate prices based on your choice, with free in-person and remote consultations for better decision-making for a more beautiful smile. We also offer installment plans to help you achieve your ideal smile.",
+        "bold": [
+          "best laminate prices",
+          "free in-person and remote consultations",
+          "more beautiful smile",
+          "installment plans",
+          "ideal smile"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Difference Between Laminates and Composites",
+        "content": "Laminates are made of ceramic or porcelain. They are applied to your teeth with a special laminate adhesive, causing no damage. Composites are dental resins shaped by the dentist in the clinic and hardened with UV light. Composites are more affordable and popular due to their lower cost.",
+        "bold": [
+          "Difference Between Laminates and Composites",
+          "ceramic",
+          "porcelain",
+          "laminate adhesive",
+          "dental resins",
+          "clinic",
+          "UV light"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Advantages of Composite Veneers",
+        "content": "Composite veneers are very popular due to their lower price and cost compared to laminates. You can achieve your desired smile at a lower cost.",
+        "bold": [
+          "Composite veneers",
+          "lower price",
+          "cost",
+          "popular",
+          "desired smile"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Affordable High-Quality Dental Laminates at Dr. Babak Khatayee Dental Clinic",
+        "content": "Searching for a smile makeover that offers both quality and affordability? Look no further. At Dr. Babak Khatayee Dental Clinic, we specialize in creating stunning smiles using top-of-the-line porcelain veneers, also known as dental laminates.",
+        "bold": [
+          "smile makeover",
+          "quality and affordability",
+          "Dr. Babak Khatayee Dental Clinic",
+          "stunning smiles",
+          "top-of-the-line porcelain veneers",
+          "dental laminates"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Why Choose Our Dental Laminates?",
+        "content": "We use Ivoclar Ips Emax for our porcelain veneers, widely recognized as one of the best materials in the dental industry. Transform your smile into a radiant Hollywood look in less than two weeks at a cost-effective price of just 250€ per veneer.",
+        "bold": [
+          "Ivoclar Ips Emax",
+          "porcelain veneers",
+          "best materials",
+          "dental industry",
+          "radiant Hollywood look",
+          "cost-effective price",
+          "250€ per veneer"
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Dental Implant Options",
+        "content": "Additionally, our clinic offers a range of dental implant solutions. Starting at 270€, you can opt for our basic dental implant offering—Germany's ICX. Custom implant options from other reputable companies are also available.",
+        "bold": [
+          "dental implant solutions",
+          "270€",
+          "basic dental implant",
+          "Germany's ICX",
+          "Custom implant options"
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Contact Us",
+        "content": "Questions? We're here to assist you. Reach out to us conveniently through WhatsApp at +989039409045 or message us on Instagram @Dr.khatayee.",
+        "bold": [
+          "Contact Us",
+          "WhatsApp",
+          "Instagram"
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Additional Services",
+        "content": "We understand the needs of our medical tourists. That's why we also offer hotel reservations and flight bookings to Tehran through a registered flight agency. Contact us for a complete dental makeover package.",
+        "bold": [
+          "medical tourists",
+          "hotel reservations",
+          "flight bookings",
+          "registered flight agency",
+          "complete dental makeover package"
+        ]
+      }
+    ],
+    "images": [
+      {
+        "alt": "High-quality dental laminates at Dr. Babak Khatayee Clinic",
+        "src": "/assets/images/treatments/dental-laminates/hs-a.webp"
+      },
+      {
+        "alt": "Smile makeover with affordable dental laminates",
+        "src": "/assets/images/treatments/dental-laminates/hs-b.webp"
+      },
+      {
+        "alt": "Top-quality porcelain veneers at a reasonable price",
+        "src": "/assets/images/treatments/dental-laminates/hs-c.webp"
+      },
+      {
+        "alt": "Dental implants and laminates in Tehran",
+        "src": "/assets/images/treatments/dental-laminates/hs.webp"
+      },
+      {
+        "alt": "New smile with high-quality dental laminates",
+        "src": "/assets/images/treatments/dental-laminates/new-simle-a.webp"
+      },
+      {
+        "alt": "Dental laminates treatment for a new smile at Dr. Babak Khatayee Clinic",
+        "src": "/assets/images/treatments/dental-laminates/new-smile.webp"
+      }
+    ]
+  }
+}
