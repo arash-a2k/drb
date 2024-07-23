@@ -1,6 +1,6 @@
 {
   "fa": {
-    "heroImage": "/assets/images/home/drb.webp",
+    "heroImage": "/assets/images/home/white-solo.webp",
     "sections": [
       {
         "id": 1,
@@ -110,7 +110,7 @@
     ]
   },
   "en": {
-    "heroImage": "/assets/images/home/drb.webp",
+    "heroImage": "/assets/images/home/white-solo.webp",
     "imageTitle": "Sample Of High Quality Dental Laminates",
     "sections": [
       {

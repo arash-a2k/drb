@@ -4,7 +4,7 @@ export default function Teasers(props) {
     const { teasers } = props
     const [first, second, third, ...rest] = [...teasers]
 
-    const genarateTeaser = (header, content, imageSrc, labels = [], imageRight = false) => {
+    const genarateTeaser = (header, content, imageSrc, labels = [], imageRight = false, id) => {
 
         const genarateImage = () => {
             const justify = imageRight ? "justify-end" : "justify-start"
@@ -13,7 +13,7 @@ export default function Teasers(props) {
             </div>
         }
 
-        return <section className="py-5 bg-gray-50 overflow-hidden">
+        return <section className="py-5 bg-gray-50 overflow-hidden" key={`teaser-${id}`}>
             <div className="container mx-auto px-4">
                 <div className="py-16 px-8 md:px-16 bg-white rounded-3xl">
                     <div className="flex flex-wrap -m-8 justify-around">
@@ -52,9 +52,9 @@ export default function Teasers(props) {
     }
 
     return <div className='flex flex-col'>
-        {genarateTeaser(first.header, first.content, first.image, first.labels)}
-        {genarateTeaser(second.header, second.content, second.image, second.labels, true)}
-        {genarateTeaser(third.header, third.content, third.image, third.labels)}
+        {genarateTeaser(first.header, first.content, first.image, first.labels, 0)}
+        {genarateTeaser(second.header, second.content, second.image, second.labels, true, 1)}
+        {genarateTeaser(third.header, third.content, third.image, third.labels, 2)}
 
     </div>
 }

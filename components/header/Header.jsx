@@ -9,19 +9,31 @@ export default function Header() {
 
   const { lang, changeLang } = useLanguage()
 
-  const navbar = text['navbar'][lang || 'fa']
-  const contact = contactText[lang]
+  const navbar = text['navbar'][lang || 'fa'] || text['navbar']['en']
+  const contact = contactText[lang] || contactText['en']
 
+  const [langDropIsOpen, setLangDropIsOpen] = useState(false);
+
+  const languages = [
+    { code: 'fa', label: 'فارسی', flag: '/assets/fa.png' },
+    { code: 'en', label: 'English', flag: '/assets/en.png' },
+    { code: 'ru', label: 'Русский', flag: '/assets/ru.png' },
+  ];
+
+  const handleLangChange = (code) => {
+    changeLang(code);
+    setLangDropIsOpen(false);
+  };
 
   const generateDropDown = () => {
     return (
-      <div className="relative inline-block text-center">
+      <div className="relative inline-block text-center rounded-md shadow-lg bg-white">
         <div>
           <button onClick={() => setShowDropDown(!showDropDown)} type="button"
             className="inline-flex w-full justify-center gap-x-1.5 rounded-md p-4 border-transparent bg-transparent text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
             {navbar.dropdown?.title}
-            <svg className="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+            <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
           </button>
         </div>
@@ -60,12 +72,38 @@ export default function Header() {
   }
 
   const genarateLang = () => {
-    const altLang = lang === 'fa' ? 'en' : 'fa'
     return (
-      <button onClick={() => changeLang(altLang)} className="px-0 py-0 w-[32px] h-[32px] border border-transparent rounded-md shadow-sm inline-flex items-center justify-center overflow-hidden">
-        <img src={`/assets/${altLang}.png`} alt="en" className="w-full h-full object-cover" />
-      </button>
-    )
+      <div className="relative inline-block text-left">
+        <div>
+          <button
+            onClick={() => setLangDropIsOpen(!langDropIsOpen)}
+            className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <img src={`/assets/${lang}.png`} alt={lang} className="w-[24px] h-[24px] object-cover ml-2" />
+            <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </div>
+  
+        {langDropIsOpen && (
+          <div className="origin-top-right absolute right-0 mt-2 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              {languages.map(({ code, label, flag }) => (
+                <button
+                  key={code}
+                  onClick={() => handleLangChange(code)}
+                  className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                >
+                  <img src={flag} alt={label} className="w-[24px] h-[24px] object-cover mr-3" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
   }
 
   const genarateContact = () => {

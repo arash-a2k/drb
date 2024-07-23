@@ -19,14 +19,13 @@ const meta = {
 
 
 export default function Layout() {
-  return <LanguageProvider>
-    <HelmetProvider>
+  return <HelmetProvider>
+      <LanguageProvider>
       <Helmet {...meta}></Helmet>
       <Header />
       <Slot />
       <Footer />
-
+      </LanguageProvider>
     </HelmetProvider>
-  </LanguageProvider>
 }
 

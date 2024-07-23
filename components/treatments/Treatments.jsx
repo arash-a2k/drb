@@ -6,7 +6,7 @@ import * as treatments from './treatments.json'
 export default function Treatments() {
     const { lang } = useLanguage() || 'fa'
 
-    const { images, title } = treatments[lang] || { images: [], title: "" }
+    const { images, title } = treatments[lang] || treatments['en'] || { images: [], title: "" }
 
     return <ImageGrid title={title} images={images}/>
 }

@@ -9,7 +9,7 @@ import * as text from './dental-laminates.json'
 export default function DentalImplants() {
     const { lang } = useLanguage() || 'fa'
 
-    const { images, title, sections, heroImage, imageTitle } = text[lang] || { images: [], title: "", sections: "" }
+    const { images, title, sections, heroImage, imageTitle } = text[lang] || text['en'] || { images: [], title: "", sections: "" }
     const dir = lang === 'fa' ? 'rtl' : 'ltr'
 
     return <div dir={dir}>

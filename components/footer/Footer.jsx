@@ -6,7 +6,7 @@ import * as text from './footer.json'
 export default function Footer() {
     const { lang } = useLanguage() || { lang: 'fa' }
 
-    const footer = text[lang]
+    const footer = text[lang] || text['en']
     const { quote, blocks, social } = footer
 
 
@@ -22,7 +22,7 @@ export default function Footer() {
                             <div className="flex flex-wrap justify-center align-center">
                                 <div className="w-auto p-2">
                                     <a className="block w-full text-lg text-center text-white font-bold bg-transparent focus:ring-4 hover:text-gray-800 focus:ring-gray-600 self-center" href={social.link}>
-                                        <span class="[&>svg]:h-16 [&>svg]:w-16 ">
+                                        <span className="[&>svg]:h-16 [&>svg]:w-16 ">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 fill="#ddc69b"

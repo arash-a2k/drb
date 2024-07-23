@@ -4,11 +4,10 @@ import { useLanguage } from '../../hooks'
 import * as text from './contact.json'
 
 const MAPS_API_KEY = "AIzaSyAd2AEAW67Pgpd27MHpl6caPcXrb911K30"
-
 const ContactUs = () => {
     const { lang } = useLanguage() || { lang: 'fa' }
 
-    const { title, address } = text[lang]
+    const { title, address } = text[lang] || text['en'] // default lang if 3rd language like ru not has any text
 
     useEffect(() => {
         // Initialize and add the map
@@ -48,8 +47,8 @@ const ContactUs = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg text-center">
                    {/* Location Icon */}
                     <svg className="h-8 w-8 text-blue-500 self-center w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
 
                     <h3 className="text-xl font-semibold mb-4">{address.title}</h3>

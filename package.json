@@ -5,8 +5,6 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
     "web": "expo start --web",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",

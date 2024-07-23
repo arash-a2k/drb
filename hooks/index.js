@@ -1,16 +1,27 @@
 // LanguageContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { getLanguageFromUrl } from "../utils";
 
 const LanguageContext = createContext();
 
-export const LanguageProvider = ({ children }) => {
-    const urlLang = getLanguageFromUrl()
+// Function to get the language from URL or fallback to local storage
+const getInitialLanguage = () => {
+    const storedLang = localStorage.getItem('lang');
+    return storedLang || 'fa'; // default to 'fa' if no language is found
+  };
 
-    const [lang, setLang] = useState(urlLang);
+export const LanguageProvider = ({ children }) => {
+    const [lang, setLang] = useState(getInitialLanguage());
+
+    useEffect(() => {
+        // Get language from local storage
+        const lang = getInitialLanguage()
+        setLang(lang)
+      }, [lang]);
 
     const changeLang = (lang) => {
         setLang(lang);
+        localStorage.setItem('lang', lang);
     };
 
     return (
