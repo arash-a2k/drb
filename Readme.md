@@ -24,6 +24,8 @@ It run github pages and passes the directory which the project is exported to us
 - components are under `/components`
 - Pages are under `app/`
 - Everything under `app/` is used to serve the website.
+- Everything under such paths `[lang]` will get dynamic path for lang value.
+- `generateStaticParams` async function defines the possible values for this dynamic [lang] to genarate the static rendering.
 - Translations are handled with the help of language hook and translation .json file under each page or components.
 
 - `app/index.js` is for the index page. so `dr-khatayee.com/`.
