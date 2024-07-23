@@ -14,7 +14,7 @@ export default function About() {
     return <>
         <section className="pt-6 pb-10 bg-gray-50 overflow-hidden">
         {/** Welcome Section */}
-        <ArticleSolo title={about.header1} content={about.content} imageSrc="assets/images/home/navi-solo.webp" />
+        <ArticleSolo title={about.header1} content={about.content} imageSrc="/assets/images/home/navi-solo.webp" />
         </section>
 
         <Treatments />

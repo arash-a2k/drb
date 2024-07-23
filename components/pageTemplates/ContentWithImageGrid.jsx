@@ -12,9 +12,9 @@ export default function ContentWithImageGrid(props) {
         </h3>
         <div className="flex flex-col space-y-6 container mx-auto p-4">
         {/** Welcome Section */}
-            {sections.map(section => (
+            {sections.map((section, index) => (
                 <ContentSection
-                    key={section.id}
+                    id={section.id || `section-${index}`}
                     title={section.title}
                     text={section.content}
                     highlights={section.bold}

@@ -7,11 +7,11 @@ export const HighlightedText = ({ text, highlights }) => {
     );
 };
 
-export const ContentSection = ({ title, text, highlights, key }) => (
-    <div className="my-6 text-center" key={key}>
+export const ContentSection = ({ title, text, highlights, id }) => {
+    return <div className="my-6 text-center" key={`${id}`}>
         <h2 className="text-2xl font-bold mb-4 text-gold" >{title}</h2>
         <p className="text-lg text-gray-600">
             <HighlightedText text={text} highlights={highlights} />
         </p>
     </div>
-);
+};

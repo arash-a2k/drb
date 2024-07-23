@@ -2,17 +2,17 @@
     "fa": {
         "highlights": [
             {
-                "image": "assets/images/home/composite.webp",
+                "image": "/assets/images/home/composite.webp",
                 "content": "ونیر کامپوزیت پوشش سطح دندان به وسیله کامپوزیت خاص زیبایی با قابلیت پوشش و ایجاد زیبایی میباشد. مزیت مهم این روش حفظ بافت دندان و تراش ندادن آن یا تراش میکرونی و حداقلی سطح دندان جهت ایجاد استحکام بیشتر است.",
                 "header": "کامپوزیت دندان چیست ؟"
             },
             {
-                "image": "assets/images/home/crown.webp",
+                "image": "/assets/images/home/crown.webp",
                 "content": " دندان هایی که دیواره هایشان شکسته یا حجم قابل توجهی از ساختار آن ها به دلیل پوسیدگی از بین رفته باشد و همچنین دندان هایی که بدلیل عصب کشی یا نازک شدن جداره احتمال شکستن شان وجود داشته باشد با روکش هایی به شکل دندان ترمیم و بازسازی می شوند.",
                 "header": "روکش دندان چیست ؟"
             },
             {
-                "image": "assets/images/home/implant.webp",
+                "image": "/assets/images/home/implant.webp",
                 "content": "کاشت ایمپلنت که فلزی از جنس تیتانیوم است توسط جراحی ساده ای انجام میشود و پس از گذشت حدود ۲ ماه جوش خوردن ایمپلنت با استخوان فک میتوان تاج دندان را بازسازی کرد.",
                 "header": "ایمپلنت دندانی چیست ؟"
             }
@@ -23,7 +23,7 @@
         "name": "دکتر بابک ختایی",
         "teasers": [
             {
-                "image": "assets/images/home/laminet.webp",
+                "image": "/assets/images/home/laminet.webp",
                 "content": "مزيت ونيرهاى لمينيت سراميكى عدم تغيير رنگ و مقاومت بيشتر آنها در مقابل فشار هاى جويدن است. ونيرهاى كامپوزيت مقرون به صرفه تر اما مقاومت كمترى دارند، مزيت آنها عدم نياز به قالب گيرى و كار در يك مرحله مي باشد.",
                 "header": "لمينيت ",
                 "labels": [
@@ -33,7 +33,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/bleaching.webp",
+                "image": "/assets/images/home/bleaching.webp",
                 "content": "اگر شما دندانهايى زيبا و خوش فرم داريد و تنها از بد رنگى آنها ناراحت هستيد ميتوانيد با انجام بليچينگ بدون قرار گيرى ماده اى اضافه روى دندانهايتان، دندانهاى خود را سفيدتر داشته باشيد. شما با صرف نهايتا ٤٥ دقيقه از زمان خود مي توانيد ٢ تا ٣ درجه و در مواردى حتى بيشتر دندانهاى خود را سفيدتر تحويل بگيريد.",
                 "header": "بليچينگ",
                 "labels": [
@@ -43,7 +43,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/general.webp",
+                "image": "/assets/images/home/general.webp",
                 "content": "درمانهاى مكمل خدمات زيبايى نيز با بالاترين كيفيت در اين محل خدمت شما ارائه مي گردند. مرتب كردن دندان ها ترميم دندان هاى پوسيده, درمان ريشه, دندان جايگزينى دندان از دست رفته با ايمپلنت توسط متخصص فك و صورت در مركز ما براى شما عزيزان انجام خواهد شد.",
                 "header": "خدمات زيبايى",
                 "labels": [
@@ -60,17 +60,17 @@
     "en": {
         "highlights": [
             {
-                "image": "assets/images/home/composite.webp",
+                "image": "/assets/images/home/composite.webp",
                 "content": "Composite veneer The tooth surface is covered with a special composite with the ability to cover and create beauty. An important advantage of this method is the preservation of the tooth tissue and not shaving or the micro and minimal tooth surface area for greater strength.",
                 "header": "Composite Veneer Treatment"
             },
             {
-                "image": "assets/images/home/crown.webp",
+                "image": "/assets/images/home/crown.webp",
                 "content": "Teeth that have broken walls or a significant amount of decay due to decay, as well as teeth that are prone to fracture or thinning may be repaired with tooth-shaped coatings.",
                 "header": "Dental Crowns Treatment"
             },
             {
-                "image": "assets/images/home/implant.webp",
+                "image": "/assets/images/home/implant.webp",
                 "content": "Titanium implant culture is implanted through gingival surgery and after the ligation of the fragment with the remaining bone occurs in the gingiva.",
                 "header": "Implant"
             }
@@ -81,7 +81,7 @@
         "name": "Dr Khatayee",
         "teasers": [
             {
-                "image": "assets/images/home/laminet.webp",
+                "image": "/assets/images/home/laminet.webp",
                 "content": "The advantage of ceramic laminate veneers is their non-discoloration and greater resistance to chewing pressures. Composite veneers are more affordable but less durable, with the advantage of not requiring one-step molding.",
                 "header": "Laminate Treatment",
                 "labels": [
@@ -92,7 +92,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/bleaching.webp",
+                "image": "/assets/images/home/bleaching.webp",
                 "content": "If you have beautiful, shapely teeth and you are only worried about their poor coloration, you can make your teeth whitish by bleaching them without putting any extra material on your teeth. You can finally get your teeth whitened for 5 to 5 minutes, sometimes even longer.",
                 "header": "Bleaching",
                 "labels": [
@@ -102,7 +102,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/general.webp",
+                "image": "/assets/images/home/general.webp",
                 "content": "Complementary beauty treatments are also offered at the highest quality at your location. Tooth decay, tooth decay, root canal, tooth replacement implant loss will be done by your dentist at our facility.",
                 "header": "Cosmetic Dentistry",
                 "labels": [
@@ -120,17 +120,17 @@
     "ru": {
         "highlights": [
             {
-                "image": "assets/images/home/composite.webp",
+                "image": "/assets/images/home/composite.webp",
                 "content": "Композитный винир Поверхность зуба покрыта специальным композитом, который способен создавать красоту. Важным преимуществом этого метода является сохранение зубной ткани и минимальное уменьшение поверхности зуба для обеспечения большей прочности.",
                 "header": "Лечение Композитными Винирами"
             },
             {
-                "image": "assets/images/home/crown.webp",
+                "image": "/assets/images/home/crown.webp",
                 "content": "Зубы с разрушенными стенками или значительным количеством кариеса, а также зубы, склонные к переломам или истончению, могут быть восстановлены с помощью зубных коронок.",
                 "header": "Лечение Зубными Коронками"
             },
             {
-                "image": "assets/images/home/implant.webp",
+                "image": "/assets/images/home/implant.webp",
                 "content": "Титановые имплантаты внедряются через десневую хирургию, и после их соединения с оставшейся костной тканью они фиксируются в десне.",
                 "header": "Имплантат"
             }
@@ -141,7 +141,7 @@
         "name": "Доктор Хатаи",
         "teasers": [
             {
-                "image": "assets/images/home/laminet.webp",
+                "image": "/assets/images/home/laminet.webp",
                 "content": "Преимуществом керамических ламинированных виниров является их стойкость к обесцвечиванию и большая устойчивость к жевательным нагрузкам. Композитные виниры более доступные, но менее долговечные, с преимуществом отсутствия необходимости в одном этапе формовки.",
                 "header": "Лечение Ламинатами",
                 "labels": [
@@ -152,7 +152,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/bleaching.webp",
+                "image": "/assets/images/home/bleaching.webp",
                 "content": "Если у вас красивые, аккуратные зубы, и вы беспокоитесь только о их плохом цвете, вы можете сделать их белыми, отбелив их, не добавляя никаких дополнительных материалов на зубы. Вы можете окончательно отбелить зубы за 5-5 минут, иногда даже дольше.",
                 "header": "Отбеливание",
                 "labels": [
@@ -162,7 +162,7 @@
                 ]
             },
             {
-                "image": "assets/images/home/general.webp",
+                "image": "/assets/images/home/general.webp",
                 "content": "Дополнительные косметические процедуры также предлагаются высочайшего качества на вашем месте. Кариес, корневой канал, замена утраченного зуба имплантатом будет выполнена вашим стоматологом в нашем учреждении.",
                 "header": "Косметическая Стоматология",
                 "labels": [

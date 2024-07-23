@@ -3,7 +3,7 @@ export function getLanguageFromUrl() {
     const subdomain = window.location.hostname.split('.')[1];
   
     // List of known language codes for validation
-    const knownLanguages = ['en', 'fa']; // Add more as needed
+    const knownLanguages = ['en', 'fa', 'ru']; // Add more as needed
   
     // Check if the subdomain is a known language code
     if (knownLanguages.includes(subdomain)) {

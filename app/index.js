@@ -1,11 +1,7 @@
 import React from 'react';
+import { Redirect } from 'expo-router';
 
-import Home from '../pages/home/Home';
-
+// This only redirects to the fa language as main language
 export default function IndexPage() {
-    return (
-      <React.Fragment>
-        <Home />
-      </React.Fragment>
-    );
+  return <Redirect href="/fa" />;
   }

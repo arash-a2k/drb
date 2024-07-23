@@ -8,15 +8,15 @@
                 "items": [
                     {
                         "text": "ترمیم و زیبایی",
-                        "link": "/treatments/composite-veneer"
+                        "link": "treatments/composite-veneer"
                     },
                     {
                         "text": "ایمپلنت",
-                        "link": "/treatments/dental-implants"
+                        "link": "treatments/dental-implants"
                     },
                     {
                         "text": "لمینت دندان",
-                        "link": "/treatments/dental-laminates"
+                        "link": "treatments/dental-laminates"
                     }
                 ]
             },
@@ -36,11 +36,11 @@
                     },
                     {
                         "text": "Dental Implants",
-                        "link": "/treatments/dental-implants"
+                        "link": "treatments/dental-implants"
                     },
                     {
                         "text": "Dental Lamionates",
-                        "link": "/treatments/dental-laminates"
+                        "link": "treatments/dental-laminates"
                     }
                 ]
             },

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useLanguage } from '../../../hooks'
+import { useLanguage } from '../../../../hooks'
 import * as text from './composite-veneer.json'
-import ContentWithImageGrid from '../../../components/pageTemplates/ContentWithImageGrid'
+import ContentWithImageGrid from '../../../../components/pageTemplates/ContentWithImageGrid'
 
 export default function CompositVeneer() {
     const { lang } = useLanguage() || 'fa'

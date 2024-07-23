@@ -1,12 +1,12 @@
 import React from 'react';
-import { useLanguage } from '../../../hooks'
+import { useLanguage } from '../../../../hooks'
 
-import SoloImageContentImageLines from '../../../components/pageTemplates/SoloImageContentImageLines'
+import SoloImageContentImageLines from '../../../../components/pageTemplates/SoloImageContentImageLines'
 
 
-import * as text from './dental-laminates.json'
+import * as text from './dental-implants.json'
 
-export default function DentalImplants() {
+export default function DentalLaminates() {
     const { lang } = useLanguage() || 'fa'
 
     const { images, title, sections, heroImage, imageTitle } = text[lang] || text['en'] || { images: [], title: "", sections: "" }

@@ -43,7 +43,7 @@ export default function Header() {
           <div className="absolute text-center right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div className="py-1" role="none">
               {navbar.dropdown?.items.map((item, index) =>
-                <a href={item.link} key={`dropdown-${index}`} className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">{item.text}</a>
+                <a href={`/${lang}/${item.link}`} key={`dropdown-${index}`} className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">{item.text}</a>
 
               )}
             </div>
@@ -58,9 +58,9 @@ export default function Header() {
     const mobileClassNames = `menu ${isMenuOpen ? 'block lg:hidden' : 'hidden'}`
     const className = isHamburger ? mobileClassNames : 'flex items-center justify-center'
     return (<ul className={className}>
-      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="/">{navbar.home}</a></li>
-      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="/about-us">{navbar.about}</a></li>
-      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href="/contact-us">{navbar.contact}</a></li>
+      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href={`/${lang}`}>{navbar.home}</a></li>
+      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700"  href={`/${lang}/about-us`}>{navbar.about}</a></li>
+      <li className="mx-4 my-2 text-center self-center"><a className="inline-block text-sm font-bold text-gray-900 hover:text-gray-700" href={`/${lang}/contact-us`}>{navbar.contact}</a></li>
       <li className='mx-4 my-2 text-center self-center'>
         {generateDropDown()}
       </li>

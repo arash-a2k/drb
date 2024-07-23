@@ -19,14 +19,14 @@ export default function Home() {
             {/** Leader Section */}
 
             <div className="container mx-auto px-4">
-                <div className="px-8 md:w-full md:h-auto min-h-[450px] lg:min-h-[650px] overflow-hidden border border-gray-100 rounded-lg" style={{ backgroundImage: 'url("assets/images/carousel/office-main.webp")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                <div className="px-8 md:w-full md:h-auto min-h-[450px] lg:min-h-[650px] overflow-hidden border border-gray-100 rounded-lg" style={{ backgroundImage: 'url("/assets/images/carousel/office-main.webp")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
 
                 </div>
             </div>
 
         </section>
         {/** Welcome Section */}
-        <ArticleSolo title={home.name} subtitle={`👋 ${home.title}`} content={home.content} imageSrc="assets/images/home/drb.webp" />
+        <ArticleSolo title={home.name} subtitle={`👋 ${home.title}`} content={home.content} imageSrc="/assets/images/home/drb.webp" />
 
         {/** Highlights Section */}
         <Highlights title={highlightTitle} highlights={highlights} />
