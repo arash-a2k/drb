@@ -46,7 +46,7 @@ const ContactUs = () => {
                 <div id="map" className="rounded-lg shadow-lg mb-6" style={{ height: '400px', width: '100%' }}></div>
                 <div className="bg-white p-6 rounded-lg shadow-lg text-center">
                    {/* Location Icon */}
-                    <svg className="h-8 w-8 text-blue-500 self-center w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-8 w-8 text-primary self-center w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -54,9 +54,9 @@ const ContactUs = () => {
                     <h3 className="text-xl font-semibold mb-4">{address.title}</h3>
                     <p className="mb-2">{address.adr}</p>
                     <p className="mb-2">
-                        <a href={`tel:${tels?.[0]}`} className="text-blue-600">{tels?.[0]}</a> -
-                        <a href={`tel:${tels?.[1]}`} className="text-blue-600">{tels?.[1]}</a> -
-                        <a href={`tel:${tels?.[2]}`} className="text-blue-600">{tels?.[2]}</a> -
+                        <a href={`tel:${tels?.[0]}`} className="text-primary-ink">{tels?.[0]}</a> -
+                        <a href={`tel:${tels?.[1]}`} className="text-primary-ink">{tels?.[1]}</a> -
+                        <a href={`tel:${tels?.[2]}`} className="text-primary-ink">{tels?.[2]}</a> -
                     </p>
                     <p className="mb-2">{address.hours}</p>
                 </div>

@@ -1,60 +1,53 @@
 import React from 'react';
 
+function CheckIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
 export default function Teasers(props) {
-    const { teasers } = props
-    const [first, second, third, ...rest] = [...teasers]
+  const { teasers = [] } = props;
 
-    const genarateTeaser = (header, content, imageSrc, labels = [], imageRight = false, id) => {
+  return (
+    <section className="bg-white py-8 sm:py-14">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-6">
+        {teasers.slice(0, 3).map((teaser, index) => {
+          const imageRight = index % 2 === 1;
 
-        const genarateImage = () => {
-            const justify = imageRight ? "justify-end" : "justify-start"
-            return <div className={`w-full md:w-1/2 md:justify-self-end flex ${justify} p-2`}>
-            <img className="md:ml-0 rounded-3xl md:max-h-[290px] lg:max-w-[550px] lg:max-h-[450px]" src={imageSrc} alt={header} />
-            </div>
-        }
-
-        return <section className="py-5 bg-gray-50 overflow-hidden" key={`teaser-${id}`}>
-            <div className="container mx-auto px-4">
-                <div className="py-16 px-8 md:px-16 bg-white rounded-3xl">
-                    <div className="flex flex-wrap -m-8 justify-around">
-                        {/*if image should be on the left */}
-                        {!imageRight && genarateImage()}
-                        <div className="w-full md:w-1/2 p-8">
-                            <div className="md:max-w-md">
-                                <h2 className="font-heading mb-4 text-4xl text-gray-900 font-black tracking-tight"><span className="text-blue-500">{header}</span></h2>
-                                <p className="mb-16 leading-relaxed">{content}</p>
-                                <div className="flex flex-wrap -m-2">
-                                    {labels.map(label => (
-                                        <div className="w-auto p-2">
-                                            <div className="flex flex-wrap px-3 py-2 bg-blue-400 rounded-full align-self">
-                                                <div className="w-auto mx-2 pt-1 self-center">
-                                                    <svg width={24} height={24} viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill="white" d="M8.095 1H3.905C2.085 1 1 2.085 1 3.905V8.09C1 9.915 2.085 11 3.905 11H8.09C9.91 11 10.995 9.915 10.995 8.095V3.905C11 2.085 9.915 1 8.095 1ZM8.39 4.85L5.555 7.685C5.485 7.755 5.39 7.795 5.29 7.795C5.19 7.795 5.095 7.755 5.025 7.685L3.61 6.27C3.465 6.125 3.465 5.885 3.61 5.74C3.755 5.595 3.995 5.595 4.14 5.74L5.29 6.89L7.86 4.32C8.005 4.175 8.245 4.175 8.39 4.32C8.535 4.465 8.535 4.7 8.39 4.85Z"  />
-                                                    </svg>
-                                                </div>
-                                                <div className="flex-1 self-center">
-                                                    <p className="text-sm text-white font-bold">{label}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                        {/*if image should be on the right */}
-
-                        {imageRight && genarateImage()}
-
-                    </div>
+          return (
+            <article key={teaser.header} className="overflow-hidden rounded-md border border-slate-200 bg-[#fbfcfc]">
+              <div className="grid gap-0 lg:grid-cols-2">
+                <div className={`${imageRight ? 'lg:order-2' : ''} min-h-[320px] overflow-hidden bg-slate-100`}>
+                  <img className="h-full w-full object-cover" src={teaser.image} alt={teaser.header} />
                 </div>
-            </div>
-        </section>
-    }
 
-    return <div className='flex flex-col'>
-        {genarateTeaser(first.header, first.content, first.image, first.labels, 0)}
-        {genarateTeaser(second.header, second.content, second.image, second.labels, true, 1)}
-        {genarateTeaser(third.header, third.content, third.image, third.labels, 2)}
+                <div className="flex items-center p-6 sm:p-10 lg:p-12">
+                  <div className="max-w-xl">
+                    <h2 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+                      {teaser.header}
+                    </h2>
+                    <p className="mt-5 text-base leading-8 text-slate-600">
+                      {teaser.content}
+                    </p>
 
-    </div>
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {teaser.labels?.map((label) => (
+                        <span key={label} className="inline-flex items-center gap-2 rounded-md border border-primary-muted bg-primary-soft px-3 py-2 text-sm font-bold text-primary-ink">
+                          <CheckIcon />
+                          {label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
 }

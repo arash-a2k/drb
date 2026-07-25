@@ -20,5 +20,16 @@
         "email": "dr_khatayee@me.com",
         "address": "Nr 14, Moghadas Ardebili street, Zaeferanieh, Tehran, Iran",
         "visitTimes": "Sat - Wed 10:00 - 19:00 and Thu 10:00 - 15:00"
+    },
+    "ru": {
+        "telephone": [
+            "+982122728768",
+            "+982126851277",
+            "+989039409045"
+        ],
+        "title": "Стоматология доктора Бабака Хатаи (DDS)",
+        "email": "dr_khatayee@me.com",
+        "address": "Дом 14, улица Могадас Ардебили, Заферание, Тегеран, Иран",
+        "visitTimes": "Сб - Ср 10:00 - 19:00, Чт 10:00 - 15:00"
     }
 }

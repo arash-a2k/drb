@@ -10,7 +10,30 @@ module.exports = {
     // Do the same with `components`, `hooks`, `styles`, or any other top-level folders...
   ],
   theme: {
-      extend: []
+      extend: {
+          colors: {
+              primary: {
+                  DEFAULT: 'var(--color-primary)',
+                  soft: 'color-mix(in srgb, var(--color-primary) 12%, white)',
+                  muted: 'color-mix(in srgb, var(--color-primary) 28%, white)',
+                  strong: 'color-mix(in srgb, var(--color-primary) 82%, #1d4ed8)',
+                  ink: 'color-mix(in srgb, var(--color-primary) 70%, #0f172a)',
+              },
+              slate: {
+                  50: '#f8fafc',
+                  100: '#f1f5f9',
+                  200: '#e2e8f0',
+                  300: '#cbd5e1',
+                  400: '#94a3b8',
+                  500: '#64748b',
+                  600: '#475569',
+                  700: '#334155',
+                  800: '#1e293b',
+                  900: '#0f172a',
+                  950: '#020617',
+              },
+          },
+      }
   },
   presets: [
       {
@@ -80,7 +103,7 @@ module.exports = {
               100: '#DBEAFE',
               200: '#BFDBFE',
               300: '#93C5FD',
-              400: '#60A5FA',
+              400: 'var(--color-primary)',
               500: '#3B82F6',
               600: '#2563EB',
               700: '#1D4ED8',
