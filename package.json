@@ -6,6 +6,7 @@
   "scripts": {
     "start": "expo start",
     "web": "expo start --web",
+    "validate:content": "node --experimental-strip-types scripts/validate-content.ts",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",
     "deploy": "gh-pages -t -d dist --cname dr-khatayee.com"
