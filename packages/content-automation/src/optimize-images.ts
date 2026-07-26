@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const sharp = require('sharp');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
 type ParsedArgs = {
   inputs: string[];
@@ -22,6 +23,7 @@ type OptimizedImage = {
   bytes: number;
 };
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot: string = path.resolve(__dirname, '..');
 const repoRoot: string = path.resolve(packageRoot, '../..');
 const allowedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.tif', '.tiff', '.avif']);

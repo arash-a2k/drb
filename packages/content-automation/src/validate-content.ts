@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const Ajv = require('ajv');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Ajv from 'ajv';
 
 type AjvError = {
   instancePath?: string;
@@ -10,6 +11,7 @@ type AjvError = {
   params?: Record<string, unknown>;
 };
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot: string = path.resolve(__dirname, '..');
 const repoRoot: string = path.resolve(packageRoot, '../..');
 const schemaPath: string = path.join(packageRoot, 'schemas/pageDraft.schema.json');

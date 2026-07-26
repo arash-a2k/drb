@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const Ajv = require('ajv');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Ajv from 'ajv';
 
 type Language = 'fa' | 'en' | 'ru';
 type PageType =
@@ -81,6 +82,7 @@ type ParsedArgs = {
   dryRun: boolean;
 };
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot: string = path.resolve(__dirname, '..');
 const repoRoot: string = path.resolve(packageRoot, '../..');
 const supportedLanguages: Language[] = ['fa', 'en', 'ru'];
