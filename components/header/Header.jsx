@@ -52,6 +52,7 @@ export default function Header() {
   const navLinks = [
     { label: navbar.home, href: localizedHref() },
     { label: navbar.about, href: localizedHref('/about-us') },
+    { label: navbar.faq, href: localizedHref('/faq') },
     { label: navbar.contact, href: localizedHref('/contact-us') },
   ];
 

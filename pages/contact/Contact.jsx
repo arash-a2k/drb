@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { useLanguage } from '../../hooks'
 
 import * as text from './contact.json'
+import Seo from '../../components/seo/Seo';
 
 const MAPS_API_KEY = "AIzaSyAd2AEAW67Pgpd27MHpl6caPcXrb911K30"
 const ContactUs = () => {
     const { lang } = useLanguage() || { lang: 'fa' }
 
-    const { title, address } = text[lang] || text['en'] // default lang if 3rd language like ru not has any text
+    const contactPage = text[lang] || text['en'] // default lang if 3rd language like ru not has any text
+    const { title, address, seoTitle, seoDescription } = contactPage
 
     useEffect(() => {
         // Initialize and add the map
@@ -41,6 +43,7 @@ const ContactUs = () => {
 
     return (
         <section className="py-10 bg-gray-50 overflow-hidden">
+            <Seo lang={lang} title={seoTitle} description={seoDescription} path="/contact-us" />
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-6 text-center">{title}</h2>
                 <div id="map" className="rounded-lg shadow-lg mb-6" style={{ height: '400px', width: '100%' }}></div>

@@ -22,6 +22,7 @@
             },
             "subtitle": "جراح و دندانپزشک -",
             "about": "درباره مطب",
+            "faq": "سوالات متداول",
             "title": "مطب دکتر بابک ختایی",
             "cta": "تماس فوری"
         },
@@ -47,6 +48,7 @@
             },
             "subtitle": "DDS",
             "about": "About Us",
+            "faq": "FAQ",
             "title": "Dentistry Clinic Dr. Babak Khatayee",
             "cta": "Call now"
         },
@@ -72,6 +74,7 @@
             },
             "subtitle": "DDS",
             "about": "О клинике",
+            "faq": "Вопросы",
             "title": "Стоматология доктора Бабака Хатаи",
             "cta": "Позвонить"
         }

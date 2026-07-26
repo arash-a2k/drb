@@ -1,234 +1,254 @@
 {
-    "fa": {
-        "highlights": [
-            {
-                "image": "/assets/images/home/composite.webp",
-                "content": "ونیر کامپوزیت پوشش سطح دندان به وسیله کامپوزیت خاص زیبایی با قابلیت پوشش و ایجاد زیبایی میباشد. مزیت مهم این روش حفظ بافت دندان و تراش ندادن آن یا تراش میکرونی و حداقلی سطح دندان جهت ایجاد استحکام بیشتر است.",
-                "header": "کامپوزیت دندان چیست ؟"
-            },
-            {
-                "image": "/assets/images/home/crown.webp",
-                "content": " دندان هایی که دیواره هایشان شکسته یا حجم قابل توجهی از ساختار آن ها به دلیل پوسیدگی از بین رفته باشد و همچنین دندان هایی که بدلیل عصب کشی یا نازک شدن جداره احتمال شکستن شان وجود داشته باشد با روکش هایی به شکل دندان ترمیم و بازسازی می شوند.",
-                "header": "روکش دندان چیست ؟"
-            },
-            {
-                "image": "/assets/images/home/implant.webp",
-                "content": "کاشت ایمپلنت که فلزی از جنس تیتانیوم است توسط جراحی ساده ای انجام میشود و پس از گذشت حدود ۲ ماه جوش خوردن ایمپلنت با استخوان فک میتوان تاج دندان را بازسازی کرد.",
-                "header": "ایمپلنت دندانی چیست ؟"
-            }
-        ],
-        "highlightTitle": "خدمات زیبایی ترمیمی",
-        "eyebrow": "دندانپزشکی زیبایی و درمانی در زعفرانیه",
-        "heroLead": "طراحی لبخند، ایمپلنت، لمینیت و درمان های عمومی در محیطی آرام، دقیق و امروزی.",
-        "primaryCta": "رزرو وقت",
-        "secondaryCta": "مشاهده درمان ها",
-        "stats": [
-            {
-                "value": "۱۰+",
-                "label": "خدمت تخصصی"
-            },
-            {
-                "value": "۴۵",
-                "label": "دقیقه بلیچینگ"
-            },
-            {
-                "value": "۳",
-                "label": "زبان پذیرش"
-            }
-        ],
-        "content": "ونیرهای کامپوزیت ساده ترین و سریعترین راه برای رسیدن به لبخندی سفید و زیباست. در مرکز دندانپزشکی ما واقع در زعفرانیه ، مقدس اردبیلی کامپوزیت زیبایی با بالاترین کیفیت انجام می شود. لمینیت های زیبایی یا اصطلاحا لمینیت های سرامیکی زیباترین لبخند ممکن را به شما خواهند داد. راهی که هنرمندان هالیوود آنرا به لبخند هالیوودی یا هالیوود اسمایل مطرح کردند. در مرکز دندانپزشکی دکتر بابک ختایی در زعفرانیه واقع در مقدس اربیلی شما بطور باورنکردنی در کمترین زمان ممکن در تهران به لبخندی زیبا با برترین تکنولوژی لمینیت های سرامیکی خواهید رسید. در کنار خدمات زیبایی مانند ونیر کامپوزیت و لمینیت انواع خدمات درمانی چون درمان ریشه، جرمگیری ، ترمیم دندان های پوسیده یا شکسته نیز  در مرکز ما انجام می شود.",
-        "title": "به مطب دندان پزشکی دکتر بابک ختایی خوش آمدید",
-        "name": "دکتر بابک ختایی",
-        "teasers": [
-            {
-                "image": "/assets/images/home/laminet.webp",
-                "content": "مزيت ونيرهاى لمينيت سراميكى عدم تغيير رنگ و مقاومت بيشتر آنها در مقابل فشار هاى جويدن است. ونيرهاى كامپوزيت مقرون به صرفه تر اما مقاومت كمترى دارند، مزيت آنها عدم نياز به قالب گيرى و كار در يك مرحله مي باشد.",
-                "header": "لمينيت ",
-                "labels": [
-                    "ونیر کامپوزیت تهران",
-                    "دندانپزشکی زیبایی تهران",
-                    "ونیر سرامیکی تهران"
-                ]
-            },
-            {
-                "image": "/assets/images/home/bleaching.webp",
-                "content": "اگر شما دندانهايى زيبا و خوش فرم داريد و تنها از بد رنگى آنها ناراحت هستيد ميتوانيد با انجام بليچينگ بدون قرار گيرى ماده اى اضافه روى دندانهايتان، دندانهاى خود را سفيدتر داشته باشيد. شما با صرف نهايتا ٤٥ دقيقه از زمان خود مي توانيد ٢ تا ٣ درجه و در مواردى حتى بيشتر دندانهاى خود را سفيدتر تحويل بگيريد.",
-                "header": "بليچينگ",
-                "labels": [
-                    "بلیچینگ دندان تهران",
-                    "سفید کردن دندان در ۴۵ دقیقه",
-                    "خدمات زیبایی دندان"
-                ]
-            },
-            {
-                "image": "/assets/images/home/general.webp",
-                "content": "درمانهاى مكمل خدمات زيبايى نيز با بالاترين كيفيت در اين محل خدمت شما ارائه مي گردند. مرتب كردن دندان ها ترميم دندان هاى پوسيده, درمان ريشه, دندان جايگزينى دندان از دست رفته با ايمپلنت توسط متخصص فك و صورت در مركز ما براى شما عزيزان انجام خواهد شد.",
-                "header": "خدمات زيبايى",
-                "labels": [
-                    "خدمات دندانپزشکی با کیفیت تهران",
-                    "ايمپلنت دندان با قیمت مناسب"
-                ]
-            }
-        ],
-        "social": {
-            "text": "ما را در اینستاگرام دنبال کنید تا با آخرین تغییرات و تخفیف ها همراه شوید",
-            "link": "https://www.instagram.com/dr.khatayee"
-        }
+  "fa": {
+    "seoTitle": "بهترین دندانپزشک زیبایی در تهران | دکتر بابک ختایی زعفرانیه",
+    "seoDescription": "مطب دکتر بابک ختایی در زعفرانیه تهران، نزدیک مقدس اردبیلی، ارائه دهنده لمینت سرامیکی، ونیر کامپوزیت، ایمپلنت دندان، بلیچینگ و طراحی لبخند.",
+    "highlights": [
+      {
+        "image": "/assets/images/home/composite.webp",
+        "content": "ونیر کامپوزیت پوشش سطح دندان به وسیله کامپوزیت خاص زیبایی با قابلیت پوشش و ایجاد زیبایی میباشد. مزیت مهم این روش حفظ بافت دندان و تراش ندادن آن یا تراش میکرونی و حداقلی سطح دندان جهت ایجاد استحکام بیشتر است.",
+        "header": "کامپوزیت دندان چیست ؟"
+      },
+      {
+        "image": "/assets/images/home/crown.webp",
+        "content": " دندان هایی که دیواره هایشان شکسته یا حجم قابل توجهی از ساختار آن ها به دلیل پوسیدگی از بین رفته باشد و همچنین دندان هایی که بدلیل عصب کشی یا نازک شدن جداره احتمال شکستن شان وجود داشته باشد با روکش هایی به شکل دندان ترمیم و بازسازی می شوند.",
+        "header": "روکش دندان چیست ؟"
+      },
+      {
+        "image": "/assets/images/home/implant.webp",
+        "content": "کاشت ایمپلنت که فلزی از جنس تیتانیوم است توسط جراحی ساده ای انجام میشود و پس از گذشت حدود ۲ ماه جوش خوردن ایمپلنت با استخوان فک میتوان تاج دندان را بازسازی کرد.",
+        "header": "ایمپلنت دندانی چیست ؟"
+      }
+    ],
+    "highlightTitle": "خدمات زیبایی ترمیمی",
+    "eyebrow": "دندانپزشکی زیبایی و درمانی در زعفرانیه",
+    "heroLead": "طراحی لبخند، لمینت سرامیکی، ونیر کامپوزیت و ایمپلنت دندان در زعفرانیه تهران، نزدیک مقدس اردبیلی، در محیطی آرام، دقیق و امروزی.",
+    "primaryCta": "رزرو وقت",
+    "secondaryCta": "مشاهده درمان ها",
+    "content": "اگر به دنبال بهترین دندانپزشک زیبایی در تهران برای طراحی لبخند هستید، مطب دکتر بابک ختایی در زعفرانیه و خیابان مقدس اردبیلی خدمات ونیر کامپوزیت، لمینت سرامیکی، ایمپلنت دندان و بلیچینگ را با برنامه درمانی دقیق ارائه می کند. ونیرهای کامپوزیت ساده ترین و سریعترین راه برای رسیدن به لبخندی سفید و زیباست و کامپوزیت دندان زعفرانیه برای بسیاری از اصلاحات رنگ، فرم و فاصله دندان انتخابی محافظه کارانه محسوب می شود. لمینیت های زیبایی یا اصطلاحا لمینت سرامیکی مقدس اردبیلی می توانند لبخندی طبیعی و ماندگار ایجاد کنند. در کنار خدمات زیبایی مانند ونیر کامپوزیت و لمینت، درمان ریشه، جرمگیری، ترمیم دندان های پوسیده یا شکسته و مشاوره ایمپلنت دندان قسطی تهران نیز در مرکز ما انجام می شود.",
+    "contentHighlights": [
+      "بهترین دندانپزشک زیبایی در تهران",
+      "طراحی لبخند",
+      "زعفرانیه",
+      "مقدس اردبیلی",
+      "ونیر کامپوزیت",
+      "لمینت سرامیکی",
+      "ایمپلنت دندان",
+      "کامپوزیت دندان زعفرانیه",
+      "لمینت سرامیکی مقدس اردبیلی",
+      "ایمپلنت دندان قسطی تهران"
+    ],
+    "title": "دندانپزشکی زیبایی دکتر بابک ختایی در زعفرانیه تهران",
+    "name": "دکتر بابک ختایی",
+    "teasers": [
+      {
+        "image": "/assets/images/home/laminet.webp",
+        "content": "لمینت سرامیکی زعفرانیه برای اصلاح رنگ، فرم و طراحی لبخند کاربرد دارد و مزیت اصلی آن ثبات رنگ و مقاومت بیشتر در برابر فشارهای جویدن است. ونیر کامپوزیت مقرون به صرفه تر است و معمولا در یک جلسه انجام می شود.",
+        "header": "لمینت سرامیکی و ونیر کامپوزیت",
+        "labels": [
+          "ونیر کامپوزیت مقدس اردبیلی",
+          "لمینت سرامیکی زعفرانیه",
+          "دندانپزشکی زیبایی تهران",
+          "ونیر سرامیکی تهران"
+        ]
+      },
+      {
+        "image": "/assets/images/home/bleaching.webp",
+        "content": "اگر شما دندانهايى زيبا و خوش فرم داريد و تنها از بد رنگى آنها ناراحت هستيد ميتوانيد با انجام بليچينگ بدون قرار گيرى ماده اى اضافه روى دندانهايتان، دندانهاى خود را سفيدتر داشته باشيد. شما با صرف نهايتا ٤٥ دقيقه از زمان خود مي توانيد ٢ تا ٣ درجه و در مواردى حتى بيشتر دندانهاى خود را سفيدتر تحويل بگيريد.",
+        "header": "بليچينگ",
+        "labels": [
+          "بلیچینگ دندان تهران",
+          "سفید کردن دندان در ۴۵ دقیقه",
+          "خدمات زیبایی دندان"
+        ]
+      },
+      {
+        "image": "/assets/images/home/general.webp",
+        "content": "درمانهاى مكمل خدمات زيبايى نيز با کیفیت بالا ارائه می شوند. ترمیم دندان های پوسیده، درمان ریشه و جایگزینی دندان از دست رفته با ایمپلنت انجام می شود و برای برخی طرح های درمانی امکان برنامه ریزی پرداخت مرحله ای یا ایمپلنت دندان قسطی تهران بررسی خواهد شد.",
+        "header": "خدمات زيبايى",
+        "labels": [
+          "خدمات دندانپزشکی با کیفیت تهران",
+          "ايمپلنت دندان با قیمت مناسب",
+          "ایمپلنت دندان قسطی تهران"
+        ]
+      }
+    ],
+    "social": {
+      "text": "ما را در اینستاگرام دنبال کنید تا با آخرین تغییرات و تخفیف ها همراه شوید",
+      "link": "https://www.instagram.com/dr.khatayee"
     },
-    "en": {
-        "highlights": [
-            {
-                "image": "/assets/images/home/composite.webp",
-                "content": "Composite veneer The tooth surface is covered with a special composite with the ability to cover and create beauty. An important advantage of this method is the preservation of the tooth tissue and not shaving or the micro and minimal tooth surface area for greater strength.",
-                "header": "Composite Veneer Treatment"
-            },
-            {
-                "image": "/assets/images/home/crown.webp",
-                "content": "Teeth that have broken walls or a significant amount of decay due to decay, as well as teeth that are prone to fracture or thinning may be repaired with tooth-shaped coatings.",
-                "header": "Dental Crowns Treatment"
-            },
-            {
-                "image": "/assets/images/home/implant.webp",
-                "content": "Titanium implant culture is implanted through gingival surgery and after the ligation of the fragment with the remaining bone occurs in the gingiva.",
-                "header": "Implant"
-            }
-        ],
-        "highlightTitle": "Dental Services",
-        "eyebrow": "Cosmetic and restorative dentistry in Zafaraniyeh",
-        "heroLead": "Smile design, implants, ceramic veneers, whitening, and general care in a calm, precise, modern clinic.",
-        "primaryCta": "Book a visit",
-        "secondaryCta": "Explore treatments",
-        "stats": [
-            {
-                "value": "10+",
-                "label": "Focused services"
-            },
-            {
-                "value": "45",
-                "label": "Minute whitening"
-            },
-            {
-                "value": "3",
-                "label": "Clinic languages"
-            }
-        ],
-        "content": "Composite veneers are the easiest and fastest way to achieve a beautiful white smile. At our dental center in Zaeferanieh of Tehran, is the highest quality cosmetic composite. Beauty laminates or so-called ceramic laminates will give you the most beautiful smile possible. The way that Hollywood artists made it to Hollywood smiles or Hollywood smiles. At Dr. Babak Khatai Dental Center in Zaeferanieh Tehran you will inevitably achieve a beautiful smile with the best ceramic laminate technology in as little time as possible. In addition to beauty services such as composite veneer and laminating, we also offer a variety of treatments such as root canal treatment, scaling, repairing of broken or broken teeth.",
-        "title": "Welcome to the Dr Khatayee's Office",
-        "name": "Dr Khatayee",
-        "teasers": [
-            {
-                "image": "/assets/images/home/laminet.webp",
-                "content": "The advantage of ceramic laminate veneers is their non-discoloration and greater resistance to chewing pressures. Composite veneers are more affordable but less durable, with the advantage of not requiring one-step molding.",
-                "header": "Laminate Treatment",
-                "labels": [
-                    "Ceramic Veneers Tehran",
-                    "Cosmetic Dentistry Iran",
-                    "Dental Aesthetics Specialist Tehran",
-                    "Affordable Cosmetic Dentistry Iran"
-                ]
-            },
-            {
-                "image": "/assets/images/home/bleaching.webp",
-                "content": "If you have beautiful, shapely teeth and you are only worried about their poor coloration, you can make your teeth whitish by bleaching them without putting any extra material on your teeth. You can finally get your teeth whitened for 5 to 5 minutes, sometimes even longer.",
-                "header": "Bleaching",
-                "labels": [
-                    "Teeth Bleaching Tehran",
-                    "Long-Lasting Teeth Whitening Iran",
-                    "Natural Color Teeth Whitening Tehran"
-                ]
-            },
-            {
-                "image": "/assets/images/home/general.webp",
-                "content": "Complementary beauty treatments are also offered at the highest quality at your location. Tooth decay, tooth decay, root canal, tooth replacement implant loss will be done by your dentist at our facility.",
-                "header": "Cosmetic Dentistry",
-                "labels": [
-                    "High-Quality Dental Treatments Tehran",
-                    "Dental Aesthetics Specialist Tehran",
-                    "Dental Implant Solutions Tehran"
-                ]
-            }
-        ],
-        "social": {
-            "text": "Follow our clinic's page on Instagram to stay tuned with the offers and updates!",
-            "link": "https://www.instagram.com/dr.khatayee"
-        }
+    "featuredKeywords": [
+      {
+        "title": "لمینت سرامیکی زعفرانیه",
+        "description": "اصلاح رنگ و فرم دندان با ونیر سرامیکی"
+      },
+      {
+        "title": "ونیر کامپوزیت مقدس اردبیلی",
+        "description": "طراحی لبخند سریع و محافظه کارانه"
+      },
+      {
+        "title": "ایمپلنت دندان قسطی تهران",
+        "description": "بررسی شرایط درمان و پرداخت در مطب"
+      }
+    ]
+  },
+  "en": {
+    "seoTitle": "Cosmetic Dentist in Tehran | Dr. Babak Khatayee Dental Clinic",
+    "seoDescription": "Dr. Babak Khatayee dental clinic in Zafaraniyeh, Tehran offers ceramic veneers, composite veneers, dental implants, whitening, and smile design near Moghadas Ardebili.",
+    "highlights": [
+      {
+        "image": "/assets/images/home/composite.webp",
+        "content": "Composite veneer The tooth surface is covered with a special composite with the ability to cover and create beauty. An important advantage of this method is the preservation of the tooth tissue and not shaving or the micro and minimal tooth surface area for greater strength.",
+        "header": "Composite Veneer Treatment"
+      },
+      {
+        "image": "/assets/images/home/crown.webp",
+        "content": "Teeth that have broken walls or a significant amount of decay due to decay, as well as teeth that are prone to fracture or thinning may be repaired with tooth-shaped coatings.",
+        "header": "Dental Crowns Treatment"
+      },
+      {
+        "image": "/assets/images/home/implant.webp",
+        "content": "Titanium implant culture is implanted through gingival surgery and after the ligation of the fragment with the remaining bone occurs in the gingiva.",
+        "header": "Implant"
+      }
+    ],
+    "highlightTitle": "Dental Services",
+    "eyebrow": "Cosmetic and restorative dentistry in Zafaraniyeh",
+    "heroLead": "Smile design, implants, ceramic veneers, whitening, and general care in a calm, precise, modern clinic.",
+    "primaryCta": "Book a visit",
+    "secondaryCta": "Explore treatments",
+    "content": "Composite veneers are the easiest and fastest way to achieve a beautiful white smile. At our dental center in Zaeferanieh of Tehran, is the highest quality cosmetic composite. Beauty laminates or so-called ceramic laminates will give you the most beautiful smile possible. The way that Hollywood artists made it to Hollywood smiles or Hollywood smiles. At Dr. Babak Khatai Dental Center in Zaeferanieh Tehran you will inevitably achieve a beautiful smile with the best ceramic laminate technology in as little time as possible. In addition to beauty services such as composite veneer and laminating, we also offer a variety of treatments such as root canal treatment, scaling, repairing of broken or broken teeth.",
+    "title": "Welcome to the Dr Khatayee's Office",
+    "name": "Dr Khatayee",
+    "teasers": [
+      {
+        "image": "/assets/images/home/laminet.webp",
+        "content": "The advantage of ceramic laminate veneers is their non-discoloration and greater resistance to chewing pressures. Composite veneers are more affordable but less durable, with the advantage of not requiring one-step molding.",
+        "header": "Laminate Treatment",
+        "labels": [
+          "Ceramic Veneers Tehran",
+          "Cosmetic Dentistry Iran",
+          "Dental Aesthetics Specialist Tehran",
+          "Affordable Cosmetic Dentistry Iran"
+        ]
+      },
+      {
+        "image": "/assets/images/home/bleaching.webp",
+        "content": "If you have beautiful, shapely teeth and you are only worried about their poor coloration, you can make your teeth whitish by bleaching them without putting any extra material on your teeth. You can finally get your teeth whitened for 5 to 5 minutes, sometimes even longer.",
+        "header": "Bleaching",
+        "labels": [
+          "Teeth Bleaching Tehran",
+          "Long-Lasting Teeth Whitening Iran",
+          "Natural Color Teeth Whitening Tehran"
+        ]
+      },
+      {
+        "image": "/assets/images/home/general.webp",
+        "content": "Complementary beauty treatments are also offered at the highest quality at your location. Tooth decay, tooth decay, root canal, tooth replacement implant loss will be done by your dentist at our facility.",
+        "header": "Cosmetic Dentistry",
+        "labels": [
+          "High-Quality Dental Treatments Tehran",
+          "Dental Aesthetics Specialist Tehran",
+          "Dental Implant Solutions Tehran"
+        ]
+      }
+    ],
+    "social": {
+      "text": "Follow our clinic's page on Instagram to stay tuned with the offers and updates!",
+      "link": "https://www.instagram.com/dr.khatayee"
     },
-    "ru": {
-        "highlights": [
-            {
-                "image": "/assets/images/home/composite.webp",
-                "content": "Композитный винир Поверхность зуба покрыта специальным композитом, который способен создавать красоту. Важным преимуществом этого метода является сохранение зубной ткани и минимальное уменьшение поверхности зуба для обеспечения большей прочности.",
-                "header": "Лечение Композитными Винирами"
-            },
-            {
-                "image": "/assets/images/home/crown.webp",
-                "content": "Зубы с разрушенными стенками или значительным количеством кариеса, а также зубы, склонные к переломам или истончению, могут быть восстановлены с помощью зубных коронок.",
-                "header": "Лечение Зубными Коронками"
-            },
-            {
-                "image": "/assets/images/home/implant.webp",
-                "content": "Титановые имплантаты внедряются через десневую хирургию, и после их соединения с оставшейся костной тканью они фиксируются в десне.",
-                "header": "Имплантат"
-            }
-        ],
-        "highlightTitle": "Стоматологические Услуги",
-        "eyebrow": "Эстетическая и восстановительная стоматология в Заферание",
-        "heroLead": "Дизайн улыбки, импланты, керамические виниры, отбеливание и терапевтическая помощь в спокойной современной клинике.",
-        "primaryCta": "Записаться",
-        "secondaryCta": "Посмотреть услуги",
-        "stats": [
-            {
-                "value": "10+",
-                "label": "Направлений"
-            },
-            {
-                "value": "45",
-                "label": "Минут отбеливания"
-            },
-            {
-                "value": "3",
-                "label": "Языка приема"
-            }
-        ],
-        "content": "Композитные виниры - это самый простой и быстрый способ достичь красивой белоснежной улыбки. В нашем стоматологическом центре в Заэфрание, Тегеран, используется высококачественный косметический композит. Красивые ламинированные виниры или так называемые керамические виниры подарят вам самую красивую улыбку. Именно так голливудские артисты создавали свои голливудские улыбки. В стоматологическом центре доктора Бабака Хатаи в Заэфрание, Тегеран, вы неизбежно достигнете красивой улыбки с использованием лучшей технологии керамических виниров за минимальное время. Помимо косметических услуг, таких как композитный винир и ламинирование, мы также предлагаем различные виды лечения, такие как лечение корневых каналов, чистка зубов, восстановление сломанных зубов.",
-        "title": "Добро пожаловать в Офис Доктора Хатаи",
-        "name": "Доктор Хатаи",
-        "teasers": [
-            {
-                "image": "/assets/images/home/laminet.webp",
-                "content": "Преимуществом керамических ламинированных виниров является их стойкость к обесцвечиванию и большая устойчивость к жевательным нагрузкам. Композитные виниры более доступные, но менее долговечные, с преимуществом отсутствия необходимости в одном этапе формовки.",
-                "header": "Лечение Ламинатами",
-                "labels": [
-                    "Керамические Виниры Тегеран",
-                    "Косметическая Стоматология Иран",
-                    "Специалист по Эстетике Зубов Тегеран",
-                    "Доступная Косметическая Стоматология Иран"
-                ]
-            },
-            {
-                "image": "/assets/images/home/bleaching.webp",
-                "content": "Если у вас красивые, аккуратные зубы, и вы беспокоитесь только о их плохом цвете, вы можете сделать их белыми, отбелив их, не добавляя никаких дополнительных материалов на зубы. Вы можете окончательно отбелить зубы за 5-5 минут, иногда даже дольше.",
-                "header": "Отбеливание",
-                "labels": [
-                    "Отбеливание Зубов Тегеран",
-                    "Долговременное Отбеливание Зубов Иран",
-                    "Отбеливание Зубов Естественного Цвета Тегеран"
-                ]
-            },
-            {
-                "image": "/assets/images/home/general.webp",
-                "content": "Дополнительные косметические процедуры также предлагаются высочайшего качества на вашем месте. Кариес, корневой канал, замена утраченного зуба имплантатом будет выполнена вашим стоматологом в нашем учреждении.",
-                "header": "Косметическая Стоматология",
-                "labels": [
-                    "Высококачественные Стоматологические Лечения Тегеран",
-                    "Специалист по Эстетике Зубов Тегеран",
-                    "Решения по Имплантации Зубов Тегеран"
-                ]
-            }
-        ],
-        "social": {
-            "text": "Следите за нашей клиникой в Instagram, чтобы быть в курсе предложений и обновлений!",
-            "link": "https://www.instagram.com/dr.khatayee"
-        }
-    }
+    "featuredKeywords": [
+      {
+        "title": "Ceramic Veneers in Tehran",
+        "description": "Natural smile design with porcelain veneers"
+      },
+      {
+        "title": "Composite Veneers in Zafaraniyeh",
+        "description": "Conservative smile correction near Moghadas Ardebili"
+      },
+      {
+        "title": "Dental Implants in Tehran",
+        "description": "Implant planning and payment guidance at the clinic"
+      }
+    ]
+  },
+  "ru": {
+    "seoTitle": "Косметическая стоматология в Тегеране | Клиника доктора Бабака Хатаи",
+    "seoDescription": "Стоматология доктора Бабака Хатаи в районе Заферание, Тегеран: керамические виниры, композитные виниры, имплантация, отбеливание и дизайн улыбки.",
+    "highlights": [
+      {
+        "image": "/assets/images/home/composite.webp",
+        "content": "Композитный винир Поверхность зуба покрыта специальным композитом, который способен создавать красоту. Важным преимуществом этого метода является сохранение зубной ткани и минимальное уменьшение поверхности зуба для обеспечения большей прочности.",
+        "header": "Лечение Композитными Винирами"
+      },
+      {
+        "image": "/assets/images/home/crown.webp",
+        "content": "Зубы с разрушенными стенками или значительным количеством кариеса, а также зубы, склонные к переломам или истончению, могут быть восстановлены с помощью зубных коронок.",
+        "header": "Лечение Зубными Коронками"
+      },
+      {
+        "image": "/assets/images/home/implant.webp",
+        "content": "Титановые имплантаты внедряются через десневую хирургию, и после их соединения с оставшейся костной тканью они фиксируются в десне.",
+        "header": "Имплантат"
+      }
+    ],
+    "highlightTitle": "Стоматологические Услуги",
+    "eyebrow": "Эстетическая и восстановительная стоматология в Заферание",
+    "heroLead": "Дизайн улыбки, импланты, керамические виниры, отбеливание и терапевтическая помощь в спокойной современной клинике.",
+    "primaryCta": "Записаться",
+    "secondaryCta": "Посмотреть услуги",
+    "content": "Композитные виниры - это самый простой и быстрый способ достичь красивой белоснежной улыбки. В нашем стоматологическом центре в Заэфрание, Тегеран, используется высококачественный косметический композит. Красивые ламинированные виниры или так называемые керамические виниры подарят вам самую красивую улыбку. Именно так голливудские артисты создавали свои голливудские улыбки. В стоматологическом центре доктора Бабака Хатаи в Заэфрание, Тегеран, вы неизбежно достигнете красивой улыбки с использованием лучшей технологии керамических виниров за минимальное время. Помимо косметических услуг, таких как композитный винир и ламинирование, мы также предлагаем различные виды лечения, такие как лечение корневых каналов, чистка зубов, восстановление сломанных зубов.",
+    "title": "Добро пожаловать в Офис Доктора Хатаи",
+    "name": "Доктор Хатаи",
+    "teasers": [
+      {
+        "image": "/assets/images/home/laminet.webp",
+        "content": "Преимуществом керамических ламинированных виниров является их стойкость к обесцвечиванию и большая устойчивость к жевательным нагрузкам. Композитные виниры более доступные, но менее долговечные, с преимуществом отсутствия необходимости в одном этапе формовки.",
+        "header": "Лечение Ламинатами",
+        "labels": [
+          "Керамические Виниры Тегеран",
+          "Косметическая Стоматология Иран",
+          "Специалист по Эстетике Зубов Тегеран",
+          "Доступная Косметическая Стоматология Иран"
+        ]
+      },
+      {
+        "image": "/assets/images/home/bleaching.webp",
+        "content": "Если у вас красивые, аккуратные зубы, и вы беспокоитесь только о их плохом цвете, вы можете сделать их белыми, отбелив их, не добавляя никаких дополнительных материалов на зубы. Вы можете окончательно отбелить зубы за 5-5 минут, иногда даже дольше.",
+        "header": "Отбеливание",
+        "labels": [
+          "Отбеливание Зубов Тегеран",
+          "Долговременное Отбеливание Зубов Иран",
+          "Отбеливание Зубов Естественного Цвета Тегеран"
+        ]
+      },
+      {
+        "image": "/assets/images/home/general.webp",
+        "content": "Дополнительные косметические процедуры также предлагаются высочайшего качества на вашем месте. Кариес, корневой канал, замена утраченного зуба имплантатом будет выполнена вашим стоматологом в нашем учреждении.",
+        "header": "Косметическая Стоматология",
+        "labels": [
+          "Высококачественные Стоматологические Лечения Тегеран",
+          "Специалист по Эстетике Зубов Тегеран",
+          "Решения по Имплантации Зубов Тегеран"
+        ]
+      }
+    ],
+    "social": {
+      "text": "Следите за нашей клиникой в Instagram, чтобы быть в курсе предложений и обновлений!",
+      "link": "https://www.instagram.com/dr.khatayee"
+    },
+    "featuredKeywords": [
+      {
+        "title": "Керамические виниры в Тегеране",
+        "description": "Эстетическое восстановление улыбки"
+      },
+      {
+        "title": "Композитные виниры в Заферание",
+        "description": "Быстрая и щадящая коррекция улыбки"
+      },
+      {
+        "title": "Имплантация зубов в Тегеране",
+        "description": "План лечения и консультация в клинике"
+      }
+    ]
+  }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
+import { HighlightedText } from '../common';
 
 export default function ArticleSolo(props) {
-  const { subtitle, title, content, imageSrc } = props;
+  const { subtitle, title, content, imageSrc, highlights = [] } = props;
 
   return (
     <section className="overflow-hidden bg-white py-14 sm:py-20">
@@ -25,7 +26,7 @@ export default function ArticleSolo(props) {
             {title}
           </h2>
           <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
-            {content}
+            <HighlightedText text={content} highlights={highlights} />
           </p>
         </div>
       </div>

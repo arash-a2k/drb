@@ -6,16 +6,27 @@ import Highlights from './Highlights';
 import Teasers from './Teasers';
 import ArticleSolo from '../../components/article-solo/ArticleSolo';
 import * as contactText from '../../translations/contact.json';
+import Seo from '../../components/seo/Seo';
 
 export default function Home() {
   const { lang = 'fa' } = useLanguage() || {};
   const home = text[lang] || text.en;
   const contact = contactText[lang] || contactText.en;
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
-  const { highlightTitle, highlights, teasers, stats = [] } = home;
+  const { highlightTitle, highlights, teasers, featuredKeywords = [] } = home;
+  const getKeywordHref = (title) => {
+    if (/ایمپلنت|Implant|Имплан/i.test(title)) {
+      return `/${lang}/treatments/dental-implants`;
+    }
+    if (/کامپوزیت|Composite|Композит/i.test(title)) {
+      return `/${lang}/treatments/composite-veneer`;
+    }
+    return `/${lang}/treatments/dental-laminates`;
+  };
 
   return (
     <main dir={dir} className="bg-[#f6f8f7] text-slate-950">
+      <Seo lang={lang} title={home.seoTitle} description={home.seoDescription} />
       <section className="overflow-hidden">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:items-center lg:py-14">
           <div className="relative z-10">
@@ -38,14 +49,18 @@ export default function Home() {
               </a>
             </div>
 
-            <dl className="mt-10 grid grid-cols-3 overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
-              {stats.map((stat, index) => (
-                <div key={stat.label} className={`px-3 py-5 text-center ${index > 0 ? 'border-l border-slate-200' : ''}`}>
-                  <dt className="text-2xl font-black text-slate-950 sm:text-3xl">{stat.value}</dt>
-                  <dd className="mt-1 text-xs font-semibold text-slate-500 sm:text-sm">{stat.label}</dd>
-                </div>
+            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+              {featuredKeywords.map((item) => (
+                <a
+                  key={item.title}
+                  href={getKeywordHref(item.title)}
+                  className="rounded-md border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
+                >
+                  <h2 className="text-base font-black leading-7 text-primary-ink">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+                </a>
               ))}
-            </dl>
+            </div>
           </div>
 
           <div className="relative min-h-[460px] overflow-hidden rounded-md bg-slate-200 shadow-2xl shadow-slate-900/15 lg:min-h-[620px]">
@@ -64,7 +79,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ArticleSolo title={home.name} subtitle={home.eyebrow} content={home.content} imageSrc="/assets/images/home/drb.webp" />
+      <ArticleSolo title={home.name} subtitle={home.eyebrow} content={home.content} imageSrc="/assets/images/home/drb.webp" highlights={home.contentHighlights} />
       <Highlights title={highlightTitle} highlights={highlights} />
       <Teasers teasers={teasers} />
     </main>
