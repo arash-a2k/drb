@@ -10,9 +10,10 @@ type AjvError = {
   params?: Record<string, unknown>;
 };
 
-const projectRoot: string = path.resolve(__dirname, '..');
-const schemaPath: string = path.join(projectRoot, 'schemas/pageDraft.schema.json');
-const defaultDraftPath: string = path.join(projectRoot, 'schemas/examples/pageDraft.sample.json');
+const packageRoot: string = path.resolve(__dirname, '..');
+const repoRoot: string = path.resolve(packageRoot, '../..');
+const schemaPath: string = path.join(packageRoot, 'schemas/pageDraft.schema.json');
+const defaultDraftPath: string = path.join(packageRoot, 'schemas/examples/pageDraft.sample.json');
 
 function readJson(filePath: string): unknown {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -40,7 +41,7 @@ function collectInputFiles(args: string[]): string[] {
       if (!dir) {
         throw new Error('--dir requires a path');
       }
-      const absoluteDir = path.resolve(projectRoot, dir);
+      const absoluteDir = path.resolve(repoRoot, dir);
       for (const entry of fs.readdirSync(absoluteDir)) {
         if (entry.endsWith('.json')) {
           files.push(path.join(absoluteDir, entry));
@@ -63,17 +64,17 @@ function main(): void {
   let failed = false;
 
   for (const file of files) {
-    const absoluteFile = path.resolve(projectRoot, file);
+    const absoluteFile = path.resolve(repoRoot, file);
     const draft = readJson(absoluteFile);
     const valid = validate(draft);
     if (!valid) {
       failed = true;
-      console.error(`Invalid PageDraft: ${path.relative(projectRoot, absoluteFile)}`);
+      console.error(`Invalid PageDraft: ${path.relative(repoRoot, absoluteFile)}`);
       for (const error of (validate.errors || []) as AjvError[]) {
         console.error(`  - ${formatAjvError(error)}`);
       }
     } else {
-      console.log(`Valid PageDraft: ${path.relative(projectRoot, absoluteFile)}`);
+      console.log(`Valid PageDraft: ${path.relative(repoRoot, absoluteFile)}`);
     }
   }
 

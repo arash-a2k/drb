@@ -1,13 +1,16 @@
 {
   "name": "drb",
   "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "__COMMENT_main": "node_modules/expo/AppEntry.js",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "web": "expo start --web",
-    "validate:content": "node --experimental-strip-types scripts/validate-content.ts",
-    "create:page": "node --experimental-strip-types scripts/create-page.ts",
+    "validate:content": "npm --workspace @drb/content-automation run validate:content --",
+    "create:page": "npm --workspace @drb/content-automation run create:page --",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",
     "deploy": "gh-pages -t -d dist --cname dr-khatayee.com"

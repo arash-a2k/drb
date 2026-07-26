@@ -81,7 +81,8 @@ type ParsedArgs = {
   dryRun: boolean;
 };
 
-const projectRoot: string = path.resolve(__dirname, '..');
+const packageRoot: string = path.resolve(__dirname, '..');
+const repoRoot: string = path.resolve(packageRoot, '../..');
 const supportedLanguages: Language[] = ['fa', 'en', 'ru'];
 const normalPageTypes: Set<PageType> = new Set([
   'single-column',
@@ -113,7 +114,7 @@ function toPascalCase(slug: string): string {
 }
 
 function validateDraft(draft: unknown, sourceLabel: string): asserts draft is PageDraft {
-  const schema = readJson(path.join(projectRoot, 'schemas/pageDraft.schema.json'));
+  const schema = readJson(path.join(packageRoot, 'schemas/pageDraft.schema.json'));
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
   if (validate(draft)) {
@@ -284,7 +285,7 @@ function updateTreatmentNav(draft: PageDraft): string[] {
     return [];
   }
 
-  const headerPath = path.join(projectRoot, 'components/header/header.json');
+  const headerPath = path.join(repoRoot, 'components/header/header.json');
   const header = readJson<{ navbar: Record<Language, { dropdown?: { items?: Array<{ text: string; link: string }> } }> }>(headerPath);
   for (const lang of supportedLanguages) {
     const navbar = header.navbar[lang];
@@ -308,10 +309,10 @@ function updateTreatmentNav(draft: PageDraft): string[] {
 
 function generateTreatmentPage(draft: PageDraft): string[] {
   const outputFiles: string[] = [];
-  const treatmentDir = path.join(projectRoot, 'app/[lang]/treatments', draft.slug);
+  const treatmentDir = path.join(repoRoot, 'app/[lang]/treatments', draft.slug);
   const jsonPath = path.join(treatmentDir, `${draft.slug}.json`);
   const indexPath = path.join(treatmentDir, 'index.jsx');
-  const redirectPath = path.join(projectRoot, 'app/treatments', draft.slug, 'index.js');
+  const redirectPath = path.join(repoRoot, 'app/treatments', draft.slug, 'index.js');
   const template = treatmentTemplateForPageType(draft.pageType);
 
   const jsonChanged = writeFileIfChanged(jsonPath, `${JSON.stringify(buildPageJson(draft), null, 2)}\n`);
@@ -331,11 +332,11 @@ function generateNormalPage(draft: PageDraft): string[] {
 
   const outputFiles: string[] = [];
   const componentName = toPascalCase(draft.slug);
-  const pageDir = path.join(projectRoot, 'pages', draft.slug);
+  const pageDir = path.join(repoRoot, 'pages', draft.slug);
   const jsonPath = path.join(pageDir, `${draft.slug}.json`);
   const componentPath = path.join(pageDir, `${componentName}.jsx`);
-  const langRoutePath = path.join(projectRoot, 'app/[lang]', `${draft.slug}.jsx`);
-  const redirectPath = path.join(projectRoot, 'app', `${draft.slug}.js`);
+  const langRoutePath = path.join(repoRoot, 'app/[lang]', `${draft.slug}.jsx`);
+  const redirectPath = path.join(repoRoot, 'app', `${draft.slug}.js`);
 
   const jsonChanged = writeFileIfChanged(jsonPath, `${JSON.stringify(buildPageJson(draft), null, 2)}\n`);
   const componentChanged = writeFileIfChanged(componentPath, buildNormalPageComponent(componentName, `${draft.slug}.json`));
@@ -381,9 +382,9 @@ function parseArgs(argv: string[]): ParsedArgs {
 
 function main(): void {
   const args = parseArgs(process.argv.slice(2));
-  const draftPath = path.resolve(projectRoot, args.draft || '');
+  const draftPath = path.resolve(repoRoot, args.draft || '');
   const draft = readJson(draftPath);
-  validateDraft(draft, path.relative(projectRoot, draftPath));
+  validateDraft(draft, path.relative(repoRoot, draftPath));
 
   if (args.dryRun) {
     console.log(`Valid draft. Would generate page "${draft.slug}" (${draft.pageType}).`);
@@ -393,7 +394,7 @@ function main(): void {
   const outputFiles = generatePage(draft);
   console.log(`Generated page "${draft.slug}".`);
   for (const file of outputFiles) {
-    console.log(`- ${path.relative(projectRoot, file)}`);
+    console.log(`- ${path.relative(repoRoot, file)}`);
   }
 }
 
