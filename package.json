@@ -11,6 +11,7 @@
     "web": "expo start --web",
     "validate:content": "npm --workspace @drb/content-automation run validate:content --",
     "create:page": "npm --workspace @drb/content-automation run create:page --",
+    "optimize:images": "npm --workspace @drb/content-automation run optimize:images --",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",
     "deploy": "gh-pages -t -d dist --cname dr-khatayee.com"
