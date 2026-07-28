@@ -16,6 +16,65 @@ It run github pages and passes the directory which the project is exported to us
 
 5. **Important** CNAME file must be there at the root for github to work with custom domains.
 
+## Content Automation Commands
+These commands belong to the monorepo content automation package at `packages/content-automation`. They are used by the future Telegram bot and by GitHub Actions validation.
+
+### `npm run validate:content`
+Validates generated page draft JSON files against `packages/content-automation/schemas/pageDraft.schema.json`.
+
+Default sample validation:
+
+```bash
+npm run validate:content
+```
+
+Validate a specific draft:
+
+```bash
+npm run validate:content -- --file path/to/page-draft.json
+```
+
+Meaning: the page content has the required `fa`, `en`, and `ru` fields, valid page type, valid navigation placement, valid image references, SEO metadata, sections, FAQ shape, and other schema rules.
+
+### `npm run create:page`
+Creates website files from a validated page draft.
+
+Dry run:
+
+```bash
+npm run create:page -- --draft packages/content-automation/schemas/examples/pageDraft.sample.json --dry-run
+```
+
+Real generation:
+
+```bash
+npm run create:page -- --draft path/to/page-draft.json
+```
+
+Meaning: the script turns structured content into route files, translated JSON, page components when needed, treatment routes, redirects, and optional treatment navigation updates. The dry run only checks that the draft is valid and reports what would be generated.
+
+### `npm run optimize:images`
+Compresses source images into WebP files for the website.
+
+Example:
+
+```bash
+npm run optimize:images -- --input path/to/images --slug dental-laminates
+```
+
+Meaning: the script accepts up to 10 images, resizes large images, strips metadata, converts them to `.webp`, writes them under `assets/images/generated/<slug>/`, and creates a manifest with public `/assets/...` paths.
+
+### `npm --workspace @drb/content-automation run orchestrate:page:smoke`
+Runs a local smoke test for the AI page draft orchestrator.
+
+```bash
+npm --workspace @drb/content-automation run orchestrate:page:smoke
+```
+
+Meaning: this does not call a real AI provider and does not write website files. It uses a mock AI client to simulate page classification, Persian SEO optimization using the prompt contract, translation, markdown-wrapped JSON parsing, final `PageDraft` assembly, and schema validation.
+
+This command is also run in `.github/workflows/validate.yml` so pull requests can verify the AI orchestration contract without needing API keys.
+
 
 ## How does development/expo web works
 - `+html.jsx` is a static file which covers the template of all genarated html files. It cannot have react logic and all the JS logic will only be run during export/deployment and under ndoeJS env.
