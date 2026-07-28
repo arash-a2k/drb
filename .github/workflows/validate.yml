@@ -27,6 +27,9 @@ jobs:
       - name: Validate content drafts
         run: npm run validate:content
 
+      - name: Check AI orchestrator contract
+        run: npm --workspace @drb/content-automation run orchestrate:page:smoke
+
       - name: Check page generator sample
         run: npm run create:page -- --draft packages/content-automation/schemas/examples/pageDraft.sample.json --dry-run
 

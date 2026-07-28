@@ -7,7 +7,8 @@
   "scripts": {
     "validate:content": "node --experimental-strip-types src/validate-content.ts",
     "create:page": "node --experimental-strip-types src/create-page.ts",
-    "optimize:images": "node --experimental-strip-types src/optimize-images.ts"
+    "optimize:images": "node --experimental-strip-types src/optimize-images.ts",
+    "orchestrate:page:smoke": "node --experimental-strip-types src/services/ai/orchestrator-smoke.ts"
   },
   "dependencies": {
     "ajv": "^8.16.0",
