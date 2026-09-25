@@ -4,65 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv';
-
-type Language = 'fa' | 'en' | 'ru';
-type PageType =
-  | 'single-column'
-  | 'two-column'
-  | 'hero-with-sections'
-  | 'content-with-image-grid'
-  | 'solo-image-content-lines'
-  | 'gallery-only'
-  | 'treatment';
-type NavPlacement = 'none' | 'main' | 'treatments';
-
-type ContentSectionDraft = {
-  id: string;
-  title: string;
-  content: string;
-  bold?: string[];
-};
-
-type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-type DataTable = {
-  title: string;
-  description?: string;
-  columns: Array<{ key: string; label: string }>;
-  rows: Array<Record<string, string>>;
-};
-
-type PageContentDraft = {
-  title: string;
-  seoTitle: string;
-  seoDescription: string;
-  intro: string;
-  heroImage?: string;
-  sections: ContentSectionDraft[];
-  faq?: FaqItem[];
-  tables?: DataTable[];
-};
-
-type PageImageDraft = {
-  telegramFileId?: string;
-  sourcePath?: string;
-  src: string;
-  alt: Record<Language, string>;
-};
-
-type PageDraft = {
-  slug: string;
-  sourceLanguage: Language;
-  pageType: PageType;
-  navPlacement: NavPlacement;
-  canonicalPath?: string;
-  targetKeywords?: string[];
-  content: Record<Language, PageContentDraft>;
-  images: PageImageDraft[];
-};
+import { packageRoot, repoRoot } from './shared/paths.ts';
+import { supportedLanguages, type ContentSectionDraft, type DataTable, type FaqItem, type Language, type PageContentDraft, type PageDraft, type PageType } from './shared/types.ts';
+import { isSlugReserved, validateSlugFormat } from './shared/slug.ts';
 
 type GeneratedLanguageContent = {
   title: string;
@@ -82,10 +26,6 @@ type ParsedArgs = {
   dryRun: boolean;
 };
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const packageRoot: string = path.resolve(__dirname, '..');
-const repoRoot: string = path.resolve(packageRoot, '../..');
-const supportedLanguages: Language[] = ['fa', 'en', 'ru'];
 const normalPageTypes: Set<PageType> = new Set([
   'single-column',
   'two-column',
@@ -115,18 +55,22 @@ function toPascalCase(slug: string): string {
     .join('');
 }
 
-function validateDraft(draft: unknown, sourceLabel: string): asserts draft is PageDraft {
+export function validateDraft(draft: unknown, sourceLabel = 'draft'): asserts draft is PageDraft {
   const schema = readJson(path.join(packageRoot, 'schemas/pageDraft.schema.json'));
   const ajv = new Ajv({ allErrors: true, strict: false });
   const validate = ajv.compile(schema);
-  if (validate(draft)) {
-    return;
+  if (!validate(draft)) {
+    const errors = (validate.errors || [])
+      .map((error: { instancePath?: string; message?: string }) => `${error.instancePath || '/'} ${error.message}`)
+      .join('\n');
+    throw new Error(`Invalid PageDraft ${sourceLabel}:\n${errors}`);
   }
 
-  const errors = (validate.errors || [])
-    .map((error: { instancePath?: string; message?: string }) => `${error.instancePath || '/'} ${error.message}`)
-    .join('\n');
-  throw new Error(`Invalid PageDraft ${sourceLabel}:\n${errors}`);
+  const pageDraft = draft as PageDraft;
+  validateSlugFormat(pageDraft.slug);
+  if (isSlugReserved(pageDraft.slug)) {
+    throw new Error(`Invalid PageDraft ${sourceLabel}: slug "${pageDraft.slug}" is a reserved system route and cannot be used.`);
+  }
 }
 
 function normalizeImagesForLanguage(draft: PageDraft, lang: Language): Array<{ src: string; alt: string }> {
@@ -356,7 +300,7 @@ function generateNormalPage(draft: PageDraft): string[] {
   return outputFiles;
 }
 
-function generatePage(draft: PageDraft): string[] {
+export function generatePage(draft: PageDraft): string[] {
   if (draft.pageType === 'treatment' || draft.navPlacement === 'treatments') {
     return generateTreatmentPage(draft);
   }
@@ -400,9 +344,12 @@ function main(): void {
   }
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(error instanceof Error ? error.message : String(error));
-  process.exit(1);
+const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+if (isDirectRun) {
+  try {
+    main();
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exit(1);
+  }
 }

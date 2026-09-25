@@ -8,7 +8,11 @@
     "validate:content": "node --experimental-strip-types src/validate-content.ts",
     "create:page": "node --experimental-strip-types src/create-page.ts",
     "optimize:images": "node --experimental-strip-types src/optimize-images.ts",
-    "orchestrate:page:smoke": "node --experimental-strip-types src/services/ai/orchestrator-smoke.ts"
+    "orchestrate:page:smoke": "node --experimental-strip-types src/services/ai/orchestrator-smoke.ts",
+    "pipeline:run": "node --experimental-strip-types src/cli/run-create-page.ts",
+    "pipeline:revise": "node --experimental-strip-types src/cli/run-revise-page.ts",
+    "pipeline:revise:smoke": "node --experimental-strip-types src/cli/revision-smoke.ts",
+    "photos:download": "node --experimental-strip-types src/cli/download-telegram-photos.ts"
   },
   "dependencies": {
     "ajv": "^8.16.0",

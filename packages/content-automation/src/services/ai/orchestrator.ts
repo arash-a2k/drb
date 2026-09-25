@@ -1,18 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import Ajv from 'ajv';
-
-export type Language = 'fa' | 'en' | 'ru';
-export type PageType =
-  | 'single-column'
-  | 'two-column'
-  | 'hero-with-sections'
-  | 'content-with-image-grid'
-  | 'solo-image-content-lines'
-  | 'gallery-only'
-  | 'treatment';
-export type NavPlacement = 'none' | 'main' | 'treatments';
+import { promptRoot, schemaPath, seoGuidePath } from '../../shared/paths.ts';
+import { supportedLanguages, type ContentSectionDraft, type DataTable, type FaqItem, type Language, type NavPlacement, type PageContentDraft, type PageDraft, type PageType } from '../../shared/types.ts';
 
 export type PageDraftImageInput = {
   src: string;
@@ -48,52 +38,6 @@ export type OrchestratorOptions = {
   logger?: Pick<Console, 'info' | 'warn' | 'error'>;
 };
 
-type ContentSectionDraft = {
-  id: string;
-  title: string;
-  content: string;
-  bold?: string[];
-};
-
-type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-type DataTable = {
-  title: string;
-  description?: string;
-  columns: Array<{ key: string; label: string }>;
-  rows: Array<Record<string, string>>;
-};
-
-type PageContentDraft = {
-  title: string;
-  seoTitle: string;
-  seoDescription: string;
-  intro: string;
-  heroImage?: string;
-  sections: ContentSectionDraft[];
-  faq?: FaqItem[];
-  tables?: DataTable[];
-};
-
-export type PageDraft = {
-  slug: string;
-  sourceLanguage: Language;
-  pageType: PageType;
-  navPlacement: NavPlacement;
-  canonicalPath?: string;
-  targetKeywords?: string[];
-  content: Record<Language, PageContentDraft>;
-  images: Array<{
-    telegramFileId?: string;
-    sourcePath?: string;
-    src: string;
-    alt: Record<Language, string>;
-  }>;
-};
-
 type ClassifierOutput = {
   pageType: PageType;
   navPlacement: NavPlacement;
@@ -125,13 +69,6 @@ type TranslationOutput = {
   imageAlt: Array<Record<Language, string>>;
 };
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const packageRoot = path.resolve(__dirname, '../../..');
-const repoRoot = path.resolve(packageRoot, '../..');
-const promptRoot = path.join(packageRoot, 'prompts');
-const schemaPath = path.join(packageRoot, 'schemas/pageDraft.schema.json');
-const seoGuidePath = path.join(repoRoot, 'SEO-guide.md');
-const supportedLanguages: Language[] = ['fa', 'en', 'ru'];
 const allowedPageTypes = new Set<PageType>([
   'single-column',
   'two-column',
@@ -234,11 +171,12 @@ function buildPersianContent(seo: SeoOptimizerOutput): PageContentDraft {
   const sections = (seo.sections || []).map(normalizeSection);
   const pricingNote = normalizeText(seo.pricingNote);
   if (pricingNote) {
+    const pricingHighlights = (seo.targetKeywords || []).filter((keyword) => pricingNote.includes(keyword));
     sections.push({
       id: 'pricing-guidance',
       title: 'راهنمای هزینه درمان',
       content: pricingNote,
-      bold: ['قیمت لمینت دندان ۱۴۰۵', 'ایمپلنت دندان قسطی تهران'].filter((keyword) => pricingNote.includes(keyword)),
+      bold: pricingHighlights,
     });
   }
 

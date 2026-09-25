@@ -16,8 +16,13 @@ It run github pages and passes the directory which the project is exported to us
 
 5. **Important** CNAME file must be there at the root for github to work with custom domains.
 
+## Telegram Content Bot
+The repository includes a private Telegram intake bot in `packages/telegram-bot/` that allows authorized dentists to create, preview, revise, and approve localized website pages directly via chat.
+- **Full Guide:** See [Telegram Bot README](file:///./packages/telegram-bot/README.md) for deployment to Google Cloud Run and usage instructions.
+- **Smoke Check:** `npm run bot:smoke`
+
 ## Content Automation Commands
-These commands belong to the monorepo content automation package at `packages/content-automation`. They are used by the future Telegram bot and by GitHub Actions validation.
+These commands belong to the monorepo content automation package at `packages/content-automation`. They are used by the Telegram bot workflows and GitHub Actions validation.
 
 ### `npm run validate:content`
 Validates generated page draft JSON files against `packages/content-automation/schemas/pageDraft.schema.json`.

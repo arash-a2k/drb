@@ -1,0 +1,14 @@
+{
+  "name": "@drb/telegram-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Telegram intake bot for Dr. Khatayee website content automation.",
+  "scripts": {
+    "dev": "node --experimental-strip-types src/index.ts",
+    "smoke": "node --experimental-strip-types src/smoke.ts"
+  },
+  "dependencies": {
+    "grammy": "^1.36.3"
+  }
+}

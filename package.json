@@ -12,6 +12,12 @@
     "validate:content": "npm --workspace @drb/content-automation run validate:content --",
     "create:page": "npm --workspace @drb/content-automation run create:page --",
     "optimize:images": "npm --workspace @drb/content-automation run optimize:images --",
+    "orchestrate:page:smoke": "npm --workspace @drb/content-automation run orchestrate:page:smoke",
+    "pipeline:run": "npm --workspace @drb/content-automation run pipeline:run --",
+    "pipeline:revise": "npm --workspace @drb/content-automation run pipeline:revise --",
+    "pipeline:revise:smoke": "npm --workspace @drb/content-automation run pipeline:revise:smoke",
+    "bot:dev": "npm --workspace @drb/telegram-bot run dev",
+    "bot:smoke": "npm --workspace @drb/telegram-bot run smoke",
     "pre-export": "rm -rf public/assets/* && touch public/.nojekyll && cp -r assets/* public/assets/",
     "pre-deploy": "expo export -p web",
     "deploy": "gh-pages -t -d dist --cname dr-khatayee.com"

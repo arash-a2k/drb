@@ -4,8 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import { repoRoot } from './shared/paths.ts';
 
-type ParsedArgs = {
+export type ParsedArgs = {
   inputs: string[];
   outDir: string;
   slug: string;
@@ -14,7 +15,7 @@ type ParsedArgs = {
   manifest?: string;
 };
 
-type OptimizedImage = {
+export type OptimizedImage = {
   sourcePath: string;
   outputPath: string;
   publicSrc: string;
@@ -23,9 +24,6 @@ type OptimizedImage = {
   bytes: number;
 };
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const packageRoot: string = path.resolve(__dirname, '..');
-const repoRoot: string = path.resolve(packageRoot, '../..');
 const allowedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.tif', '.tiff', '.avif']);
 
 function slugify(value: string): string {
@@ -101,7 +99,7 @@ function parseArgs(argv: string[]): ParsedArgs {
   return args;
 }
 
-function collectImageFiles(inputPaths: string[]): string[] {
+export function collectImageFiles(inputPaths: string[]): string[] {
   const files: string[] = [];
   for (const inputPath of inputPaths) {
       const absoluteInput = path.resolve(repoRoot, inputPath);
@@ -129,28 +127,37 @@ function collectImageFiles(inputPaths: string[]): string[] {
   return uniqueFiles;
 }
 
-function toPublicSrc(outputPath: string): string {
+export function toPublicSrc(outputPath: string): string {
   const relative = path.relative(path.join(repoRoot, 'assets'), outputPath).split(path.sep).join('/');
   return `/assets/${relative}`;
 }
 
-async function optimizeImage(filePath: string, index: number, args: ParsedArgs): Promise<OptimizedImage> {
-  const outputDir = path.resolve(repoRoot, args.outDir, args.slug);
+// Limit sharp concurrency to prevent runner memory exhaustion
+sharp.concurrency(1);
+
+const MAX_INPUT_PIXELS = 16777216; // 16 megapixels (e.g. 4096 x 4096)
+
+export async function optimizeImage(filePath: string, index: number, args: Partial<ParsedArgs> & { slug: string }): Promise<OptimizedImage> {
+  const outDir = args.outDir || 'assets/images/generated';
+  const maxWidth = args.maxWidth || 1800;
+  const quality = args.quality || 82;
+
+  const outputDir = path.resolve(repoRoot, outDir, args.slug);
   fs.mkdirSync(outputDir, { recursive: true });
 
   const baseName = slugify(path.basename(filePath, path.extname(filePath)));
   const outputPath = path.join(outputDir, `${args.slug}-${String(index + 1).padStart(2, '0')}-${baseName}.webp`);
 
-  const image = sharp(filePath, { failOn: 'none' }).rotate();
+  const image = sharp(filePath, { failOn: 'error', limitInputPixels: MAX_INPUT_PIXELS }).rotate();
   const metadata = await image.metadata();
-  const resizeWidth = metadata.width && metadata.width > args.maxWidth ? args.maxWidth : undefined;
+  const resizeWidth = metadata.width && metadata.width > maxWidth ? maxWidth : undefined;
 
   await image
     .resize({ width: resizeWidth, withoutEnlargement: true })
-    .webp({ quality: args.quality, effort: 5 })
+    .webp({ quality, effort: 5 })
     .toFile(outputPath);
 
-  const optimizedMetadata = await sharp(outputPath).metadata();
+  const optimizedMetadata = await sharp(outputPath, { failOn: 'error', limitInputPixels: MAX_INPUT_PIXELS }).metadata();
   const outputStat = fs.statSync(outputPath);
   return {
     sourcePath: path.relative(repoRoot, filePath),
@@ -186,7 +193,10 @@ async function main(): Promise<void> {
   console.log(`Manifest: ${path.relative(repoRoot, manifestPath)}`);
 }
 
-main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : String(error));
-  process.exit(1);
-});
+const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+if (isDirectRun) {
+  main().catch((error: unknown) => {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exit(1);
+  });
+}

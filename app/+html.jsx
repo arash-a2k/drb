@@ -23,6 +23,9 @@ export default function Root({ children }) {
         {/* Using raw CSS styles as an escape-hatch to ensure the background color never flickers in dark-mode. */}
         <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
         {/* Add any additional <head> elements that you want globally available on web... */}
+        {process.env.EXPO_PUBLIC_PREVIEW === '1' && (
+          <meta name="robots" content="noindex,nofollow" />
+        )}
       </head>
       <body>
         {children}
