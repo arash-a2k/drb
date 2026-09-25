@@ -1,0 +1,49 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+      - feat/**
+      - bot/**
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Validate content drafts
+        run: npm run validate:content -- --dir packages/content-automation/drafts --sample
+
+      - name: Check AI orchestrator contract
+        run: npm --workspace @drb/content-automation run orchestrate:page:smoke
+
+      - name: Check revision pipeline
+        run: npm run pipeline:revise:smoke
+
+      - name: Check Telegram bot scaffold
+        run: npm run bot:smoke
+
+      - name: Check page generator sample
+        run: npm run create:page -- --draft packages/content-automation/schemas/examples/pageDraft.sample.json --dry-run
+
+      - name: Check image optimizer
+        run: |
+          npm run optimize:images -- --input assets/images/logo.png --slug ci-smoke-test --out-dir tmp/ci-images
+          rm -rf tmp/ci-images
+
+      - name: Export static site
+        run: npm run pre-deploy

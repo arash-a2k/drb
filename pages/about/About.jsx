@@ -3,6 +3,7 @@ import { useLanguage  } from '../../hooks'
 
 import ArticleSolo from '../../components/article-solo/ArticleSolo';
 import Treatments from '../../components/treatments/Treatments';
+import Seo from '../../components/seo/Seo';
 
 import * as text from './about.json'
 
@@ -12,9 +13,10 @@ export default function About() {
     const about = text[lang] || text['en']
 
     return <>
+        <Seo lang={lang} title={about.seoTitle} description={about.seoDescription} path="/about-us" />
         <section className="pt-6 pb-10 bg-gray-50 overflow-hidden">
         {/** Welcome Section */}
-        <ArticleSolo title={about.header1} content={about.content} imageSrc="/assets/images/home/navi-solo.webp" />
+        <ArticleSolo title={about.header} content={about.content} imageSrc="/assets/images/home/navi-solo.webp" highlights={about.contentHighlights} />
         </section>
 
         <Treatments />

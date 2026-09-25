@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageGrid from '../imageGrid/ImageGrid'
-import { ContentSection } from '../common'
+import { ContentSection, DataTable } from '../common'
 
 export default function ContentWithImageGrid(props) {
 
-    const { images, title, sections } = props
+    const { images, title, sections, tables = [] } = props
 
     return <>
         <h3 className="mb-8 self-center text-4xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none text-center self-center">
@@ -21,6 +21,12 @@ export default function ContentWithImageGrid(props) {
                 />
             ))}
         </div>
+
+        {tables.map((table, index) => (
+            <div className="container mx-auto px-4" key={`${table.title || 'table'}-${index}`}>
+                <DataTable table={table} />
+            </div>
+        ))}
 
         <ImageGrid images={images} />
     </>

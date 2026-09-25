@@ -1,24 +1,35 @@
 import React from 'react';
+import { HighlightedText } from '../common';
 
-export default function ArticleSolo (props) {
-    const { subtitle, title, content, imageSrc } = props
-    
-    return  <section className="bg-gray-50 overflow-hidden py-12"><div className="container px-4 mx-auto">
-    <div className="flex flex-wrap lg:items-center justify-center -m-8 lg:-m-14">
-        <div className="w-full md:w-1/2 p-8 lg:p-14">
-            <div className="relative max-w-max mx-auto lg:ml-auto lg:mr-0 overflow-hidden rounded-4xl">
-                <img className="transform hover:scale-105 transition ease-in-out duration-1000" src={imageSrc} alt="dentist-dr-khatayee" />
-            </div>
+export default function ArticleSolo(props) {
+  const { subtitle, title, content, imageSrc, highlights = [] } = props;
+
+  return (
+    <section className="overflow-hidden bg-white py-14 sm:py-20">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.86fr_1fr] lg:items-center">
+        <div className="relative">
+          <div className="absolute -inset-3 rounded-md bg-primary-soft" aria-hidden="true" />
+          <img
+            className="relative aspect-[4/5] w-full rounded-md object-cover shadow-xl shadow-slate-900/10"
+            src={imageSrc}
+            alt="dentist-dr-khatayee"
+          />
         </div>
 
-        <div className="w-full md:w-1/2 p-8 lg:p-14">
-            <div className="md:max-w-2xl">
-            {subtitle && <p className="mb-8 font-sans text-md text-indigo-400 font-semibold uppercase tracking-px text-center ">{subtitle}</p> }
-                <h2 className="mb-8 text-6xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none text-center">{title}</h2>
-                <p className="leading-relaxed text-lg text-gray-700">{content}</p>
-            </div>
+        <div className="lg:px-8">
+          {subtitle && (
+            <p className="mb-4 text-sm font-black uppercase text-primary">
+              {subtitle}
+            </p>
+          )}
+          <h2 className="max-w-2xl text-3xl font-black leading-tight text-slate-950 sm:text-4xl lg:text-5xl">
+            {title}
+          </h2>
+          <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
+            <HighlightedText text={content} highlights={highlights} />
+          </p>
         </div>
-    </div>
-</div>
-</section>
+      </div>
+    </section>
+  );
 }

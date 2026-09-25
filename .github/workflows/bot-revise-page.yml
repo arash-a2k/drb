@@ -1,0 +1,300 @@
+name: Bot Revise Page
+
+on:
+  workflow_dispatch:
+    inputs:
+      chat_id:
+        description: 'Telegram chat ID'
+        required: true
+        type: string
+      branch:
+        description: 'Git branch of the active PR'
+        required: true
+        type: string
+      slug:
+        description: 'Page slug'
+        required: true
+        type: string
+      revision_text:
+        description: 'Revision requested by dentist'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: preview-${{ inputs.slug }}
+  cancel-in-progress: false
+
+jobs:
+  revise-page-and-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rate limit circuit breaker
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          WORKFLOW_NAME: ${{ github.workflow }}
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          RUNS_TODAY=$(gh run list --repo "$GH_REPO" --workflow "$WORKFLOW_NAME" --created ">=${TODAY}" --json databaseId --jq 'length')
+          echo "Workflow runs today for ${WORKFLOW_NAME}: ${RUNS_TODAY}"
+          if [ "${RUNS_TODAY:-0}" -gt 15 ]; then
+            echo "FATAL: Daily workflow execution circuit breaker tripped (>15 runs today). Aborting."
+            exit 1
+          fi
+
+      - name: Verify target branch (Finding 1 guard)
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "main" ]; then
+            echo "Security violation: Revisions cannot target $BRANCH directly. A bot feature branch is required." > /tmp/workflow-error.txt
+            echo "FATAL: Revisions cannot target $BRANCH directly. A bot feature branch is required." >&2
+            exit 1
+          fi
+
+      - name: Checkout repository branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci --legacy-peer-deps --ignore-scripts
+          npm rebuild sharp
+
+      - name: Apply Revision
+        id: revise
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: 'claude-3-7-sonnet-20250219'
+          IN_SLUG: ${{ inputs.slug }}
+          IN_REVISION: ${{ inputs.revision_text }}
+        run: |
+          set +e
+          PIPE_STDERR=$(mktemp)
+          OUTPUT=$(node --experimental-strip-types packages/content-automation/src/cli/run-revise-page.ts \
+            --slug "$IN_SLUG" \
+            --revision "$IN_REVISION" 2>"$PIPE_STDERR")
+          EXIT_CODE=$?
+          set -e
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            cat "$PIPE_STDERR" >&2
+            cp "$PIPE_STDERR" /tmp/workflow-error.txt
+            rm -f "$PIPE_STDERR"
+            exit $EXIT_CODE
+          fi
+          rm -f "$PIPE_STDERR"
+
+          echo "$OUTPUT"
+          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => console.log(JSON.parse(data).canonicalPath || ''));")
+          echo "canonical_path=$CANONICAL_PATH" >> "$GITHUB_OUTPUT"
+
+      # H1: Strict validation gate directly targeting the revised draft
+      - name: Validate content
+        env:
+          IN_SLUG: ${{ inputs.slug }}
+        run: |
+          set +e
+          VAL_STDERR=$(mktemp)
+          npm run validate:content -- --file "packages/content-automation/drafts/${IN_SLUG}.draft.json" 2>"$VAL_STDERR"
+          EXIT_CODE=$?
+          set -e
+
+          if [ $EXIT_CODE -ne 0 ]; then
+            cat "$VAL_STDERR" >&2
+            cp "$VAL_STDERR" /tmp/workflow-error.txt
+            rm -f "$VAL_STDERR"
+            exit $EXIT_CODE
+          fi
+          rm -f "$VAL_STDERR"
+
+      # H2: Commit without [skip ci] so the PR's own validation workflow runs
+      - name: Commit and Push Revision
+        env:
+          IN_SLUG: ${{ inputs.slug }}
+          IN_REVISION: ${{ inputs.revision_text }}
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          git config user.name "drb-bot"
+          git config user.email "bot@dr-khatayee.com"
+          git add assets/ pages/ app/ components/ packages/content-automation/drafts/
+          git commit -m "Apply revision for ${IN_SLUG}: ${IN_REVISION}"
+          git push origin "$BRANCH"
+
+      # H3: Export static preview with step-level env and assert presence of noindex meta tag
+      - name: Rebuild static preview
+        env:
+          EXPO_PUBLIC_PREVIEW: '1'
+        run: |
+          npm run pre-export
+          npm run pre-deploy
+
+          if ! grep -q 'name="robots" content="noindex,nofollow"' dist/index.html; then
+            echo "FATAL: Security/SEO gate failed: dist/index.html does not contain <meta name=\"robots\" content=\"noindex,nofollow\">"
+            exit 1
+          fi
+
+      # H4 & Finding 2, 4, 5: Accumulative preview deploy preserving existing pages with verified push and poll
+      - name: Deploy preview to drb-preview
+        id: deploy_preview
+        env:
+          PREVIEW_DEPLOY_KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+          IN_SLUG: ${{ inputs.slug }}
+          IN_CANONICAL_PATH: ${{ steps.revise.outputs.canonical_path }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          if [ -z "$PREVIEW_DEPLOY_KEY" ]; then
+            echo "PREVIEW_DEPLOY_KEY secret is not set. Cannot deploy preview." > /tmp/workflow-error.txt
+            echo "FATAL: PREVIEW_DEPLOY_KEY secret is not set. Cannot deploy preview."
+            exit 1
+          fi
+
+          PREVIEW_URL="https://preview.dr-khatayee.com${IN_CANONICAL_PATH}"
+          
+          mkdir -p ~/.ssh
+          echo "$PREVIEW_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLnxAzPSQT3MTlKs34qc9WBS" >> ~/.ssh/known_hosts
+          
+          echo "preview.dr-khatayee.com" > dist/CNAME
+          echo "${RUN_ID}" > "dist/preview-build-${IN_SLUG}.txt"
+
+          # Clone existing preview repo to accumulate and avoid overwriting other preview pages
+          rm -rf preview-repo
+          git clone --depth 1 git@github.com:arash-a2k/drb-preview.git preview-repo
+          cp -r dist/* preview-repo/
+          
+          cd preview-repo
+          git config user.name "drb-bot"
+          git config user.email "bot@dr-khatayee.com"
+          git add .
+          
+          if git diff --staged --quiet; then
+            echo "Preview content already up to date."
+          else
+            git commit -m "Update preview for ${IN_SLUG} (${RUN_ID})"
+            PUSH_SUCCESS=false
+            for i in 1 2 3; do
+              git pull --rebase origin main || true
+              if git push origin main; then
+                PUSH_SUCCESS=true
+                break
+              fi
+              echo "Push attempt $i failed, retrying in 5s..."
+              sleep 5
+            done
+            if [ "$PUSH_SUCCESS" != "true" ]; then
+              echo "FATAL: Failed to push preview to drb-preview after 3 attempts." > /tmp/workflow-error.txt
+              exit 1
+            fi
+          fi
+          cd ..
+          rm -rf preview-repo
+
+          # Verify published URL responds with 200 OK and matches newly deployed RUN_ID
+          PREVIEW_VERIFIED=false
+          echo "Verifying preview response at ${PREVIEW_URL} (matching build ${RUN_ID})..."
+          for i in $(seq 1 15); do
+            LIVE_BUILD_ID=$(curl -s -f "https://preview.dr-khatayee.com/preview-build-${IN_SLUG}.txt" 2>/dev/null || true)
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$PREVIEW_URL" 2>/dev/null || true)
+            if [ "$LIVE_BUILD_ID" = "$RUN_ID" ] && [ "$HTTP_CODE" = "200" ]; then
+              echo "Preview is live and verified with matching build ID ${RUN_ID} (HTTP 200)!"
+              PREVIEW_VERIFIED=true
+              break
+            fi
+            echo "Waiting for preview deployment (attempt $i/15: build_id='${LIVE_BUILD_ID}', http=${HTTP_CODE})..."
+            sleep 5
+          done
+          
+          if [ "$PREVIEW_VERIFIED" != "true" ]; then
+            echo "FATAL: Preview deployment verification timed out after 75s. Build ID '${RUN_ID}' was not served at preview.dr-khatayee.com or returned HTTP ${HTTP_CODE}." > /tmp/workflow-error.txt
+            echo "FATAL: Preview deployment verification timed out after 75s." >&2
+            exit 1
+          fi
+          
+          echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
+
+      # H4, M6 & N3: Verify outcome and send robust, HTML-escaped notification via Telegram API
+      - name: Notify Telegram Chat
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ inputs.chat_id }}
+          JOB_STATUS: ${{ job.status }}
+          DEPLOY_STATUS: ${{ steps.deploy_preview.outcome }}
+          SLUG: ${{ inputs.slug }}
+          PREVIEW_URL: ${{ steps.deploy_preview.outputs.preview_url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # NOTE: This block is executed as a single-quoted shell string. Do NOT use single quotes anywhere in the script below.
+          node -e '
+            const fs = require("fs");
+
+            function escapeHtml(str) {
+              return String(str || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            }
+
+            function extractCleanErrorMessage(raw) {
+              if (!raw) return "";
+              const lines = raw.split("\n")
+                .map(l => l.trim())
+                .filter(l => l && !l.startsWith("(node:") && !l.startsWith("(Use `node") && !l.startsWith("npm error"));
+              return lines[0] || raw.trim().split("\n")[0] || "";
+            }
+
+            const token = process.env.TELEGRAM_BOT_TOKEN;
+            const chatId = process.env.CHAT_ID;
+            const jobStatus = process.env.JOB_STATUS;
+            const deployStatus = process.env.DEPLOY_STATUS;
+            const slug = process.env.SLUG || "";
+            const previewUrl = process.env.PREVIEW_URL || "";
+            const runUrl = process.env.RUN_URL;
+
+            let errorDetail = "";
+            if (fs.existsSync("/tmp/workflow-error.txt")) {
+              try {
+                errorDetail = extractCleanErrorMessage(fs.readFileSync("/tmp/workflow-error.txt", "utf8"));
+              } catch (_) {}
+            }
+
+            let text = "";
+            if (jobStatus === "success" && deployStatus === "success") {
+              text = `🔄 <b>Preview Updated with Revisions!</b>\n\n📄 <b>Slug:</b> <code>${escapeHtml(slug)}</code>\n🔗 <b>Refreshed Preview:</b> ${previewUrl}\n\n⚕️ <i>Clinical Draft: Preview is for internal review only.</i>\n\n<i>To request changes: /revise &lt;changes&gt;\nTo approve for publication: /approve</i>`;
+            } else if (errorDetail) {
+              text = `❌ <b>Revision failed:</b>\n\n⚠️ ${escapeHtml(errorDetail)}\n\nCheck the GitHub Actions run for details:\n${runUrl}`;
+            } else {
+              text = `❌ <b>Revision or preview deployment failed.</b>\n\nCheck the GitHub Actions run for details:\n${runUrl}`;
+            }
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text,
+                parse_mode: "HTML"
+              })
+            }).then(r => r.json()).then(res => {
+              if (!res.ok) {
+                console.warn("Telegram notification warning:", res);
+              }
+            }).catch(e => {
+              console.warn("Telegram notification network error:", e);
+            });
+          '

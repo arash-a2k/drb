@@ -22,7 +22,9 @@
             },
             "subtitle": "جراح و دندانپزشک -",
             "about": "درباره مطب",
-            "title": "مطب دکتر بابک ختایی"
+            "faq": "سوالات متداول",
+            "title": "مطب دکتر بابک ختایی",
+            "cta": "تماس فوری"
         },
         "en": {
             "home": "Home",
@@ -46,7 +48,35 @@
             },
             "subtitle": "DDS",
             "about": "About Us",
-            "title": "Dentistry Clinic Dr. Babak Khatayee"
+            "faq": "FAQ",
+            "title": "Dentistry Clinic Dr. Babak Khatayee",
+            "cta": "Call now"
+        },
+        "ru": {
+            "home": "Главная",
+            "contact": "Контакты",
+            "dropdown": {
+                "title": "Лечение",
+                "items": [
+                    {
+                        "text": "Композитные виниры",
+                        "link": "treatments/composite-veneer"
+                    },
+                    {
+                        "text": "Имплантация зубов",
+                        "link": "treatments/dental-implants"
+                    },
+                    {
+                        "text": "Керамические виниры",
+                        "link": "treatments/dental-laminates"
+                    }
+                ]
+            },
+            "subtitle": "DDS",
+            "about": "О клинике",
+            "faq": "Вопросы",
+            "title": "Стоматология доктора Бабака Хатаи",
+            "cta": "Позвонить"
         }
     }
 }

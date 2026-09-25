@@ -1,44 +1,40 @@
 import React from 'react';
 
 export default function Highlights(props) {
-  const { title, highlights } = props
-  const [first, second, third, ...rest] = [...highlights]
-
-  function genarateHighlight(header, content, imageSrc) {
-    return (
-      <div className="w-full md:w-1/3 p-4 min-h-[300px]">
-        <div className="flex flex-col justify-around h-full px-8 pt-8 pb-16 text-center bg-green-300 border border-gray-300 rounded-3xl">
-          <h3 className="my-8 text-black text-2xl font-bold font-heading tracking-px-n leading-none">{header}</h3>
-          <img className="h-[250px] w-auto mb-4 self-center" src={imageSrc} alt={header} />
-          <p className="text-base text-gray-700 min-h-[150px]">{content}</p>
-        </div>
-      </div>
-    );
-  }
+  const { title, highlights = [] } = props;
 
   return (
-    <React.Fragment>
-      <>
-        <section className="py-10 bg-gray-50 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="py-16 px-8 bg-white border border-gray-200 rounded-3xl">
-              <div className="max-w-7xl mx-auto">
-                <div className="max-w-lg mx-auto text-center">
-                  <h3 className="mb-8 text-3xl md:text-4xl xl:text-5xl font-bold font-heading tracking-px-n leading-none text-center lg:text-start">{title}</h3>
-                </div>
-                <div className="flex flex-wrap -m-4 min-h-[520px]">
-                  {first && genarateHighlight(first.header, first.content, first.image)}
-                  {second && genarateHighlight(second.header, second.content, second.image)}
-                  {third && genarateHighlight(third.header, third.content, third.image)}
-                </div>
+    <section className="overflow-hidden bg-[#f6f8f7] py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-8 flex flex-col gap-3 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className="max-w-2xl text-3xl font-black leading-tight text-slate-950 sm:text-4xl lg:text-5xl">
+            {title}
+          </h2>
+          <div className="h-px flex-1 bg-slate-200 lg:mb-5" aria-hidden="true" />
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {highlights.slice(0, 3).map((item) => (
+            <article key={item.header} className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10">
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <img
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  src={item.image}
+                  alt={item.header}
+                />
               </div>
-            </div>
-          </div>
-        </section>
-
-
-      </>
-    </React.Fragment>
+              <div className="p-5 sm:p-6">
+                <h3 className="text-xl font-black leading-7 text-slate-950">
+                  {item.header}
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-slate-600">
+                  {item.content}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
-

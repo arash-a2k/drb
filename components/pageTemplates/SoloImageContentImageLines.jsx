@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { ContentSection } from '../common'
+import { ContentSection, DataTable } from '../common'
 import  ImageGrid  from '../imageGrid/ImageGrid'
 
 
 export default function SoloImageContentImageLines(props) {
 
-    const { images, title, sections, heroImage , imageTitle} = props
+    const { images, title, sections, heroImage, imageTitle, tables = [] } = props
 
     return <>
         <section className="bg-gray-50 overflow-hidden py-12 px-4">
@@ -32,6 +32,11 @@ export default function SoloImageContentImageLines(props) {
                 />
             ))}
         </div>
+        {tables.map((table, index) => (
+            <div className="container mx-auto px-4" key={`${table.title || 'table'}-${index}`}>
+                <DataTable table={table} />
+            </div>
+        ))}
                 
             </div>
         </div>

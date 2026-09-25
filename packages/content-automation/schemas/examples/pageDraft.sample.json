@@ -1,0 +1,84 @@
+{
+  "slug": "sample-smile-design",
+  "sourceLanguage": "fa",
+  "pageType": "content-with-image-grid",
+  "navPlacement": "none",
+  "canonicalPath": "/treatments/sample-smile-design",
+  "targetKeywords": [
+    "طراحی لبخند",
+    "دندانپزشکی زیبایی تهران"
+  ],
+  "content": {
+    "fa": {
+      "title": "طراحی لبخند",
+      "seoTitle": "طراحی لبخند در تهران | دکتر بابک ختایی",
+      "seoDescription": "نمونه محتوای ساخت صفحه برای طراحی لبخند در مطب دکتر بابک ختایی در زعفرانیه تهران.",
+      "intro": "طراحی لبخند بر اساس فرم صورت، رنگ دندان و نیاز درمانی انجام می شود.",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "طراحی لبخند چیست؟",
+          "content": "طراحی لبخند برنامه ای برای اصلاح رنگ، فرم و هماهنگی دندان ها است.",
+          "bold": ["طراحی لبخند"]
+        }
+      ],
+      "faq": [
+        {
+          "question": "طراحی لبخند برای چه کسانی مناسب است؟",
+          "answer": ""
+        }
+      ]
+    },
+    "en": {
+      "title": "Smile Design",
+      "seoTitle": "Smile Design in Tehran | Dr. Babak Khatayee",
+      "seoDescription": "Sample generated page content for smile design at Dr. Babak Khatayee dental clinic in Tehran.",
+      "intro": "Smile design is planned around facial shape, tooth color, and dental needs.",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "What is smile design?",
+          "content": "Smile design is a plan for improving tooth color, shape, and harmony.",
+          "bold": ["Smile design"]
+        }
+      ],
+      "faq": [
+        {
+          "question": "Who is a good candidate for smile design?",
+          "answer": ""
+        }
+      ]
+    },
+    "ru": {
+      "title": "Дизайн улыбки",
+      "seoTitle": "Дизайн улыбки в Тегеране | Доктор Бабак Хатаи",
+      "seoDescription": "Пример содержимого страницы для дизайна улыбки в стоматологии доктора Бабака Хатаи в Тегеране.",
+      "intro": "Дизайн улыбки планируется с учетом формы лица, цвета зубов и стоматологических задач.",
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Что такое дизайн улыбки?",
+          "content": "Дизайн улыбки помогает улучшить цвет, форму и гармонию зубов.",
+          "bold": ["Дизайн улыбки"]
+        }
+      ],
+      "faq": [
+        {
+          "question": "Кому подходит дизайн улыбки?",
+          "answer": ""
+        }
+      ]
+    }
+  },
+  "images": [
+    {
+      "telegramFileId": "sample-file-id",
+      "src": "/assets/images/generated/sample-smile-design/hero.webp",
+      "alt": {
+        "fa": "نمونه طراحی لبخند",
+        "en": "Sample smile design",
+        "ru": "Пример дизайна улыбки"
+      }
+    }
+  ]
+}

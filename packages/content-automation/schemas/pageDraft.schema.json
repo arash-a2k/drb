@@ -1,0 +1,231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dr-khatayee.com/schemas/pageDraft.schema.json",
+  "title": "PageDraft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "slug",
+    "sourceLanguage",
+    "pageType",
+    "navPlacement",
+    "content",
+    "images"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "sourceLanguage": {
+      "type": "string",
+      "enum": ["fa", "en", "ru"]
+    },
+    "pageType": {
+      "type": "string",
+      "enum": [
+        "single-column",
+        "two-column",
+        "hero-with-sections",
+        "content-with-image-grid",
+        "solo-image-content-lines",
+        "gallery-only",
+        "treatment"
+      ]
+    },
+    "navPlacement": {
+      "type": "string",
+      "enum": ["none", "main", "treatments"]
+    },
+    "canonicalPath": {
+      "type": "string",
+      "pattern": "^/[a-z0-9/-]+$"
+    },
+    "targetKeywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fa", "en", "ru"],
+      "properties": {
+        "fa": { "$ref": "#/definitions/pageContent" },
+        "en": { "$ref": "#/definitions/pageContent" },
+        "ru": { "$ref": "#/definitions/pageContent" }
+      }
+    },
+    "images": {
+      "type": "array",
+      "maxItems": 10,
+      "items": { "$ref": "#/definitions/pageImage" }
+    }
+  },
+  "definitions": {
+    "pageContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "seoTitle", "seoDescription", "intro", "sections"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seoTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "seoDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 220
+        },
+        "intro": {
+          "type": "string"
+        },
+        "heroImage": {
+          "type": "string",
+          "pattern": "^/assets/.+\\.(webp|jpg|jpeg|png)$"
+        },
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/contentSection" }
+        },
+        "faq": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/faqItem" }
+        },
+        "tables": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/dataTable" }
+        }
+      }
+    },
+    "contentSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "content"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": "string"
+        },
+        "bold": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "faqItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "answer"],
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string"
+        }
+      }
+    },
+    "dataTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "columns", "rows"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/tableColumn" }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tableColumn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "label"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "pageImage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt"],
+      "properties": {
+        "telegramFileId": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string",
+          "pattern": "^/assets/.+\\.webp$"
+        },
+        "alt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fa", "en", "ru"],
+          "properties": {
+            "fa": {
+              "type": "string",
+              "minLength": 1
+            },
+            "en": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ru": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,37 +1,74 @@
 {
   "fa": {
     "heroImage": "/assets/images/home/drb.webp",
-
     "sections": [
       {
         "id": 1,
         "title": "ایمپلنت دندان چیست؟",
-        "content": "ایمپلنت ها پیچ های تیتانیومی هستند که داخل استخوان فک قرار داده شده و دندان های از دست رفته را بازسازی میکنند. به علت جنس تیتانیوم و سطح خاص ایمپلنت ها به راحتی با استخوان جوش خورده و در واقع نقش ریشه دندان را بازی میکنند.",
-        "bold": ["ایمپلنت ها", "پیچ های تیتانیومی", "استخوان فک", "دندان های از دست رفته", "جنس تیتانیوم", "سطح خاص"]
+        "content": "ایمپلنت دندان یک پایه تیتانیومی است که داخل استخوان فک قرار می گیرد و جای ریشه دندان از دست رفته را بازسازی می کند. در مطب دکتر بابک ختایی در زعفرانیه تهران، قبل از شروع درمان وضعیت استخوان، لثه و عکس CBCT بررسی می شود تا طرح درمان دقیق و قابل پیش بینی باشد.",
+        "bold": [
+          "ایمپلنت دندان",
+          "پایه تیتانیومی",
+          "استخوان فک",
+          "دندان از دست رفته",
+          "دکتر بابک ختایی",
+          "زعفرانیه تهران",
+          "عکس CBCT"
+        ]
       },
       {
         "id": 2,
-        "title": "قیمت ایمپلنت ها",
-        "content": "قیمت ایمپلنت و هزینه پرداختی وابسته به انتخاب بیمار است. ایمپلنت های کره ای قیمت مناسبتر و ایمپلنت های سوئیسی و آلمانی قیمت های بالاتری دارند. با توجه به اینکه زمان حراحی ایمپلنت تا تحویل روکش بازه زمانی حدود ۲ الی ۴ ماهه دارد برای افزایش طول مدت پرداخت شما میتوانید هزینه ایمپلنت را در ۴ الی ۵ ماه پرداخت کنید.",
-        "bold": ["قیمت ایمپلنت", "هزینه پرداختی", "ایمپلنت های کره ای", "ایمپلنت های سوئیسی", "ایمپلنت های آلمانی"]
+        "title": "هزینه و شرایط پرداخت ایمپلنت دندان",
+        "content": "هزینه ایمپلنت دندان به برند ایمپلنت، شرایط استخوان، نیاز به پیوند استخوان، تعداد واحدها و نوع روکش بستگی دارد. به طور کلی ایمپلنت های سوئیسی و آلمانی از بسیاری از ایمپلنت های کره ای گران تر هستند و درمان هایی که نیاز به جراحی تکمیلی یا روکش پیچیده تر دارند هزینه بیشتری خواهند داشت. برای اطلاع از آخرین شرایط پرداخت و قیمت روز ایمپلنت دندان، لطفا با مطب تماس بگیرید: ۰۲۱۲۲۷۲۸۷۶۸، ۰۲۱۲۶۸۵۱۲۷۷، ۰۹۰۳۹۴۰۹۰۴۵.",
+        "bold": [
+          "هزینه ایمپلنت دندان",
+          "ایمپلنت های سوئیسی",
+          "ایمپلنت های آلمانی",
+          "ایمپلنت های کره ای",
+          "آخرین شرایط پرداخت",
+          "قیمت روز ایمپلنت دندان",
+          "۰۲۱۲۲۷۲۸۷۶۸",
+          "۰۲۱۲۶۸۵۱۲۷۷",
+          "۰۹۰۳۹۴۰۹۰۴۵"
+        ]
       },
       {
         "id": 3,
-        "title": "مراحل ایمپلنت",
-        "content": "مرحله اول خارج کردن دندانی است که غیر قابل نگهداری میباشد. اگر ریشه دندان عفونت نداشته باشد در همان جلسه میتوان ایمپلنت را قرار داد. و اگر دندان در گذشته کشیده شده باشد مرحله اول صرفا قراردادن ایمپلنت داخل استخوان خواهد بود. قبل از شروع کار نیاز به گرافی یا عکس CBCT برای دقت و انجام درست جراحی داریم.",
-        "bold": ["مراحل ایمپلنت", "خارج کردن دندان", "ریشه دندان", "ایمپلنت", "استخوان", "گرافی", "عکس CBCT"]
+        "title": "مراحل ایمپلنت دندان",
+        "content": "مراحل ایمپلنت دندان با معاینه، بررسی عکس CBCT و برنامه ریزی جایگذاری آغاز می شود. اگر دندان غیر قابل نگهداری باشد، ابتدا خارج می شود و در بعضی شرایط می توان ایمپلنت را همان جلسه قرار داد. اگر دندان قبلا کشیده شده باشد، مرحله اصلی قراردادن ایمپلنت داخل استخوان خواهد بود.",
+        "bold": [
+          "مراحل ایمپلنت دندان",
+          "عکس CBCT",
+          "جایگذاری",
+          "خارج می شود",
+          "ایمپلنت",
+          "استخوان"
+        ]
       },
       {
         "id": 4,
-        "title": "مرحله دوم",
-        "content": "مرحله دوم قالب گیری روکش ایمپلنت است که معمولا ۲ ماه بعد از جراحی انجام میشود. بعد از قالب گیری روکش آماده شده امتحان میشود. در صورت عدم وجود مشکل در پروتز (روکش) ساخته شده، با چسب مخصوص ایمپلنت چسبانده خواهد شد و شما صاحب دندان تازه ای خواهید بود.",
-        "bold": ["قالب گیری", "روکش ایمپلنت", "جراحی", "پروتز", "چسب مخصوص ایمپلنت"]
+        "title": "قالب گیری و روکش ایمپلنت",
+        "content": "بعد از جوش خوردن ایمپلنت با استخوان، قالب گیری روکش ایمپلنت انجام می شود. روکش آماده شده امتحان می شود و در صورت مناسب بودن فرم، تماس دندانی و رنگ، با چسب مخصوص یا پیچ روی ایمپلنت قرار می گیرد.",
+        "bold": [
+          "قالب گیری",
+          "روکش ایمپلنت",
+          "جوش خوردن ایمپلنت",
+          "فرم",
+          "رنگ",
+          "چسب مخصوص"
+        ]
       },
       {
         "id": 5,
-        "title": "درد جراحی، ایمپلنت بدون درد؟",
-        "content": "ایمپلنت بدون درد در واقع یک جرای و پروسه صحیح را تعریف میکند. شما به هیچ عنوان نباید دردی احساس کنید. جراحی ایمپلنت بدون درد خواهد بود و با بی حسی که انجام میشود بر خلاف تصور بسیار ساده میباشد. اگر مراحل جراحی درست انجام شود و متخصص ایمپلنت مرحله به مرحله جراحی رو بر طبق اصول پیش ببرد شما تجربه ای متفاوت از آنچه شنیدید خواهید داشت.",
-        "bold": ["درد جراحی", "ایمپلنت بدون درد", "بی حسی", "متخصص ایمپلنت"]
+        "title": "آیا ایمپلنت دندان درد دارد؟",
+        "content": "آیا ایمپلنت دندان درد دارد؟ در طول جراحی با بی حسی مناسب نباید درد احساس شود. ایمپلنت بدون درد به معنی برنامه ریزی صحیح، بی حسی کافی، تکنیک جراحی دقیق و مراقبت بعد از درمان است؛ بعد از جراحی ممکن است فشار یا ناراحتی کنترل شونده وجود داشته باشد.",
+        "bold": [
+          "آیا ایمپلنت دندان درد دارد",
+          "بی حسی مناسب",
+          "ایمپلنت بدون درد",
+          "تکنیک جراحی دقیق",
+          "مراقبت بعد از درمان"
+        ]
       }
     ],
     "imageTitle": "نمونه درمان های ایمپلنت دندان",
@@ -56,41 +93,115 @@
         "src": "/assets/images/treatments/dental-implants/implant.webp",
         "alt": "درمان ایمپلنت دندان با کیفیت بالا"
       }
+    ],
+    "tables": [
+      {
+        "title": "مقایسه برندهای ایمپلنت دندان",
+        "description": "انتخاب برند ایمپلنت بعد از معاینه و بر اساس بودجه، شرایط استخوان و طرح پروتزی انجام می شود.",
+        "columns": [
+          {
+            "key": "brandType",
+            "label": "گروه برند"
+          },
+          {
+            "key": "costLevel",
+            "label": "سطح هزینه"
+          },
+          {
+            "key": "useCase",
+            "label": "کاربرد معمول"
+          },
+          {
+            "key": "notes",
+            "label": "توضیح"
+          }
+        ],
+        "rows": [
+          {
+            "brandType": "ایمپلنت کره ای",
+            "costLevel": "اقتصادی تر",
+            "useCase": "بسیاری از درمان های استاندارد",
+            "notes": "گزینه مناسب برای کنترل هزینه، در صورت تایید شرایط درمان"
+          },
+          {
+            "brandType": "ایمپلنت آلمانی",
+            "costLevel": "متوسط تا بالا",
+            "useCase": "درمان های با اولویت کیفیت قطعات و پشتیبانی برند",
+            "notes": "انتخاب نهایی به وضعیت استخوان و طرح روکش وابسته است"
+          },
+          {
+            "brandType": "ایمپلنت سوئیسی",
+            "costLevel": "بالاتر",
+            "useCase": "درمان های پریمیوم یا شرایط خاص",
+            "notes": "برای همه بیماران ضروری نیست و باید با معاینه انتخاب شود"
+          }
+        ]
+      }
     ]
   },
   "en": {
     "heroImage": "/assets/images/home/drb.webp",
-
     "sections": [
       {
         "id": 1,
         "title": "What is a Dental Implant?",
         "content": "Implants are titanium screws placed in the jawbone to restore lost teeth. Due to their titanium composition and unique surface, implants easily bond with the bone, effectively acting as tooth roots.",
-        "bold": ["Dental Implants", "titanium screws", "jawbone", "restore lost teeth", "titanium composition", "unique surface"]
+        "bold": [
+          "Dental Implants",
+          "titanium screws",
+          "jawbone",
+          "restore lost teeth",
+          "titanium composition",
+          "unique surface"
+        ]
       },
       {
         "id": 2,
         "title": "Cost of Implants",
         "content": "The cost of implants and the payment amount depend on the patient's choice. Korean implants are more affordable, while Swiss and German implants are more expensive. Given the 2 to 4-month period from implant surgery to crown delivery, you can extend the payment period over 4 to 5 months.",
-        "bold": ["cost of implants", "payment amount", "Korean implants", "Swiss implants", "German implants"]
+        "bold": [
+          "cost of implants",
+          "payment amount",
+          "Korean implants",
+          "Swiss implants",
+          "German implants"
+        ]
       },
       {
         "id": 3,
         "title": "Implant Steps",
         "content": "The first step is extracting a non-restorable tooth. If the tooth root is not infected, the implant can be placed in the same session. If the tooth was previously extracted, the first step is simply placing the implant in the bone. Before starting, a CBCT scan is needed for precision and correct surgery.",
-        "bold": ["Implant Steps", "extracting a tooth", "tooth root", "implant", "bone", "CBCT scan"]
+        "bold": [
+          "Implant Steps",
+          "extracting a tooth",
+          "tooth root",
+          "implant",
+          "bone",
+          "CBCT scan"
+        ]
       },
       {
         "id": 4,
         "title": "Second Step",
         "content": "The second step is taking an impression for the implant crown, usually done 2 months after surgery. After the impression, the prepared crown is tested. If there are no issues with the prosthesis (crown), it will be attached with special implant cement, giving you a new tooth.",
-        "bold": ["impression", "implant crown", "surgery", "prosthesis", "special implant cement"]
+        "bold": [
+          "impression",
+          "implant crown",
+          "surgery",
+          "prosthesis",
+          "special implant cement"
+        ]
       },
       {
         "id": 5,
         "title": "Surgery Pain, Pain-Free Implants?",
         "content": "Pain-free implants define a proper surgical process. You should not feel any pain. Implant surgery will be pain-free, and with local anesthesia, it is much simpler than expected. If the surgical steps are followed correctly by the implant specialist, you will have a different experience from what you may have heard.",
-        "bold": ["Surgery Pain", "Pain-Free Implants", "local anesthesia", "implant specialist"]
+        "bold": [
+          "Surgery Pain",
+          "Pain-Free Implants",
+          "local anesthesia",
+          "implant specialist"
+        ]
       }
     ],
     "imageTitle": "Samples Of Dental Implants Treatments",
@@ -116,6 +227,5 @@
         "alt": "High-quality dental implant treatment"
       }
     ]
-
   }
 }

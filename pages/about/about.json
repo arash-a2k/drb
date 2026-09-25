@@ -1,13 +1,34 @@
 {
-    "fa": {
-        "content": " در اين مجموعه خدمات دندانپزشكى در محيطى آرام و دور از استرس توسط دندانپزشكان و كادرى جوان و مسلط به علم روز انجام می شوند. خدمات درمانى و زيبايى دندانپزشكى با بالاترين كيفيت ارائه می شوند. اصلاح خط لبخند با ونيرهاى سراميكى (لمينيت) و ونيرهاى كامپوزيت شما را به لبخند سفيد و دلخواهتان خواهد رساند. هدف ما اين خواهد بود تا با حوصله و تلاش اعتماد شما را جلب كنيم. با ما لبخندى سپيد و زيبا داشته باشيد.",
-        "header2": "نمونه درمان ها",
-        "header": "مطب دکتر بابک ختایی"
-      },
-      "en": {
-        "content": "In this dental clinic our services is provided in a relaxed, stress-free environment the highest quality dental and aesthetic services are provided by young and experienced dentists and professionals. Modifying a smile line with ceramic veneers (laminate) and composite veneers will bring you to your favorite white smile. Our goal will be to earn your trust through patience and effort. Have a beautiful smile with us.",
-        "header2": "Previous Treatments",
-        "header": "Dentistry Clinic DDS Babak Khatayee"
-      },
-      "url": "/about-us"
+  "fa": {
+    "seoTitle": "درباره مطب دکتر بابک ختایی | دندانپزشکی زیبایی زعفرانیه",
+    "seoDescription": "معرفی مطب دکتر بابک ختایی در زعفرانیه تهران، نزدیک مقدس اردبیلی؛ خدمات دندانپزشکی زیبایی، لمینت سرامیکی، ونیر کامپوزیت و ایمپلنت.",
+    "content": "مطب دکتر بابک ختایی در زعفرانیه تهران، خیابان مقدس اردبیلی، بر دندانپزشکی زیبایی و درمان های محافظه کارانه تمرکز دارد. در این مجموعه خدماتی مانند لمینت سرامیکی زعفرانیه، ونیر کامپوزیت مقدس اردبیلی، کامپوزیت دندان زعفرانیه، بلیچینگ، ترمیم دندان و مشاوره ایمپلنت دندان قسطی تهران در محیطی آرام و دور از استرس ارائه می شوند. هدف ما انتخاب درمان مناسب بر اساس وضعیت دندان، خواسته زیبایی بیمار و حفظ بافت سالم دندان است.",
+    "contentHighlights": [
+      "دکتر بابک ختایی",
+      "زعفرانیه تهران",
+      "مقدس اردبیلی",
+      "دندانپزشکی زیبایی",
+      "لمینت سرامیکی زعفرانیه",
+      "ونیر کامپوزیت مقدس اردبیلی",
+      "کامپوزیت دندان زعفرانیه",
+      "ایمپلنت دندان قسطی تهران"
+    ],
+    "header2": "نمونه درمان ها",
+    "header": "مطب دکتر بابک ختایی در زعفرانیه"
+  },
+  "en": {
+    "content": "In this dental clinic our services is provided in a relaxed, stress-free environment the highest quality dental and aesthetic services are provided by young and experienced dentists and professionals. Modifying a smile line with ceramic veneers (laminate) and composite veneers will bring you to your favorite white smile. Our goal will be to earn your trust through patience and effort. Have a beautiful smile with us.",
+    "header2": "Previous Treatments",
+    "header": "Dentistry Clinic DDS Babak Khatayee",
+    "seoTitle": "About Dr. Babak Khatayee Dental Clinic | Cosmetic Dentistry Tehran",
+    "seoDescription": "Learn about Dr. Babak Khatayee dental clinic in Zafaraniyeh, Tehran, offering cosmetic dentistry, ceramic veneers, composite veneers, whitening, and dental implants."
+  },
+  "url": "/about-us",
+  "ru": {
+    "content": "Стоматология доктора Бабака Хатаи в районе Заферание, Тегеран, специализируется на эстетической стоматологии, керамических винирах, композитных винирах, отбеливании и имплантации зубов.",
+    "header2": "Примеры лечения",
+    "header": "Стоматология доктора Бабака Хатаи",
+    "seoTitle": "О клинике доктора Бабака Хатаи | Эстетическая стоматология Тегеран",
+    "seoDescription": "Информация о стоматологии доктора Бабака Хатаи в Заферание, Тегеран: эстетическая стоматология, керамические виниры, композитные виниры и имплантация."
+  }
 }
