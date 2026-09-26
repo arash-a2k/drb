@@ -114,7 +114,30 @@ Create a GitHub Personal Access Token (Classic) or fine-grained token with `repo
 
 ---
 
-### Step 3: Store Secrets in GCP Secret Manager
+### Step 3: Configure GitHub Repository Secrets (Actions Workflows)
+
+The preview generation workflows (`bot-create-page.yml` and `bot-revise-page.yml`) run on **GitHub Actions** and require repository secrets.
+
+Add these secrets in GitHub under **Settings $\rightarrow$ Secrets and variables $\rightarrow$ Actions** (or via `gh secret set`):
+
+| Secret | Purpose | Source |
+| :--- | :--- | :--- |
+| `TELEGRAM_BOT_TOKEN` | Download uploaded Telegram photos and send completion/status notifications | Token from `@BotFather` |
+| `ANTHROPIC_API_KEY` | AI multi-language translation (`fa`, `en`, `ru`) and draft structuring via Claude | Console at `console.anthropic.com` |
+| `BOT_GITHUB_TOKEN` | Push the `bot/page-...` branch and open the GitHub Pull Request | GitHub PAT with `repo` / `actions:write` |
+| `PREVIEW_DEPLOY_KEY` | GCP Service Account JSON key to sync static preview files to Cloud Storage | GCP IAM SA with Storage Object Admin on `drb-preview` |
+
+CLI setup via `gh`:
+```bash
+gh secret set TELEGRAM_BOT_TOKEN --body "YOUR_TELEGRAM_BOT_TOKEN"
+gh secret set ANTHROPIC_API_KEY --body "YOUR_ANTHROPIC_API_KEY"
+gh secret set BOT_GITHUB_TOKEN --body "YOUR_GITHUB_TOKEN"
+gh secret set PREVIEW_DEPLOY_KEY < /path/to/preview-sa-key.json
+```
+
+---
+
+### Step 4: Store Secrets in GCP Secret Manager (Cloud Run Bot)
 
 Set your GCP project:
 ```bash
@@ -156,7 +179,34 @@ echo -n "-100123456789" | gcloud secrets create ALLOWED_CHAT_IDS --data-file=-
 
 ---
 
-### Step 4: Build & Deploy Container to Cloud Run
+### Step 5: Configure Cloud Storage for Drafts (30-Day Auto-Deletion)
+
+To ensure active draft sessions and rerun states survive Cloud Run scale-to-zero and container restarts, drafts are persisted under `drafts/` in your existing primary Cloud Storage bucket (`gs://dr-bob-website.appspot.com`).
+
+Apply a 30-day automatic deletion lifecycle rule on the `drafts/` path so old drafts are automatically purged:
+
+```bash
+cat << 'EOF' > /tmp/gcs-lifecycle-drafts.json
+{
+  "rule": [
+    {
+      "action": {"type": "Delete"},
+      "condition": {
+        "age": 30,
+        "matchesPrefix": ["drafts/"]
+      }
+    }
+  ]
+}
+EOF
+
+gcloud storage buckets update gs://dr-bob-website.appspot.com --lifecycle-file=/tmp/gcs-lifecycle-drafts.json
+rm -f /tmp/gcs-lifecycle-drafts.json
+```
+
+---
+
+### Step 6: Build & Deploy Container to Cloud Run
 
 > [!IMPORTANT]
 > The build must be submitted from the **root of the `drb` repository** because `packages/telegram-bot/Dockerfile` copies the root workspace manifests (`package.json`, `package-lock.json`).
@@ -190,7 +240,7 @@ gcloud run deploy drb-telegram-bot \
 
 ---
 
-### Step 5: Verify Webhook Registration
+### Step 7: Verify Webhook Registration
 
 Once deployed, retrieve the assigned Cloud Run public URL:
 ```bash

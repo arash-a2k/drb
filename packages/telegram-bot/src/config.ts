@@ -10,6 +10,7 @@ export type BotConfig = {
   githubInstallationId?: string;
   githubPrivateKey?: string;
   githubRepo: string;
+  storageBucket?: string;
 };
 
 function parseTelegramIds(raw: string | undefined, envName: string): Set<number> {
@@ -77,5 +78,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): BotConfig {
     githubInstallationId: env.GITHUB_INSTALLATION_ID,
     githubPrivateKey: env.GITHUB_APP_PRIVATE_KEY,
     githubRepo: env.GITHUB_REPO || 'arash-a2k/drb',
+    storageBucket: env.STORAGE_BUCKET || 'dr-bob-website.appspot.com',
   };
 }

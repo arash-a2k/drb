@@ -1,5 +1,13 @@
 import { Bot, InlineKeyboard, type Context } from 'grammy';
 import type { BotConfig } from './config.ts';
+import {
+  type UserDraft,
+  getDraft,
+  saveDraft,
+  deleteDraft,
+  getUserActiveDraftId,
+  setUserActiveDraftId,
+} from './draft-store.ts';
 import { getGitHubDispatchToken } from './github-auth.ts';
 import {
   findActiveBotPR,
@@ -20,23 +28,29 @@ const dentistCommands = [
   ['/approve', 'Approve the current preview'],
 ] as const;
 
-export type UserSession = {
-  title?: string;
-  text?: string;
-  photoFileIds: string[];
-  activeSlug?: string;
-  activeBranch?: string;
-};
+export type UserSession = UserDraft;
 
-const userSessions = new Map<number, UserSession>();
-
-function getOrCreateSession(userId: number): UserSession {
-  let session = userSessions.get(userId);
-  if (!session) {
-    session = { photoFileIds: [] };
-    userSessions.set(userId, session);
+async function getOrCreateDraft(config: BotConfig, userId: number, chatId?: string): Promise<UserDraft> {
+  const activeId = await getUserActiveDraftId(config.storageBucket, userId);
+  if (activeId) {
+    const existing = await getDraft(config.storageBucket, activeId);
+    if (existing) {
+      if (chatId) existing.chatId = chatId;
+      return existing;
+    }
   }
-  return session;
+
+  const newDraft: UserDraft = {
+    draftId: `d-${Date.now().toString(36)}-${userId}`,
+    userId,
+    chatId,
+    photoFileIds: [],
+    status: 'draft',
+    updatedAt: new Date().toISOString(),
+  };
+  await saveDraft(config.storageBucket, newDraft);
+  await setUserActiveDraftId(config.storageBucket, userId, newDraft.draftId);
+  return newDraft;
 }
 
 function getUserId(ctx: Context): number | undefined {
@@ -126,9 +140,9 @@ function buildIntakeCard(session: UserSession): { text: string; keyboard: Inline
 
   const keyboard = new InlineKeyboard();
   if (session.title || session.text) {
-    keyboard.text('🚀 Generate Preview', 'action:generate').row();
+    keyboard.text('🚀 Generate Preview', `action:generate:${session.draftId}`).row();
   }
-  keyboard.text('❌ Clear Draft', 'action:cancel');
+  keyboard.text('❌ Clear Draft', `action:cancel:${session.draftId}`);
 
   return { text, keyboard };
 }
@@ -184,7 +198,17 @@ export function createTelegramBot(config: BotConfig): Bot {
   bot.command('newpage', async (ctx) => {
     const userId = getUserId(ctx);
     if (userId) {
-      userSessions.set(userId, { photoFileIds: [] });
+      const draftId = `d-${Date.now().toString(36)}-${userId}`;
+      const newDraft: UserDraft = {
+        draftId,
+        userId,
+        chatId: ctx.chat ? String(ctx.chat.id) : undefined,
+        photoFileIds: [],
+        status: 'draft',
+        updatedAt: new Date().toISOString(),
+      };
+      await saveDraft(config.storageBucket, newDraft);
+      await setUserActiveDraftId(config.storageBucket, userId, draftId);
     }
     await ctx.reply('New page draft started. Send your treatment notes, title, and photos.');
   });
@@ -192,7 +216,11 @@ export function createTelegramBot(config: BotConfig): Bot {
   bot.command('cancel', async (ctx) => {
     const userId = getUserId(ctx);
     if (userId) {
-      userSessions.delete(userId);
+      const activeId = await getUserActiveDraftId(config.storageBucket, userId);
+      if (activeId) {
+        await deleteDraft(config.storageBucket, activeId);
+      }
+      await setUserActiveDraftId(config.storageBucket, userId, undefined);
     }
     await ctx.reply('Current draft session cleared. Send text or photos anytime to start anew.');
   });
@@ -200,26 +228,28 @@ export function createTelegramBot(config: BotConfig): Bot {
   bot.command('status', async (ctx) => {
     const userId = getUserId(ctx);
     const chatId = ctx.chat ? String(ctx.chat.id) : undefined;
-    const session = userId ? userSessions.get(userId) : undefined;
+    const activeId = userId ? await getUserActiveDraftId(config.storageBucket, userId) : undefined;
+    const draft = activeId ? await getDraft(config.storageBucket, activeId) : undefined;
 
-    // 1. If in-memory session has a draft being actively composed, show draft card
-    if (session && (session.title || session.photoFileIds.length)) {
-      const card = buildIntakeCard(session);
+    // 1. If persistent draft has content being actively composed, show draft card
+    if (draft && (draft.title || draft.photoFileIds.length)) {
+      const card = buildIntakeCard(draft);
       await ctx.reply(card.text, { reply_markup: card.keyboard, parse_mode: 'Markdown' });
       return;
     }
 
     // 2. Otherwise query GitHub API for active PR (survives Cloud Run restarts)
     const activePr = await findActiveBotPR(config, {
-      slug: session?.activeSlug,
+      slug: draft?.activeSlug,
       chatId,
     });
 
     if (activePr) {
       const slug = extractSlugFromPR(activePr);
-      if (session) {
-        session.activeSlug = slug;
-        session.activeBranch = activePr.head?.ref;
+      if (draft) {
+        draft.activeSlug = slug;
+        draft.activeBranch = activePr.head?.ref;
+        await saveDraft(config.storageBucket, draft);
       }
       const draftStatus = activePr.draft ? '🩺 Clinical Draft (Pending Approval)' : '✅ Ready for Merge';
       const statusText = [
@@ -241,7 +271,7 @@ export function createTelegramBot(config: BotConfig): Bot {
 
   bot.command('revise', async (ctx) => {
     const userId = getUserId(ctx);
-    const session = userId ? getOrCreateSession(userId) : undefined;
+    const draft = userId ? await getOrCreateDraft(config, userId, ctx.chat ? String(ctx.chat.id) : undefined) : undefined;
     const feedback = ctx.match?.trim();
 
     if (!feedback) {
@@ -254,28 +284,29 @@ export function createTelegramBot(config: BotConfig): Bot {
     const chatId = String(ctx.chat?.id);
 
     // If activeSlug or activeBranch missing (e.g. Cloud Run cold start), rehydrate from GitHub PRs
-    if (!session?.activeSlug || !session?.activeBranch) {
+    if (!draft?.activeSlug || !draft?.activeBranch) {
       const activePr = await findActiveBotPR(config, {
-        slug: session?.activeSlug,
+        slug: draft?.activeSlug,
         chatId,
       });
 
       if (activePr) {
         const slug = extractSlugFromPR(activePr);
-        if (session) {
-          session.activeSlug = slug;
-          session.activeBranch = activePr.head?.ref;
+        if (draft) {
+          draft.activeSlug = slug;
+          draft.activeBranch = activePr.head?.ref;
+          await saveDraft(config.storageBucket, draft);
         }
       }
     }
 
-    if (!session?.activeSlug || !session?.activeBranch) {
+    if (!draft?.activeSlug || !draft?.activeBranch) {
       await ctx.reply('No active preview found to revise. Generate a page first or check /status.');
       return;
     }
 
-    const slug = session.activeSlug;
-    const branch = session.activeBranch;
+    const slug = draft.activeSlug;
+    const branch = draft.activeBranch;
 
     // Finding 1 safeguard: Never allow revision to target master or main
     if (branch === 'master' || branch === 'main') {
@@ -388,10 +419,11 @@ export function createTelegramBot(config: BotConfig): Bot {
   bot.command('merge', async (ctx) => {
     const userId = getUserId(ctx);
     const chatId = ctx.chat ? String(ctx.chat.id) : undefined;
-    const session = userId ? userSessions.get(userId) : undefined;
+    const activeId = userId ? await getUserActiveDraftId(config.storageBucket, userId) : undefined;
+    const draft = activeId ? await getDraft(config.storageBucket, activeId) : undefined;
 
     const activePr = await findActiveBotPR(config, {
-      slug: session?.activeSlug,
+      slug: draft?.activeSlug,
       chatId,
     });
 
@@ -408,13 +440,24 @@ export function createTelegramBot(config: BotConfig): Bot {
     }
   });
 
-  bot.callbackQuery('action:generate', async (ctx) => {
+  bot.callbackQuery(/^action:generate(?::(.+))?$/, async (ctx) => {
     await ctx.answerCallbackQuery();
     const userId = getUserId(ctx);
-    const session = userId ? userSessions.get(userId) : undefined;
+    const callbackDraftId = ctx.match?.[1];
 
-    if (!session || (!session.title && !session.text)) {
-      await ctx.reply('Please send page text or title before generating.');
+    let draft: UserDraft | undefined;
+    if (callbackDraftId) {
+      draft = await getDraft(config.storageBucket, callbackDraftId);
+    }
+    if (!draft && userId) {
+      const activeId = await getUserActiveDraftId(config.storageBucket, userId);
+      if (activeId) {
+        draft = await getDraft(config.storageBucket, activeId);
+      }
+    }
+
+    if (!draft || (!draft.title && !draft.text)) {
+      await ctx.reply('No active draft found to generate. Send /newpage to start a new draft.');
       return;
     }
 
@@ -429,19 +472,21 @@ export function createTelegramBot(config: BotConfig): Bot {
       }
     }
 
-    const chatId = String(ctx.chat?.id);
-    const title = session.title || 'Dental Service';
-    const text = session.text || session.title || '';
-    const photoFileIds = session.photoFileIds.join(',');
+    const chatId = draft.chatId || String(ctx.chat?.id);
+    const title = draft.title || 'Dental Service';
+    const text = draft.text || draft.title || '';
+    const photoFileIds = draft.photoFileIds.join(',');
 
-    const computedSlug = session.activeSlug || title
+    const computedSlug = draft.activeSlug || title
       .toLowerCase()
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '')
       .replace(/-{2,}/g, '-') || `page-${Date.now()}`;
-    session.activeSlug = computedSlug;
+    draft.activeSlug = computedSlug;
+    draft.status = 'dispatching';
+    await saveDraft(config.storageBucket, draft);
 
     try {
       await dispatchWorkflow(config, 'bot-create-page.yml', {
@@ -452,21 +497,42 @@ export function createTelegramBot(config: BotConfig): Bot {
         slug: computedSlug,
       });
 
+      draft.status = 'dispatched';
+      draft.lastDispatchedAt = new Date().toISOString();
+      await saveDraft(config.storageBucket, draft);
+
+      const rerunKeyboard = new InlineKeyboard()
+        .text('🔄 Re-run Preview', `action:generate:${draft.draftId}`);
+
       await ctx.reply(
         `⏳ *Job started!* Building your page for *${title}* and deploying the preview...\nTakes ~90 seconds. You will receive the preview link here once ready.`,
-        { parse_mode: 'Markdown' }
+        { reply_markup: rerunKeyboard, parse_mode: 'Markdown' }
       );
     } catch (err) {
+      draft.status = 'failed';
+      await saveDraft(config.storageBucket, draft);
       logger.error('Failed to dispatch create-page workflow', { error: err });
-      await ctx.reply('❌ Failed to start page generation. Please try again later or contact an administrator.');
+      const retryKeyboard = new InlineKeyboard()
+        .text('🔄 Retry Generate Preview', `action:generate:${draft.draftId}`);
+      await ctx.reply('❌ Failed to start page generation. You can tap Retry below or try again later.', {
+        reply_markup: retryKeyboard,
+      });
     }
   });
 
-  bot.callbackQuery('action:cancel', async (ctx) => {
+  bot.callbackQuery(/^action:cancel(?::(.+))?$/, async (ctx) => {
     await ctx.answerCallbackQuery();
     const userId = getUserId(ctx);
+    const callbackDraftId = ctx.match?.[1];
+    if (callbackDraftId) {
+      await deleteDraft(config.storageBucket, callbackDraftId);
+    }
     if (userId) {
-      userSessions.delete(userId);
+      const activeId = await getUserActiveDraftId(config.storageBucket, userId);
+      if (activeId) {
+        await deleteDraft(config.storageBucket, activeId);
+      }
+      await setUserActiveDraftId(config.storageBucket, userId, undefined);
     }
     await ctx.reply('Draft session cleared.');
   });
@@ -476,26 +542,27 @@ export function createTelegramBot(config: BotConfig): Bot {
     const userId = getUserId(ctx);
     if (!userId) return;
 
-    const session = getOrCreateSession(userId);
+    const draft = await getOrCreateDraft(config, userId, ctx.chat ? String(ctx.chat.id) : undefined);
     const photos = ctx.message.photo;
     const highestResPhoto = photos[photos.length - 1];
 
     if (highestResPhoto) {
-      if (session.photoFileIds.length >= 10) {
+      if (draft.photoFileIds.length >= 10) {
         await ctx.reply('Maximum 10 photos per page reached.');
         return;
       }
-      session.photoFileIds.push(highestResPhoto.file_id);
+      draft.photoFileIds.push(highestResPhoto.file_id);
     }
 
-    if (ctx.message.caption && !session.text) {
+    if (ctx.message.caption && !draft.text) {
       const caption = ctx.message.caption.trim();
       const lines = caption.split('\n').filter(Boolean);
-      session.title = lines[0];
-      session.text = caption;
+      draft.title = lines[0];
+      draft.text = caption;
     }
 
-    const card = buildIntakeCard(session);
+    await saveDraft(config.storageBucket, draft);
+    const card = buildIntakeCard(draft);
     await ctx.reply(card.text, { reply_markup: card.keyboard, parse_mode: 'Markdown' });
   });
 
@@ -511,12 +578,13 @@ export function createTelegramBot(config: BotConfig): Bot {
       return;
     }
 
-    const session = getOrCreateSession(userId);
+    const draft = await getOrCreateDraft(config, userId, ctx.chat ? String(ctx.chat.id) : undefined);
     const lines = text.split('\n').filter(Boolean);
-    session.title = lines[0];
-    session.text = text;
+    draft.title = lines[0];
+    draft.text = text;
 
-    const card = buildIntakeCard(session);
+    await saveDraft(config.storageBucket, draft);
+    const card = buildIntakeCard(draft);
     await ctx.reply(card.text, { reply_markup: card.keyboard, parse_mode: 'Markdown' });
   });
 

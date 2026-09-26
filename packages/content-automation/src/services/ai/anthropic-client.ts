@@ -21,8 +21,8 @@ export class AnthropicModelClient implements AiModelClient {
       throw new Error('ANTHROPIC_API_KEY is required to initialize AnthropicModelClient');
     }
     this.apiKey = apiKey;
-    this.model = options.model || process.env.ANTHROPIC_MODEL || 'claude-3-7-sonnet-20250219';
-    this.maxTokens = options.maxTokens ?? 4096;
+    this.model = options.model || process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
+    this.maxTokens = options.maxTokens ?? 8192;
     this.temperature = options.temperature ?? 0.2;
     this.apiBaseUrl = options.apiBaseUrl || 'https://api.anthropic.com/v1/messages';
   }
@@ -72,8 +72,13 @@ export class AnthropicModelClient implements AiModelClient {
     }
 
     const data = (await response.json()) as {
+      stop_reason?: string;
       content?: Array<{ type: string; text?: string }>;
     };
+
+    if (data.stop_reason === 'max_tokens') {
+      throw new Error(`Anthropic completion reached max_tokens (${this.maxTokens}) limit and was truncated`);
+    }
 
     const textBlock = data.content?.find((block) => block.type === 'text');
     if (!textBlock || !textBlock.text) {
