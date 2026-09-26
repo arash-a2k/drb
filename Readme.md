@@ -18,7 +18,7 @@ It run github pages and passes the directory which the project is exported to us
 
 ## Telegram Content Bot
 The repository includes a private Telegram intake bot in `packages/telegram-bot/` that allows authorized dentists to create, preview, revise, and approve localized website pages directly via chat.
-- **Full Guide:** See [Telegram Bot README](file:///./packages/telegram-bot/README.md) for deployment to Google Cloud Run and usage instructions.
+- **Full Guide:** See [Telegram Bot README](file:///./packages/telegram-bot/README.md) for deployment to Google Cloud Run, GitHub Actions secrets configuration, and usage instructions.
 - **Smoke Check:** `npm run bot:smoke`
 
 ## Content Automation Commands
