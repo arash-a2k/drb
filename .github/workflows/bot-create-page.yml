@@ -85,6 +85,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || secrets.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001' }}
+          ANTHROPIC_MAX_TOKENS: ${{ vars.ANTHROPIC_MAX_TOKENS || '16384' }}
           IN_TITLE: ${{ inputs.title }}
           IN_TEXT: ${{ inputs.text }}
           IN_SLUG: ${{ inputs.slug }}

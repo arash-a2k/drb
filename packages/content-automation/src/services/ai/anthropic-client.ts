@@ -22,7 +22,7 @@ export class AnthropicModelClient implements AiModelClient {
     }
     this.apiKey = apiKey;
     this.model = options.model || process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
-    this.maxTokens = options.maxTokens ?? 8192;
+    this.maxTokens = options.maxTokens ?? (process.env.ANTHROPIC_MAX_TOKENS ? parseInt(process.env.ANTHROPIC_MAX_TOKENS, 10) : 16384);
     this.temperature = options.temperature ?? 0.2;
     this.apiBaseUrl = options.apiBaseUrl || 'https://api.anthropic.com/v1/messages';
   }
@@ -50,6 +50,7 @@ export class AnthropicModelClient implements AiModelClient {
         model: this.model,
         max_tokens: this.maxTokens,
         temperature: this.temperature,
+        stream: true,
         messages: [
           {
             role: 'user',
@@ -71,20 +72,51 @@ export class AnthropicModelClient implements AiModelClient {
       throw new Error(`Anthropic API error (${response.status}): ${errorDetail}`);
     }
 
-    const data = (await response.json()) as {
-      stop_reason?: string;
-      content?: Array<{ type: string; text?: string }>;
-    };
+    if (!response.body) {
+      throw new Error('Anthropic API returned an empty response body');
+    }
 
-    if (data.stop_reason === 'max_tokens') {
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let accumulatedText = '';
+    let stopReason: string | undefined;
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed.startsWith('data: ')) continue;
+        const dataStr = trimmed.slice(6);
+        if (dataStr === '[DONE]') continue;
+        try {
+          const event = JSON.parse(dataStr);
+          if (event.type === 'content_block_delta' && event.delta?.text) {
+            accumulatedText += event.delta.text;
+          } else if (event.type === 'message_delta') {
+            if (event.delta?.stop_reason) {
+              stopReason = event.delta.stop_reason;
+            }
+          }
+        } catch {
+          // ignore unparseable SSE chunk
+        }
+      }
+    }
+
+    if (stopReason === 'max_tokens') {
       throw new Error(`Anthropic completion reached max_tokens (${this.maxTokens}) limit and was truncated`);
     }
 
-    const textBlock = data.content?.find((block) => block.type === 'text');
-    if (!textBlock || !textBlock.text) {
+    if (!accumulatedText.trim()) {
       throw new Error('Anthropic API returned an empty or invalid text response');
     }
 
-    return textBlock.text;
+    return accumulatedText;
   }
 }
