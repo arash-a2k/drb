@@ -125,14 +125,19 @@ Add these secrets in GitHub under **Settings $\rightarrow$ Secrets and variables
 | `TELEGRAM_BOT_TOKEN` | Download uploaded Telegram photos and send completion/status notifications | Token from `@BotFather` |
 | `ANTHROPIC_API_KEY` | AI multi-language translation (`fa`, `en`, `ru`) and draft structuring via Claude | Console at `console.anthropic.com` |
 | `BOT_GITHUB_TOKEN` | Push the `bot/page-...` branch and open the GitHub Pull Request | GitHub PAT with `repo` / `actions:write` |
-| `PREVIEW_DEPLOY_KEY` | GCP Service Account JSON key to sync static preview files to Cloud Storage | GCP IAM SA with Storage Object Admin on `drb-preview` |
+| `PREVIEW_DEPLOY_KEY` | SSH Private Key (ed25519) to push static preview builds to `arash-a2k/drb-preview` | Generated SSH deploy key added with Write access to `drb-preview` |
 
 CLI setup via `gh`:
 ```bash
 gh secret set TELEGRAM_BOT_TOKEN --body "YOUR_TELEGRAM_BOT_TOKEN"
 gh secret set ANTHROPIC_API_KEY --body "YOUR_ANTHROPIC_API_KEY"
 gh secret set BOT_GITHUB_TOKEN --body "YOUR_GITHUB_TOKEN"
-gh secret set PREVIEW_DEPLOY_KEY < /path/to/preview-sa-key.json
+
+# Preview Deploy Key Setup:
+ssh-keygen -t ed25519 -C "drb-preview-deploy-key" -N "" -f /tmp/id_preview
+gh repo deploy-key add /tmp/id_preview.pub --repo arash-a2k/drb-preview --title "drb-actions-preview-deploy" --allow-write
+gh secret set PREVIEW_DEPLOY_KEY --repo arash-a2k/drb < /tmp/id_preview
+rm -f /tmp/id_preview /tmp/id_preview.pub
 ```
 
 ---
