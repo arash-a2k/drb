@@ -12,9 +12,17 @@ This runs `gh-pages -t -d dist --cname dr-khatayee.com`
 It run github pages and passes the directory which the project is exported to using `-d`. **Impoartant** `--cname` must be passed so github can serve from a custom domain.
 **Important** github repository must be configured to be the one which hosts the github pages. Furthermore, it is at the moment configured to serve from a different branch than master. So whenever this branch is changed, github will serve a new version of the website.  
 
-4.**Important** the `google<somehashstring>.html` file must be there to prove the ownership of the site to Google search I guess.
+4. **Important** the `google<somehashstring>.html` file must be there to prove the ownership of the site to Google search I guess.
 
 5. **Important** CNAME file must be there at the root for github to work with custom domains.
+
+## Preview Deployments (`preview.dr-khatayee.com`)
+Because GitHub Pages only allows **one** custom domain per repository, automated preview builds use a dedicated companion repository:
+- **Repository:** [`arash-a2k/drb-preview`](https://github.com/arash-a2k/drb-preview)
+- **Branch:** `main` (root directory `/`)
+- **Custom Domain:** `preview.dr-khatayee.com` (with HTTPS enforced)
+- **DNS Record:** CNAME `preview` pointing to `arash-a2k.github.io`
+- **Automation:** When the Telegram content bot runs (`bot-create-page.yml` or `bot-revise-page.yml`), GitHub Actions builds static preview files (`EXPO_PUBLIC_PREVIEW=1`) and pushes them to `drb-preview` via the `PREVIEW_DEPLOY_KEY` deploy key. The preview site is immediately live and verified with `noindex,nofollow` robots tags.
 
 ## Telegram Content Bot
 The repository includes a private Telegram intake bot in `packages/telegram-bot/` that allows authorized dentists to create, preview, revise, and approve localized website pages directly via chat.
