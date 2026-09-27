@@ -85,9 +85,9 @@ jobs:
         run: |
           set +e
           PIPE_STDERR=$(mktemp)
-          OUTPUT=$(node --experimental-strip-types packages/content-automation/src/cli/run-revise-page.ts \
+          node --experimental-strip-types packages/content-automation/src/cli/run-revise-page.ts \
             --slug "$IN_SLUG" \
-            --revision "$IN_REVISION" 2>"$PIPE_STDERR")
+            --revision "$IN_REVISION" 2>"$PIPE_STDERR"
           EXIT_CODE=$?
           set -e
 
@@ -99,8 +99,8 @@ jobs:
           fi
           rm -f "$PIPE_STDERR"
 
-          echo "$OUTPUT"
-          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => { const m = data.match(/\{[\s\S]*\}/); const parsed = JSON.parse(m ? m[0] : data); console.log(parsed.canonicalPath || ''); });")
+          RESULT_FILE="packages/content-automation/drafts/last-revise-result.json"
+          CANONICAL_PATH=$(node -p "require('./$RESULT_FILE').canonicalPath || ''")
           echo "canonical_path=$CANONICAL_PATH" >> "$GITHUB_OUTPUT"
 
       # H1: Strict validation gate directly targeting the revised draft

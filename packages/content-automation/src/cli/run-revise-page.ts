@@ -128,11 +128,17 @@ Update the PageDraft accordingly:
     ? `/fa/treatments/${slug}`
     : `/fa/${slug}`;
 
-  return {
+  const result = {
     slug,
     canonicalPath,
     updatedFiles,
   };
+
+  const draftsDir = path.join(repoRoot, 'packages/content-automation/drafts');
+  fs.mkdirSync(draftsDir, { recursive: true });
+  fs.writeFileSync(path.join(draftsDir, 'last-revise-result.json'), `${JSON.stringify(result, null, 2)}\n`);
+
+  return result;
 }
 
 function parseCliArgs(argv: string[]): RevisePipelineOptions {

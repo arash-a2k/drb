@@ -111,7 +111,7 @@ jobs:
 
           set +e
           PIPE_STDERR=$(mktemp)
-          OUTPUT=$(node --experimental-strip-types packages/content-automation/src/cli/run-create-page.ts "${ARGS[@]}" 2>"$PIPE_STDERR")
+          node --experimental-strip-types packages/content-automation/src/cli/run-create-page.ts "${ARGS[@]}" 2>"$PIPE_STDERR"
           EXIT_CODE=$?
           set -e
 
@@ -123,11 +123,10 @@ jobs:
           fi
           rm -f "$PIPE_STDERR"
           
-          echo "$OUTPUT"
-          
-          SLUG=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => { const m = data.match(/\{[\s\S]*\}/); const parsed = JSON.parse(m ? m[0] : data); console.log(parsed.slug); });")
-          PAGE_TYPE=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => { const m = data.match(/\{[\s\S]*\}/); const parsed = JSON.parse(m ? m[0] : data); console.log(parsed.pageType); });")
-          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => { const m = data.match(/\{[\s\S]*\}/); const parsed = JSON.parse(m ? m[0] : data); console.log(parsed.canonicalPath || ''); });")
+          RESULT_FILE="packages/content-automation/drafts/last-run-result.json"
+          SLUG=$(node -p "require('./$RESULT_FILE').slug")
+          PAGE_TYPE=$(node -p "require('./$RESULT_FILE').pageType")
+          CANONICAL_PATH=$(node -p "require('./$RESULT_FILE').canonicalPath || ''")
           
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
           echo "page_type=$PAGE_TYPE" >> "$GITHUB_OUTPUT"

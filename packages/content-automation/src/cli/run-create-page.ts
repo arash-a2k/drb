@@ -242,7 +242,7 @@ export async function runCreatePagePipeline(options: RunPipelineOptions): Promis
     ? `/fa/treatments/${draft.slug}`
     : `/fa/${draft.slug}`;
 
-  return {
+  const result: PipelineResult = {
     slug: draft.slug,
     title,
     pageType: draft.pageType,
@@ -251,6 +251,12 @@ export async function runCreatePagePipeline(options: RunPipelineOptions): Promis
     generatedFiles,
     imagesCount: draftImages.length,
   };
+
+  // Always write deterministic result file for CI workflows to read
+  const resultPath = path.join(draftsDir, 'last-run-result.json');
+  fs.writeFileSync(resultPath, `${JSON.stringify(result, null, 2)}\n`);
+
+  return result;
 }
 
 function parseCliArgs(argv: string[]): RunPipelineOptions {
