@@ -160,6 +160,7 @@ export type RunPipelineOptions = {
   images?: string[];
   sourceLanguage?: Language;
   pageGoal?: string;
+  pageType?: PageType;
   useMockAi?: boolean;
 };
 
@@ -213,10 +214,17 @@ export async function runCreatePagePipeline(options: RunPipelineOptions): Promis
       sourceLanguage,
       sourceText: text,
       pageGoal: options.pageGoal,
+      preferredPageType: options.pageType,
       images: draftImages,
     },
     client,
-    { logger: console },
+    {
+      logger: {
+        info: (msg, ...args) => console.error(msg, ...args),
+        warn: (msg, ...args) => console.error(msg, ...args),
+        error: (msg, ...args) => console.error(msg, ...args),
+      },
+    },
   );
 
   // 4. Validate & Create Page
@@ -252,6 +260,7 @@ function parseCliArgs(argv: string[]): RunPipelineOptions {
   let images: string[] = [];
   let sourceLanguage: Language | undefined;
   let pageGoal: string | undefined;
+  let pageType: PageType | undefined;
   let useMockAi = false;
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -274,12 +283,15 @@ function parseCliArgs(argv: string[]): RunPipelineOptions {
     } else if (arg === '--goal' && argv[i + 1]) {
       pageGoal = argv[i + 1];
       i += 1;
+    } else if ((arg === '--page-type' || arg === '--format') && argv[i + 1]) {
+      pageType = argv[i + 1] as PageType;
+      i += 1;
     } else if (arg === '--mock') {
       useMockAi = true;
     }
   }
 
-  return { title, text, slug, images, sourceLanguage, pageGoal, useMockAi };
+  return { title, text, slug, images, sourceLanguage, pageGoal, pageType, useMockAi };
 }
 
 const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);

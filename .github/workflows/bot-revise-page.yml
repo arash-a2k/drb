@@ -100,7 +100,7 @@ jobs:
           rm -f "$PIPE_STDERR"
 
           echo "$OUTPUT"
-          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => console.log(JSON.parse(data).canonicalPath || ''));")
+          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => { const m = data.match(/\{[\s\S]*\}/); const parsed = JSON.parse(m ? m[0] : data); console.log(parsed.canonicalPath || ''); });")
           echo "canonical_path=$CANONICAL_PATH" >> "$GITHUB_OUTPUT"
 
       # H1: Strict validation gate directly targeting the revised draft

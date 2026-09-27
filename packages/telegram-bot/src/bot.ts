@@ -123,18 +123,28 @@ export async function dispatchWorkflow(
   }
 }
 
+const formatLabels: Record<string, string> = {
+  'content-with-image-grid': '🖼️ Treatment (Grid)',
+  'solo-image-content-lines': '🌟 Hero with Sections',
+  'single-column': '📝 Single Column',
+  'two-column': '👥 Two Column',
+  'gallery-only': '📸 Gallery Only',
+};
+
 function buildIntakeCard(session: UserSession): { text: string; keyboard: InlineKeyboard } {
   const titleText = session.title ? `📝 *Title:* ${session.title}` : '📝 *Title:* _(Send text to set)_';
   const photoText = `📸 *Photos:* ${session.photoFileIds.length} uploaded`;
+  const formatText = `🎨 *Layout:* ${session.pageType ? (formatLabels[session.pageType] || session.pageType) : '⚡ Auto (AI Recommended)'}`;
 
   const text = [
     '📄 *Page Draft Session*',
     '',
     titleText,
     photoText,
+    formatText,
     '',
     session.title
-      ? 'Tap *Generate Preview* when ready, or send more text / photos.'
+      ? 'Tap *Generate Preview* when ready, or customize layout below.'
       : 'Send your page description or treatment details to begin.',
   ].join('\n');
 
@@ -142,7 +152,10 @@ function buildIntakeCard(session: UserSession): { text: string; keyboard: Inline
   if (session.title || session.text) {
     keyboard.text('🚀 Generate Preview', `action:generate:${session.draftId}`).row();
   }
-  keyboard.text('❌ Clear Draft', `action:cancel:${session.draftId}`);
+  keyboard
+    .text(`🎨 Layout: ${session.pageType ? (formatLabels[session.pageType] || session.pageType) : 'Auto ▾'}`, `action:choose_format:${session.draftId}`)
+    .row()
+    .text('❌ Clear Draft', `action:cancel:${session.draftId}`);
 
   return { text, keyboard };
 }
@@ -495,6 +508,7 @@ export function createTelegramBot(config: BotConfig): Bot {
         text,
         photo_file_ids: photoFileIds,
         slug: computedSlug,
+        page_type: draft.pageType || '',
       });
 
       draft.status = 'dispatched';
@@ -518,6 +532,65 @@ export function createTelegramBot(config: BotConfig): Bot {
         reply_markup: retryKeyboard,
       });
     }
+  });
+
+  bot.callbackQuery(/^action:choose_format:(.+)$/, async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const draftId = ctx.match[1];
+    const draft = await getDraft(config.storageBucket, draftId);
+    if (!draft) {
+      await ctx.reply('Draft not found. Send /newpage to start.');
+      return;
+    }
+
+    const keyboard = new InlineKeyboard()
+      .text('⚡ Auto (AI Chooses)', `action:set_format:${draftId}:auto`).row()
+      .text('🖼️ Treatment with Gallery', `action:set_format:${draftId}:content-with-image-grid`).row()
+      .text('🌟 Hero with Sections', `action:set_format:${draftId}:solo-image-content-lines`).row()
+      .text('📝 Single Column Article', `action:set_format:${draftId}:single-column`).row()
+      .text('👥 Two Column Spotlight', `action:set_format:${draftId}:two-column`).row()
+      .text('📸 Gallery Only', `action:set_format:${draftId}:gallery-only`).row()
+      .text('« Back to Summary', `action:back_to_card:${draftId}`);
+
+    await ctx.editMessageText(
+      '🎨 *Select Page Layout Format*\n\n' +
+      '• *Auto*: AI selects layout automatically based on content\n' +
+      '• *Treatment with Gallery*: Full clinical treatment + image grid\n' +
+      '• *Hero with Sections*: Top hero banner + sections\n' +
+      '• *Single Column*: Clean text & FAQ article\n' +
+      '• *Two Column*: Doctor / clinic intro spotlight\n' +
+      '• *Gallery Only*: Before/after portfolio showcase',
+      { reply_markup: keyboard, parse_mode: 'Markdown' }
+    );
+  });
+
+  bot.callbackQuery(/^action:set_format:(.+?):(.+)$/, async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const draftId = ctx.match[1];
+    const format = ctx.match[2];
+    const draft = await getDraft(config.storageBucket, draftId);
+    if (!draft) {
+      await ctx.reply('Draft not found. Send /newpage to start.');
+      return;
+    }
+
+    draft.pageType = format === 'auto' ? undefined : format;
+    await saveDraft(config.storageBucket, draft);
+
+    const card = buildIntakeCard(draft);
+    await ctx.editMessageText(card.text, { reply_markup: card.keyboard, parse_mode: 'Markdown' });
+  });
+
+  bot.callbackQuery(/^action:back_to_card:(.+)$/, async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const draftId = ctx.match[1];
+    const draft = await getDraft(config.storageBucket, draftId);
+    if (!draft) {
+      await ctx.reply('Draft not found. Send /newpage to start.');
+      return;
+    }
+    const card = buildIntakeCard(draft);
+    await ctx.editMessageText(card.text, { reply_markup: card.keyboard, parse_mode: 'Markdown' });
   });
 
   bot.callbackQuery(/^action:cancel(?::(.+))?$/, async (ctx) => {
