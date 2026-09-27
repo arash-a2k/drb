@@ -1,82 +1,94 @@
 {
-    "navbar": {
-        "fa": {
-            "home": "صفحه اصلی",
-            "contact": "تماس با ما",
-            "dropdown": {
-                "title": "درمان ها",
-                "items": [
-                    {
-                        "text": "ترمیم و زیبایی",
-                        "link": "treatments/composite-veneer"
-                    },
-                    {
-                        "text": "ایمپلنت",
-                        "link": "treatments/dental-implants"
-                    },
-                    {
-                        "text": "لمینت دندان",
-                        "link": "treatments/dental-laminates"
-                    }
-                ]
-            },
-            "subtitle": "جراح و دندانپزشک -",
-            "about": "درباره مطب",
-            "faq": "سوالات متداول",
-            "title": "مطب دکتر بابک ختایی",
-            "cta": "تماس فوری"
-        },
-        "en": {
-            "home": "Home",
-            "contact": "Contact us",
-            "dropdown": {
-                "title": "Treatments",
-                "items": [
-                    {
-                        "text": "Composite Veneer",
-                        "link": "treatments/composite-veneer"
-                    },
-                    {
-                        "text": "Dental Implants",
-                        "link": "treatments/dental-implants"
-                    },
-                    {
-                        "text": "Dental Lamionates",
-                        "link": "treatments/dental-laminates"
-                    }
-                ]
-            },
-            "subtitle": "DDS",
-            "about": "About Us",
-            "faq": "FAQ",
-            "title": "Dentistry Clinic Dr. Babak Khatayee",
-            "cta": "Call now"
-        },
-        "ru": {
-            "home": "Главная",
-            "contact": "Контакты",
-            "dropdown": {
-                "title": "Лечение",
-                "items": [
-                    {
-                        "text": "Композитные виниры",
-                        "link": "treatments/composite-veneer"
-                    },
-                    {
-                        "text": "Имплантация зубов",
-                        "link": "treatments/dental-implants"
-                    },
-                    {
-                        "text": "Керамические виниры",
-                        "link": "treatments/dental-laminates"
-                    }
-                ]
-            },
-            "subtitle": "DDS",
-            "about": "О клинике",
-            "faq": "Вопросы",
-            "title": "Стоматология доктора Бабака Хатаи",
-            "cta": "Позвонить"
-        }
+  "navbar": {
+    "fa": {
+      "home": "صفحه اصلی",
+      "contact": "تماس با ما",
+      "dropdown": {
+        "title": "درمان ها",
+        "items": [
+          {
+            "text": "ترمیم و زیبایی",
+            "link": "treatments/composite-veneer"
+          },
+          {
+            "text": "ایمپلنت",
+            "link": "treatments/dental-implants"
+          },
+          {
+            "text": "لمینت دندان",
+            "link": "treatments/dental-laminates"
+          },
+          {
+            "text": "کامپوزیت ونیر دندان | لبخندی زیبا، طبیعی و درخشان",
+            "link": "treatments/page-1790499024074"
+          }
+        ]
+      },
+      "subtitle": "جراح و دندانپزشک -",
+      "about": "درباره مطب",
+      "faq": "سوالات متداول",
+      "title": "مطب دکتر بابک ختایی",
+      "cta": "تماس فوری"
+    },
+    "en": {
+      "home": "Home",
+      "contact": "Contact us",
+      "dropdown": {
+        "title": "Treatments",
+        "items": [
+          {
+            "text": "Composite Veneer",
+            "link": "treatments/composite-veneer"
+          },
+          {
+            "text": "Dental Implants",
+            "link": "treatments/dental-implants"
+          },
+          {
+            "text": "Dental Lamionates",
+            "link": "treatments/dental-laminates"
+          },
+          {
+            "text": "Composite Veneer Teeth | Beautiful, Natural, and Radiant Smile",
+            "link": "treatments/page-1790499024074"
+          }
+        ]
+      },
+      "subtitle": "DDS",
+      "about": "About Us",
+      "faq": "FAQ",
+      "title": "Dentistry Clinic Dr. Babak Khatayee",
+      "cta": "Call now"
+    },
+    "ru": {
+      "home": "Главная",
+      "contact": "Контакты",
+      "dropdown": {
+        "title": "Лечение",
+        "items": [
+          {
+            "text": "Композитные виниры",
+            "link": "treatments/composite-veneer"
+          },
+          {
+            "text": "Имплантация зубов",
+            "link": "treatments/dental-implants"
+          },
+          {
+            "text": "Керамические виниры",
+            "link": "treatments/dental-laminates"
+          },
+          {
+            "text": "Композитные виниры для зубов | Красивая, естественная и сияющая улыбка",
+            "link": "treatments/page-1790499024074"
+          }
+        ]
+      },
+      "subtitle": "DDS",
+      "about": "О клинике",
+      "faq": "Вопросы",
+      "title": "Стоматология доктора Бабака Хатаи",
+      "cta": "Позвонить"
     }
+  }
 }
