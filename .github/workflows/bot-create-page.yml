@@ -23,6 +23,10 @@ on:
         description: 'Optional slug override'
         required: false
         type: string
+      page_type:
+        description: 'Preferred page layout format (optional)'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -89,11 +93,16 @@ jobs:
           IN_TITLE: ${{ inputs.title }}
           IN_TEXT: ${{ inputs.text }}
           IN_SLUG: ${{ inputs.slug }}
+          IN_PAGE_TYPE: ${{ inputs.page_type }}
         run: |
           ARGS=("--title" "$IN_TITLE" "--text" "$IN_TEXT")
           
           if [ -n "$IN_SLUG" ]; then
             ARGS+=("--slug" "$IN_SLUG")
+          fi
+
+          if [ -n "$IN_PAGE_TYPE" ]; then
+            ARGS+=("--page-type" "$IN_PAGE_TYPE")
           fi
 
           if [ -d "tmp/telegram-images" ] && [ "$(ls -A tmp/telegram-images 2>/dev/null)" ]; then
@@ -102,7 +111,7 @@ jobs:
 
           set +e
           PIPE_STDERR=$(mktemp)
-          OUTPUT=$(node --experimental-strip-types packages/content-automation/src/cli/run-create-page.ts "${ARGS[@]}" 2>"$PIPE_STDERR")
+          node --experimental-strip-types packages/content-automation/src/cli/run-create-page.ts "${ARGS[@]}" 2>"$PIPE_STDERR"
           EXIT_CODE=$?
           set -e
 
@@ -114,11 +123,10 @@ jobs:
           fi
           rm -f "$PIPE_STDERR"
           
-          echo "$OUTPUT"
-          
-          SLUG=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => console.log(JSON.parse(data).slug));")
-          PAGE_TYPE=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => console.log(JSON.parse(data).pageType));")
-          CANONICAL_PATH=$(echo "$OUTPUT" | node -e "let data=''; process.stdin.on('data', d => data+=d); process.stdin.on('end', () => console.log(JSON.parse(data).canonicalPath || ''));")
+          RESULT_FILE="packages/content-automation/drafts/last-run-result.json"
+          SLUG=$(node -p "require('./$RESULT_FILE').slug")
+          PAGE_TYPE=$(node -p "require('./$RESULT_FILE').pageType")
+          CANONICAL_PATH=$(node -p "require('./$RESULT_FILE').canonicalPath || ''")
           
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
           echo "page_type=$PAGE_TYPE" >> "$GITHUB_OUTPUT"

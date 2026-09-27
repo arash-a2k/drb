@@ -9,6 +9,7 @@ export type UserDraft = {
   photoFileIds: string[];
   activeSlug?: string;
   activeBranch?: string;
+  pageType?: string;
   status: 'draft' | 'dispatching' | 'dispatched' | 'failed';
   lastDispatchedAt?: string;
   updatedAt: string;
