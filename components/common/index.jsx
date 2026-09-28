@@ -16,12 +16,17 @@ export const HighlightedText = ({ text, highlights }) => {
 };
 
 export const ContentSection = ({ title, text, highlights, id }) => {
-    return <div className="my-6 text-center" key={`${id}`}>
-        <h2 className="text-2xl font-bold mb-4 text-gold" >{title}</h2>
-        <p className="text-lg text-gray-600">
-            <HighlightedText text={text} highlights={highlights} />
-        </p>
-    </div>
+    return (
+        <article className="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 md:p-8 shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-start text-start" key={`${id}`}>
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                <span className="w-1.5 h-5 sm:h-6 rounded-full bg-gold inline-block shrink-0" aria-hidden="true" />
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 tracking-tight leading-snug">{title}</h2>
+            </div>
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose text-slate-600">
+                <HighlightedText text={text} highlights={highlights} />
+            </p>
+        </article>
+    );
 };
 
 export const DataTable = ({ table }) => {

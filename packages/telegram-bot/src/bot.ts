@@ -17,6 +17,7 @@ import {
   getLatestClinicalApproval,
 } from './github-pr.ts';
 import { logger } from './logger.ts';
+import { generateSeoSlug } from './slug.ts';
 
 const dentistCommands = [
   ['/start', 'Onboarding and authorization check'],
@@ -135,18 +136,26 @@ function buildIntakeCard(session: UserSession): { text: string; keyboard: Inline
   const titleText = session.title ? `📝 *Title:* ${session.title}` : '📝 *Title:* _(Send text to set)_';
   const photoText = `📸 *Photos:* ${session.photoFileIds.length} uploaded`;
   const formatText = `🎨 *Layout:* ${session.pageType ? (formatLabels[session.pageType] || session.pageType) : '⚡ Auto (AI Recommended)'}`;
+  const slug = session.activeSlug && !/^page-\d+$/.test(session.activeSlug)
+    ? session.activeSlug
+    : generateSeoSlug(session.title || '', session.text || '');
+  const slugText = session.title || session.text ? `🔗 *SEO URL:* \`/treatments/${slug}\`` : '';
 
-  const text = [
+  const textLines = [
     '📄 *Page Draft Session*',
     '',
     titleText,
     photoText,
     formatText,
+  ];
+  if (slugText) textLines.push(slugText);
+  textLines.push(
     '',
     session.title
       ? 'Tap *Generate Preview* when ready, or customize layout below.'
-      : 'Send your page description or treatment details to begin.',
-  ].join('\n');
+      : 'Send your page description or treatment details to begin.'
+  );
+  const text = textLines.join('\n');
 
   const keyboard = new InlineKeyboard();
   if (session.title || session.text) {
@@ -490,13 +499,9 @@ export function createTelegramBot(config: BotConfig): Bot {
     const text = draft.text || draft.title || '';
     const photoFileIds = draft.photoFileIds.join(',');
 
-    const computedSlug = draft.activeSlug || title
-      .toLowerCase()
-      .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .replace(/-{2,}/g, '-') || `page-${Date.now()}`;
+    const computedSlug = draft.activeSlug && !/^page-\d+$/.test(draft.activeSlug)
+      ? draft.activeSlug
+      : generateSeoSlug(title, text);
     draft.activeSlug = computedSlug;
     draft.status = 'dispatching';
     await saveDraft(config.storageBucket, draft);

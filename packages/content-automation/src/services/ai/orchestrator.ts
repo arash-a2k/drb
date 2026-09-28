@@ -46,6 +46,7 @@ type ClassifierOutput = {
 };
 
 type SeoOptimizerOutput = {
+  suggestedSlug?: string;
   title: string;
   seoTitle: string;
   seoDescription: string;

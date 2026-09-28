@@ -27,6 +27,7 @@ Return only valid JSON with this shape:
 
 ```json
 {
+  "suggestedSlug": "composite-veneers",
   "title": "",
   "seoTitle": "",
   "seoDescription": "",
@@ -70,5 +71,6 @@ Return only valid JSON with this shape:
 - Use these phone numbers in pricing calls to action when relevant: +9821227228768, +982126851277, +989039409045.
 - If the page is about laminate, composite, implant, or another dental service, prefer a treatment-oriented page type.
 - Make `id` values lowercase English slugs with hyphens.
+- In `suggestedSlug`, generate a concise 2-4 word lowercase English hyphenated URL slug that best represents the dental service for international SEO (e.g. `composite-veneers`, `teeth-whitening`, `dental-implants`, `digital-implants`, `dental-crowns`). Never include stop words, timestamps, or Persian letters.
 - Keep `seoTitle` under 60 characters and `seoDescription` strictly under 155 characters.
 - Return JSON only. Do not wrap it in Markdown.

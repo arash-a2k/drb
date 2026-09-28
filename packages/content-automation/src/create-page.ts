@@ -205,6 +205,7 @@ export default function ${componentName}Page() {
         sections={content.sections}
         imageTitle={content.imageTitle}
         heroImage={content.heroImage}
+        intro={content.intro}
         tables={content.tables}
       />
     </div>

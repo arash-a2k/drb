@@ -9,7 +9,7 @@ import { generatePageDraft, type AiCompletionRequest, type AiModelClient, type P
 import { AnthropicModelClient } from '../services/ai/anthropic-client.ts';
 import { generatePage, validateDraft } from '../create-page.ts';
 import { collectImageFiles, optimizeImage, type OptimizedImage } from '../optimize-images.ts';
-import { slugify, validateSlugAvailability, validateSlugFormat } from '../shared/slug.ts';
+import { generateSeoSlug, resolveUniqueSlug, slugify, validateSlugAvailability, validateSlugFormat } from '../shared/slug.ts';
 
 class MockCliModelClient implements AiModelClient {
   private readonly slug: string;
@@ -182,7 +182,8 @@ export async function runCreatePagePipeline(options: RunPipelineOptions): Promis
   if (!title) throw new Error('Title is required');
   if (!text) throw new Error('Text is required');
 
-  const slug = options.slug ? slugify(options.slug) : slugify(title);
+  let baseSlug = options.slug && !/^page-\d+$/.test(options.slug) ? slugify(options.slug) : generateSeoSlug(title, text);
+  const slug = resolveUniqueSlug(baseSlug, repoRoot);
   // Enforce format, reserved route rejection, and filesystem collision checks
   validateSlugAvailability(slug, repoRoot);
   const sourceLanguage: Language = options.sourceLanguage || (/[\u0600-\u06FF]/.test(text) ? 'fa' : 'en');
