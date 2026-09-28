@@ -1,20 +1,19 @@
 # Instructions
 This project is based on `expo-router` and its static serving. Components are created with vanila react html components. `Expo` is only used because of expo router and static serving. For styling `tailwind` is used.
 
-## How to Deploy
-1. First run `pre-export`. This will remove everything under `public/assets/*`, creates the file `.nojekyll` which is used by github I gusess. Then copies everything from `assets/* ` to `public/assets/`. 
+## How to Deploy to Production (`dr-khatayee.com`)
+1. **Automated Deployment (Recommended):**
+   Whenever a pull request is merged into `master`, the GitHub Actions workflow `.github/workflows/deploy-production.yml` automatically builds the static site (`npm run pre-export && npm run pre-deploy`) and publishes it to the `gh-pages` branch with the `dr-khatayee.com` CNAME and `.nojekyll`. The live website updates automatically within ~60 seconds.
 
-The reason is that when running locally, you can refer the html image tags to `/assets/*` and it will be found and served by expo, but after deployment, github cannot server form assets and only from everything under `public`. This could also be the way that expo router works. **If you want to server from `assets/*` you cannot use direct html img tags, and should Image components from react native.**
+2. **Manual Deployment (Fallback):**
+   - Run `npm run pre-export` (clears and copies assets to `public/assets/`, touches `.nojekyll`).
+   - Run `npm run pre-deploy` (exports the web build to `dist/`).
+   - Run `npm run deploy` (publishes `dist/` to `gh-pages` with `--cname dr-khatayee.com`).
 
-2. Then run `pre-deploy` to export the static web by the help of expo
-3. Then run `deploy`
-This runs `gh-pages -t -d dist --cname dr-khatayee.com`
-It run github pages and passes the directory which the project is exported to using `-d`. **Impoartant** `--cname` must be passed so github can serve from a custom domain.
-**Important** github repository must be configured to be the one which hosts the github pages. Furthermore, it is at the moment configured to serve from a different branch than master. So whenever this branch is changed, github will serve a new version of the website.  
-
-4. **Important** the `google<somehashstring>.html` file must be there to prove the ownership of the site to Google search I guess.
-
-5. **Important** CNAME file must be there at the root for github to work with custom domains.
+**Important Notes:**
+- The `google8b1d1cbfffc4755f.html` verification file must be kept in `public/` to prove site ownership to Google Search Console.
+- The `CNAME` file must exist at the root with `dr-khatayee.com` for GitHub Pages custom domain routing.
+- The `.nojekyll` file must be present so GitHub Pages does not run Jekyll and omits `_expo/` assets.
 
 ## Preview Deployments (`preview.dr-khatayee.com`)
 Because GitHub Pages only allows **one** custom domain per repository, automated preview builds use a dedicated companion repository:

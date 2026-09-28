@@ -43,7 +43,7 @@ function collectInputFiles(args: string[]): string[] {
       const absoluteDir = path.resolve(repoRoot, dir);
       if (fs.existsSync(absoluteDir)) {
         for (const entry of fs.readdirSync(absoluteDir)) {
-          if (entry.endsWith('.json')) {
+          if (entry.endsWith('.json') && !entry.endsWith('-result.json') && !entry.endsWith('.result.json')) {
             files.push(path.join(absoluteDir, entry));
           }
         }

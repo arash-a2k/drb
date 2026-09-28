@@ -1,0 +1,55 @@
+name: Deploy Production (dr-khatayee.com)
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-production:
+    name: Build & Deploy Production Site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build static production site
+        run: |
+          npm run pre-export
+          npm run pre-deploy
+          
+          # SEO Gate: Ensure production is indexed by search engines
+          if grep -q 'name="robots" content="noindex,nofollow"' dist/index.html; then
+            echo "FATAL: Production build contains noindex meta tag!"
+            exit 1
+          fi
+          
+          echo "dr-khatayee.com" > dist/CNAME
+          touch dist/.nojekyll
+
+      - name: Deploy to GitHub Pages (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          cname: dr-khatayee.com
+          keep_files: false
