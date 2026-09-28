@@ -231,11 +231,13 @@ jobs:
           
           echo "preview.dr-khatayee.com" > dist/CNAME
           echo "${RUN_ID}" > "dist/preview-build-${IN_SLUG}.txt"
+          touch dist/.nojekyll
 
           # Clone existing preview repo to accumulate and avoid overwriting other preview pages
           rm -rf preview-repo
           git clone --depth 1 git@github.com:arash-a2k/drb-preview.git preview-repo
           cp -r dist/* preview-repo/
+          touch preview-repo/.nojekyll
           
           cd preview-repo
           git config user.name "drb-bot"
