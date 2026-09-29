@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageGrid from '../imageGrid/ImageGrid';
-import { ContentSection, DataTable } from '../common';
+import { ContentSection, DataTable, FaqAccordion, TrustStrip } from '../common';
 import { useLanguage } from '../../hooks';
 
 export default function ContentWithImageGrid(props) {
-  const { images = [], title = '', sections = [], tables = [], heroImage, intro } = props;
+  const { images = [], title = '', sections = [], tables = [], faq = [], heroImage, intro } = props;
   const { lang = 'fa' } = useLanguage() || {};
 
   // Choose the best hero image:
@@ -112,6 +112,9 @@ export default function ContentWithImageGrid(props) {
         </div>
       </section>
 
+      {/* Trust & Credibility Strip */}
+      <TrustStrip lang={lang} />
+
       {/* Main Content Sections (Cards Grid) */}
       <section className="py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -135,6 +138,11 @@ export default function ContentWithImageGrid(props) {
           ))}
         </div>
       </section>
+
+      {/* FAQ Accordion */}
+      {faq && faq.length > 0 ? (
+        <FaqAccordion faq={faq} lang={lang} />
+      ) : null}
 
       {/* Clinical Photo Gallery */}
       {galleryImages.length > 0 ? (

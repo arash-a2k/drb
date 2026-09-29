@@ -117,7 +117,7 @@ function buildNormalPageComponent(componentName: string, jsonFileName: string): 
   return `import React from 'react';
 import { useLanguage } from '../../hooks';
 import Seo from '../../components/seo/Seo';
-import { ContentSection, DataTable } from '../../components/common';
+import { ContentSection, DataTable, FaqAccordion, TrustStrip } from '../../components/common';
 import ImageGrid from '../../components/imageGrid/ImageGrid';
 import * as text from './${jsonFileName}';
 
@@ -126,32 +126,141 @@ export default function ${componentName}() {
   const content = text[lang] || text.en;
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
 
+  const featuredImage = (content.images && content.images.length > 0 && content.images[0]?.src) || content.heroImage || '/assets/images/carousel/office-main.webp';
+  const featuredAlt = (content.images && content.images.length > 0 && content.images[0]?.alt) || content.title || 'دکتر بابک ختایی';
+  const galleryImages = content.images && content.images.length > 1 ? content.images.slice(1) : (content.images?.length === 1 ? content.images : []);
+
+  const badgeText = {
+    fa: '✨ خدمات تخصصی دندانپزشکی دکتر بابک ختایی',
+    en: '✨ Specialized Dental Care by Dr. Babak Khatayee',
+    ru: '✨ Стоматология доктора Бабака Хатаи',
+  }[lang] || '✨ Specialized Dental Care';
+
+  const ctaConsult = {
+    fa: 'درخواست مشاوره و رزرو وقت',
+    en: 'Book Consultation',
+    ru: 'Записаться на прием',
+  }[lang] || 'Book Consultation';
+
+  const galleryTitle = {
+    fa: 'گالری تصاویر و نمونه درمان‌ها',
+    en: 'Clinical Photo Gallery',
+    ru: 'Галерея клиники',
+  }[lang] || 'Photo Gallery';
+
   return (
-    <main dir={dir} className="bg-[#f6f8f7] text-slate-950">
-      <Seo lang={lang} title={content.seoTitle} description={content.seoDescription} path="/${jsonFileName.replace('.json', '')}" image={content.heroImage} />
-      <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-        <h1 className="text-4xl font-black leading-tight sm:text-5xl">{content.title}</h1>
-        {content.intro && <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">{content.intro}</p>}
+    <main dir={dir} className="bg-slate-50/50 min-h-screen text-slate-950">
+      <Seo
+        lang={lang}
+        title={content.seoTitle}
+        description={content.seoDescription}
+        path="/${jsonFileName.replace('.json', '')}"
+        image={content.heroImage}
+        faq={content.faq}
+      />
+
+      {/* Mobile-First Hero Section */}
+      <section className="relative overflow-hidden pt-6 pb-8 sm:pt-10 sm:pb-12 md:pt-16 md:pb-16 bg-gradient-to-b from-slate-100/80 via-white to-slate-50/60 border-b border-slate-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-10 xl:gap-14 lg:items-center">
+            
+            <div className="lg:col-span-7 flex flex-col items-start text-start order-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-900 text-xs sm:text-sm font-medium mb-3 sm:mb-4 shadow-xs">
+                <span>{badgeText}</span>
+              </div>
+
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-snug sm:leading-tight mb-3 sm:mb-4">
+                {content.title}
+              </h1>
+
+              {/* Mobile hero image right under title */}
+              <div className="w-full my-4 sm:my-5 lg:hidden order-2">
+                <div className="relative overflow-hidden rounded-2xl bg-slate-200 shadow-md border-2 border-white ring-1 ring-slate-200/80">
+                  <img
+                    src={featuredImage}
+                    alt={featuredAlt}
+                    className="w-full h-auto aspect-[16/10] sm:aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+
+              {content.intro ? (
+                <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-6 max-w-2xl order-3">
+                  {content.intro}
+                </p>
+              ) : null}
+
+              <div className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-1 order-4">
+                <a
+                  href={'/' + lang + '/contact-us'}
+                  className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 rounded-xl font-bold text-white bg-slate-950 hover:bg-slate-800 shadow-md active:scale-[0.98] transition-all text-center text-sm sm:text-base"
+                >
+                  {ctaConsult}
+                </a>
+                <a
+                  href="tel:+982122722876"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-5 py-3.5 rounded-xl font-bold text-slate-800 bg-white border border-slate-200 hover:bg-slate-50 shadow-xs active:scale-[0.98] transition-all text-center text-sm sm:text-base"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span dir="ltr">021-22722876</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden lg:block lg:col-span-5 order-2">
+              <div className="relative mx-auto w-full max-w-lg">
+                <div className="relative overflow-hidden rounded-3xl bg-slate-200 shadow-xl shadow-slate-900/10 border-4 border-white ring-1 ring-slate-200/80">
+                  <img
+                    src={featuredImage}
+                    alt={featuredAlt}
+                    className="w-full h-auto aspect-[4/3] object-cover transition duration-700 hover:scale-105"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
 
-      <section className="bg-white py-10 sm:py-14">
-        <div className="container mx-auto flex flex-col space-y-6 px-4">
-          {content.sections.map((section) => (
-            <ContentSection
-              key={section.id}
-              id={section.id}
-              title={section.title}
-              text={section.content}
-              highlights={section.bold}
-            />
-          ))}
+      {/* Trust & Credibility Strip */}
+      <TrustStrip lang={lang} />
+
+      {/* Main Content Sections (Cards Grid) */}
+      <section className="py-8 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            {content.sections.map((section) => (
+              <ContentSection
+                key={section.id}
+                id={section.id}
+                title={section.title}
+                text={section.content}
+                highlights={section.bold}
+              />
+            ))}
+          </div>
+
+          {/* Data Tables */}
           {content.tables?.map((table, index) => (
-            <DataTable key={\`\${table.title || 'table'}-\${index}\`} table={table} />
+            <div className="mt-6 sm:mt-8" key={(table.title || 'table') + '-' + index}>
+              <DataTable table={table} />
+            </div>
           ))}
         </div>
       </section>
 
-      <ImageGrid title={content.imageTitle} images={content.images} />
+      {/* FAQ Accordion */}
+      {content.faq && content.faq.length > 0 ? (
+        <FaqAccordion faq={content.faq} lang={lang} />
+      ) : null}
+
+      {/* Image Gallery */}
+      {galleryImages.length > 0 ? (
+        <ImageGrid title={content.imageTitle || galleryTitle} images={galleryImages} />
+      ) : null}
     </main>
   );
 }
@@ -198,6 +307,7 @@ export default function ${componentName}Page() {
         title={content.seoTitle}
         description={content.seoDescription}
         image={content.heroImage}
+        faq={content.faq}
       />
       <${componentName}Template
         images={content.images}
@@ -207,6 +317,7 @@ export default function ${componentName}Page() {
         heroImage={content.heroImage}
         intro={content.intro}
         tables={content.tables}
+        faq={content.faq}
       />
     </div>
   );

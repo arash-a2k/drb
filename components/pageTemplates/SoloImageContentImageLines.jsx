@@ -1,10 +1,10 @@
 import React from 'react';
-import { ContentSection, DataTable } from '../common';
+import { ContentSection, DataTable, FaqAccordion, TrustStrip } from '../common';
 import ImageGrid from '../imageGrid/ImageGrid';
 import { useLanguage } from '../../hooks';
 
 export default function SoloImageContentImageLines(props) {
-  const { images = [], title = '', sections = [], heroImage, imageTitle, tables = [], intro } = props;
+  const { images = [], title = '', sections = [], heroImage, imageTitle, tables = [], faq = [], intro } = props;
   const { lang = 'fa' } = useLanguage() || {};
 
   const featuredImage = heroImage || (images && images.length > 0 && images[0]?.src) || '/assets/images/carousel/office-main.webp';
@@ -97,6 +97,9 @@ export default function SoloImageContentImageLines(props) {
         </div>
       </section>
 
+      {/* Trust & Credibility Strip */}
+      <TrustStrip lang={lang} />
+
       {/* Sections List */}
       <section className="py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,6 +122,11 @@ export default function SoloImageContentImageLines(props) {
           ))}
         </div>
       </section>
+
+      {/* FAQ Accordion */}
+      {faq && faq.length > 0 ? (
+        <FaqAccordion faq={faq} lang={lang} />
+      ) : null}
 
       {galleryImages.length > 0 ? (
         <ImageGrid title={imageTitle || defaultGalleryTitle} images={galleryImages} />

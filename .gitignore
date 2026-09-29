@@ -39,3 +39,4 @@ yarn-error.*
 # automation ephemeral results
 *-result.json
 packages/content-automation/drafts/*-result.json
+public/assets/images/generated/

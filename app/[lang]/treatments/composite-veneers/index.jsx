@@ -17,6 +17,7 @@ export default function ContentWithImageGridPage() {
         title={content.seoTitle}
         description={content.seoDescription}
         image={content.heroImage}
+        faq={content.faq}
       />
       <ContentWithImageGridTemplate
         images={content.images}
@@ -26,6 +27,7 @@ export default function ContentWithImageGridPage() {
         heroImage={content.heroImage}
         intro={content.intro}
         tables={content.tables}
+        faq={content.faq}
       />
     </div>
   );
