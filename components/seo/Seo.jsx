@@ -44,9 +44,22 @@ const clinicSchema = {
   ],
 };
 
-export default function Seo({ lang = 'fa', title, description, path = '', image = '/assets/images/carousel/office-main.webp' }) {
+export default function Seo({ lang = 'fa', title, description, path = '', image = '/assets/images/carousel/office-main.webp', faq = [] }) {
   const canonical = `${siteUrl}/${lang}${path}`;
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
+
+  const faqSchema = faq && faq.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  } : null;
 
   return (
     <Helmet htmlAttributes={{ lang, dir }}>
@@ -59,6 +72,9 @@ export default function Seo({ lang = 'fa', title, description, path = '', image 
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={`${siteUrl}${image}`} />
       <script type="application/ld+json">{JSON.stringify(clinicSchema)}</script>
+      {faqSchema && (
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      )}
     </Helmet>
   );
 }
